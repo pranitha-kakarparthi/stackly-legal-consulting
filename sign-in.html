@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign In - Stackly Legal Consulting Portal: Access active legal briefs, compliance tracking, and retainer docket.">
+  <title>Sign In to Chambers Portal | Stackly Legal Consulting</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Full Viewport Loader -->
+  <div id="loader-wrapper" role="status" aria-live="polite">
+    <div class="loader-content">
+      <div class="loader-logo-wrap">
+        <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
+      </div>
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <p class="loader-text">Stackly Legal • Authenticating Portal Access</p>
+    </div>
+  </div>
+
+  <div class="auth-page-wrapper">
+    <!-- Fixed Header (No navbar) -->
+    <header class="auth-header">
+      <a href="index.html" class="brand-logo-link" aria-label="Stackly Home">
+        <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="150" height="40">
+      </a>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="index.html" class="btn btn-secondary btn-sm">← Back to Home</a>
+        <a href="sign-up.html" class="btn btn-primary btn-sm">Create Account</a>
+      </div>
+    </header>
+
+    <!-- Split Authentication Grid -->
+    <div class="auth-split-grid">
+      <!-- Left Banner Side -->
+      <div class="auth-banner-side">
+        <div>
+          <span class="section-tag light">Encrypted Portal</span>
+          <h1 class="auth-banner-title">Access Your Enterprise Legal Chambers</h1>
+          <p style="color: #cbd5e1; font-size: 1.1rem; max-width: 480px; margin-bottom: 2rem;">
+            Real-time litigation docket monitoring, escrow status, confidential discovery transmission, and privileged communications.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div style="background: rgba(255, 255, 255, 0.08); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold);">
+            <strong style="color: #ffffff;">Bank-Grade AES-256 Encryption</strong>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.25rem;">Compliant with Bar Council attorney-client privilege regulations and ISO 27001 data secrecy.</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold);">
+            <strong style="color: #ffffff;">Instant Partner Advisory Dispatch</strong>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.25rem;">Urgent motions and emergency injunction filings accessible 24/7/365.</p>
+          </div>
+        </div>
+
+        <div style="font-size: 0.85rem; color: #94a3b8;">
+          © 2026 Stackly Legal Consulting. All Rights Reserved.
+        </div>
+      </div>
+
+      <!-- Right Form Side -->
+      <div class="auth-form-side">
+        <div class="auth-card-inner">
+          <h2 style="font-size: 1.85rem; margin-bottom: 0.5rem;">Sign In to Chambers</h2>
+          <p style="font-size: 0.95rem; margin-bottom: 1.75rem;">Enter your authorized enterprise credentials to access the legal portal.</p>
+
+          <!-- Social Logins (Redirect to 404) -->
+          <div class="social-login-grid">
+            <a href="404.html" class="btn-social" title="Sign In with Google">Google</a>
+            <a href="404.html" class="btn-social" title="Sign In with Microsoft">Microsoft</a>
+            <a href="404.html" class="btn-social" title="Sign In with LinkedIn">LinkedIn</a>
+            <a href="404.html" class="btn-social" title="Sign In with Twitter/X">𝕏 Corp</a>
+          </div>
+
+          <div class="auth-divider">
+            <span>or sign in with corporate email</span>
+          </div>
+
+          <!-- Sign In Form -->
+          <form id="signInForm" novalidate>
+            <!-- Email -->
+            <div class="form-group">
+              <label for="loginEmail" class="form-label">Authorized Email Address <span class="req">*</span></label>
+              <input type="email" id="loginEmail" class="form-control" placeholder="counsel@enterprise.com" required value="a.wright@firmchambers.com">
+              <div class="form-feedback">Please enter a valid corporate email address.</div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                <label for="loginPassword" class="form-label" style="margin-bottom: 0;">Password <span class="req">*</span></label>
+                <a href="404.html" style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 600;">Forgot Password?</a>
+              </div>
+              <div class="password-input-wrap">
+                <input type="password" id="loginPassword" class="form-control" placeholder="••••••••••••" required value="SecretPass123!">
+                <button type="button" class="password-toggle-btn" data-target="loginPassword" aria-label="Show password">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                </button>
+              </div>
+              <div class="form-feedback">Password must be at least 6 characters.</div>
+            </div>
+
+            <!-- Role Selector -->
+            <div class="form-group">
+              <label for="loginRole" class="form-label">Access Role / Portal Designation <span class="req">*</span></label>
+              <select id="loginRole" class="form-control" required>
+                <option value="Managing Partner" selected>Managing Partner</option>
+                <option value="Corporate Counsel">Corporate Counsel</option>
+                <option value="Enterprise Client">Enterprise Client</option>
+                <option value="Legal Associate">Legal Associate</option>
+              </select>
+              <div class="form-feedback">Please choose your authorized portal role.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.75rem;">
+              Sign In to Legal Portal
+            </button>
+          </form>
+
+          <div style="text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: var(--text-muted);">
+            Don't have an enterprise portal account? 
+            <a href="sign-up.html" style="color: var(--primary-navy); font-weight: 700; text-decoration: underline;">Retain Counsel & Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
