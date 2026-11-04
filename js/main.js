@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPasswordStrength();
   initFormValidations();
   initDashboard();
+  initHeroCarousel();
 });
 
 /* ==========================================================================
@@ -536,13 +537,13 @@ function initFormValidations() {
 }
 
 /* ==========================================================================
-   11. DASHBOARD PORTAL LOGIC (Fixed Sidebar + Collapse + Search Filter)
+   11. DASHBOARD PORTAL LOGIC (Fixed Sidebar + Collapse + Tabs + Role Switch)
    ========================================================================== */
 function initDashboard() {
   const dashContainer = document.querySelector('.dashboard-layout');
   if (!dashContainer) return;
 
-  // Verify authentication
+  // Verify authentication or default to Alexander Wright
   const sessionStr = localStorage.getItem('currentUser');
   if (!sessionStr) {
     const demoUser = {
@@ -559,7 +560,7 @@ function initDashboard() {
   const userRole = currentUser.role || 'Managing Partner';
   const userName = currentUser.name || 'Counsel';
 
-  // Update DOM elements
+  // Update DOM elements in topbar
   const nameEl = document.getElementById('dashUserName');
   const roleEl = document.getElementById('dashUserRole');
   const avatarEl = document.getElementById('dashUserAvatar');
@@ -579,24 +580,67 @@ function initDashboard() {
     'Legal Associate': { kpi1: '28', kpi2: '97.5%', kpi3: '142 hrs', kpi4: '$290K' }
   };
 
-  const currentKpi = roleKpis[userRole] || roleKpis['Managing Partner'];
-  const kpi1El = document.getElementById('kpiVal1');
-  const kpi2El = document.getElementById('kpiVal2');
-  const kpi3El = document.getElementById('kpiVal3');
-  const kpi4El = document.getElementById('kpiVal4');
+  const updateKpiDisplay = (role) => {
+    const currentKpi = roleKpis[role] || roleKpis['Managing Partner'];
+    const kpi1El = document.getElementById('kpiVal1');
+    const kpi2El = document.getElementById('kpiVal2');
+    const kpi3El = document.getElementById('kpiVal3');
+    const kpi4El = document.getElementById('kpiVal4');
 
-  if (kpi1El) kpi1El.textContent = currentKpi.kpi1;
-  if (kpi2El) kpi2El.textContent = currentKpi.kpi2;
-  if (kpi3El) kpi3El.textContent = currentKpi.kpi3;
-  if (kpi4El) kpi4El.textContent = currentKpi.kpi4;
+    if (kpi1El) kpi1El.textContent = currentKpi.kpi1;
+    if (kpi2El) kpi2El.textContent = currentKpi.kpi2;
+    if (kpi3El) kpi3El.textContent = currentKpi.kpi3;
+    if (kpi4El) kpi4El.textContent = currentKpi.kpi4;
+  };
 
-  // Sidebar collapse toggle
+  updateKpiDisplay(userRole);
+
+  // --- TAB SWITCHING LOGIC (All 8 Subsections) ---
+  const navItems = document.querySelectorAll('.dash-nav-item[data-tab]');
+  const tabPanes = document.querySelectorAll('.dash-tab-pane');
   const sidebar = document.querySelector('.dash-sidebar');
-  const mainArea = document.querySelector('.dash-main-area');
-  const collapseBtn = document.getElementById('sidebarCollapseBtn');
+  const sidebarOverlay = document.getElementById('dashSidebarOverlay');
+  const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
   const mobileToggleBtn = document.getElementById('sidebarToggleBtn');
+  const collapseBtn = document.getElementById('sidebarCollapseBtn');
+  const mainArea = document.querySelector('.dash-main-area');
 
-  // Check saved state
+  const closeMobileSidebar = () => {
+    if (sidebar) sidebar.classList.remove('open');
+    if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  };
+
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tabKey = item.getAttribute('data-tab');
+      if (!tabKey) return;
+
+      // Update nav active status
+      navItems.forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+
+      // Update tab pane active status
+      tabPanes.forEach(pane => {
+        if (pane.id === `tab-${tabKey}`) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+
+      // Scroll view to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Close mobile drawer if open
+      if (window.innerWidth <= 991) {
+        closeMobileSidebar();
+      }
+    });
+  });
+
+  // --- SIDEBAR COLLAPSE & MOBILE DRAWER LOGIC ---
   const isCollapsed = localStorage.getItem('dashSidebarCollapsed') === 'true';
   if (isCollapsed && sidebar && mainArea && window.innerWidth > 991) {
     sidebar.classList.add('collapsed');
@@ -613,11 +657,37 @@ function initDashboard() {
 
   if (mobileToggleBtn && sidebar) {
     mobileToggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+      const isOpen = sidebar.classList.toggle('open');
+      if (sidebarOverlay) sidebarOverlay.classList.toggle('active', isOpen);
+      document.body.classList.toggle('no-scroll', isOpen);
     });
   }
 
-  // Sign out handler
+  if (sidebarCloseBtn) {
+    sidebarCloseBtn.addEventListener('click', closeMobileSidebar);
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeMobileSidebar);
+  }
+
+  // --- MOCK ROLE SWITCHER IN TAB 8 (SETTINGS) ---
+  const mockRoleSelect = document.getElementById('mockRoleSelect');
+  if (mockRoleSelect) {
+    mockRoleSelect.value = userRole;
+    mockRoleSelect.addEventListener('change', () => {
+      const selectedRole = mockRoleSelect.value;
+      const userObj = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      userObj.role = selectedRole;
+      localStorage.setItem('currentUser', JSON.stringify(userObj));
+      localStorage.setItem('role', selectedRole);
+
+      if (roleEl) roleEl.textContent = selectedRole;
+      updateKpiDisplay(selectedRole);
+    });
+  }
+
+  // --- SIGN OUT HANDLER ---
   const signOutBtn = document.getElementById('dashSignOutBtn');
   if (signOutBtn) {
     signOutBtn.addEventListener('click', (e) => {
@@ -628,26 +698,118 @@ function initDashboard() {
     });
   }
 
-  // Legal Matters Table Search & Filter
-  const tableSearch = document.getElementById('tableSearchInput');
-  const statusFilter = document.getElementById('tableStatusFilter');
-  const tableRows = document.querySelectorAll('.custom-table tbody tr');
+  // --- TABLE SEARCH & FILTERS (Overview & Active Matters) ---
+  const overviewSearch = document.getElementById('tableSearchInput');
+  const overviewStatus = document.getElementById('tableStatusFilter');
+  const overviewRows = document.querySelectorAll('#tab-overview .custom-table tbody tr');
 
-  function filterTable() {
-    const query = tableSearch ? tableSearch.value.toLowerCase().trim() : '';
-    const status = statusFilter ? statusFilter.value.toLowerCase() : 'all';
+  function filterOverviewTable() {
+    const query = overviewSearch ? overviewSearch.value.toLowerCase().trim() : '';
+    const status = overviewStatus ? overviewStatus.value.toLowerCase() : 'all';
 
-    tableRows.forEach(row => {
+    overviewRows.forEach(row => {
       const text = row.textContent.toLowerCase();
       const rowStatus = (row.getAttribute('data-status') || '').toLowerCase();
-
       const matchesQuery = !query || text.includes(query);
       const matchesStatus = status === 'all' || rowStatus === status;
-
       row.style.display = matchesQuery && matchesStatus ? '' : 'none';
     });
   }
 
-  if (tableSearch) tableSearch.addEventListener('input', filterTable);
-  if (statusFilter) statusFilter.addEventListener('change', filterTable);
+  if (overviewSearch) overviewSearch.addEventListener('input', filterOverviewTable);
+  if (overviewStatus) overviewStatus.addEventListener('change', filterOverviewTable);
+
+  const mattersSearch = document.getElementById('mattersSearchInput');
+  const mattersStatus = document.getElementById('mattersStatusFilter');
+  const mattersRows = document.querySelectorAll('#tab-matters .custom-table tbody tr');
+
+  function filterMattersTable() {
+    const query = mattersSearch ? mattersSearch.value.toLowerCase().trim() : '';
+    const status = mattersStatus ? mattersStatus.value.toLowerCase() : 'all';
+
+    mattersRows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      const rowStatus = (row.getAttribute('data-status') || '').toLowerCase();
+      const matchesQuery = !query || text.includes(query);
+      const matchesStatus = status === 'all' || rowStatus.includes(status);
+      row.style.display = matchesQuery && matchesStatus ? '' : 'none';
+    });
+  }
+
+  if (mattersSearch) mattersSearch.addEventListener('input', filterMattersTable);
+  if (mattersStatus) mattersStatus.addEventListener('change', filterMattersTable);
+}
+
+/* ==========================================================================
+   12. HERO CAROUSEL & SLIDER TRANSITIONS
+   ========================================================================== */
+function initHeroCarousel() {
+  const carousel = document.querySelector('.hero-carousel-slider');
+  if (!carousel) return;
+
+  const slides = carousel.querySelectorAll('.hero-carousel-slide');
+  const dots = carousel.querySelectorAll('.hero-carousel-dot');
+  const prevBtn = carousel.querySelector('.hero-carousel-prev');
+  const nextBtn = carousel.querySelector('.hero-carousel-next');
+
+  if (!slides.length) return;
+
+  let currentIndex = 0;
+  let autoTimer = null;
+
+  function showSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    currentIndex = index;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentIndex);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoTimer = setInterval(() => {
+      showSlide(currentIndex + 1);
+    }, 4500);
+  }
+
+  function stopAutoPlay() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      showSlide(currentIndex - 1);
+      startAutoPlay();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      showSlide(currentIndex + 1);
+      startAutoPlay();
+    });
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      showSlide(i);
+      startAutoPlay();
+    });
+  });
+
+  carousel.addEventListener('mouseenter', stopAutoPlay);
+  carousel.addEventListener('mouseleave', startAutoPlay);
+
+  // Initialize first slide
+  showSlide(0);
+  startAutoPlay();
 }

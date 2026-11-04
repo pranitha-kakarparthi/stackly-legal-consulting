@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dashboard - Stackly Legal Consulting: Comprehensive enterprise legal portal for monitoring active litigation dockets, compliance health, and retainer hours.">
-  <title>Enterprise Legal Portal | Stackly Legal Consulting</title>
+  <meta name="description" content="Dashboard - Stackly Legal Consulting Client Portal: Active matter tracking, real-time compliance audits, and retainer docket management.">
+  <title>Chambers Dashboard Portal | Stackly Legal Consulting</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,9 +21,12 @@
         <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
       </div>
       <div class="loader-spinner" aria-hidden="true"></div>
-      <p class="loader-text">Stackly Legal • Loading Chambers Portal</p>
+      <p class="loader-text">Stackly Legal • Loading Privileged Chambers Portal</p>
     </div>
   </div>
+
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div id="dashSidebarOverlay" class="dash-sidebar-overlay" aria-hidden="true"></div>
 
   <div class="dashboard-layout">
     <!-- Fixed & Collapsible Dashboard Sidebar -->
@@ -33,44 +36,50 @@
           <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="130" height="35">
           <span class="brand-logo-mini">§</span>
         </a>
-        <button id="sidebarCollapseBtn" class="sidebar-collapse-btn" title="Toggle Sidebar" aria-label="Collapse Sidebar">
-          ⇄
-        </button>
+        <div style="display: flex; align-items: center; gap: 0.35rem;">
+          <button id="sidebarCollapseBtn" class="sidebar-collapse-btn" title="Toggle Mini Sidebar (Desktop)" aria-label="Collapse Sidebar">
+            ⇄
+          </button>
+          <button id="sidebarCloseBtn" class="sidebar-close-btn" title="Close Sidebar (Mobile)" aria-label="Close Sidebar">
+            ✕
+          </button>
+        </div>
       </div>
 
+      <!-- Tab Buttons for Individual Option Content -->
       <nav class="dash-sidebar-menu">
-        <div class="dash-nav-item active" title="Executive Overview">
+        <button class="dash-nav-item active" data-tab="overview" title="Chambers Overview">
           <span>📊</span>
           <span class="dash-nav-text">Chambers Overview</span>
-        </div>
-        <a href="404.html" class="dash-nav-item" title="Active Matters">
+        </button>
+        <button class="dash-nav-item" data-tab="matters" title="Active Matters">
           <span>⚖️</span>
           <span class="dash-nav-text">Active Legal Matters</span>
-        </a>
-        <a href="404.html" class="dash-nav-item" title="Compliance Audits">
+        </button>
+        <button class="dash-nav-item" data-tab="compliance" title="Compliance Audits">
           <span>🛡️</span>
           <span class="dash-nav-text">Compliance Audits</span>
-        </a>
-        <a href="404.html" class="dash-nav-item" title="Contracts & Escrow">
+        </button>
+        <button class="dash-nav-item" data-tab="contracts" title="Contracts & Escrow">
           <span>📜</span>
           <span class="dash-nav-text">Contracts & Escrow</span>
-        </a>
-        <a href="404.html" class="dash-nav-item" title="Court Calendar">
+        </button>
+        <button class="dash-nav-item" data-tab="calendar" title="Litigation Calendar">
           <span>📅</span>
           <span class="dash-nav-text">Litigation Calendar</span>
-        </a>
-        <a href="404.html" class="dash-nav-item" title="Counsel Team">
+        </button>
+        <button class="dash-nav-item" data-tab="counsel" title="Assigned Counsel">
           <span>👥</span>
           <span class="dash-nav-text">Assigned Counsel</span>
-        </a>
-        <a href="404.html" class="dash-nav-item" title="Fee Statements">
+        </button>
+        <button class="dash-nav-item" data-tab="billing" title="Invoices & Escrow">
           <span>💳</span>
           <span class="dash-nav-text">Invoices & Escrow</span>
-        </a>
-        <a href="404.html" class="dash-nav-item" title="Portal Settings">
+        </button>
+        <button class="dash-nav-item" data-tab="settings" title="Security & Settings">
           <span>⚙️</span>
           <span class="dash-nav-text">Security & Settings</span>
-        </a>
+        </button>
       </nav>
 
       <div class="dash-sidebar-footer">
@@ -85,10 +94,10 @@
       <!-- Topbar Header -->
       <header class="dash-topbar">
         <div style="display: flex; align-items: center; gap: 1rem;">
-          <button id="sidebarToggleBtn" class="hamburger-btn" style="display: none; background: none; border: none; cursor: pointer; color: var(--primary-navy);" aria-label="Toggle Mobile Menu">
-            ☰
+          <button id="sidebarToggleBtn" class="dash-mobile-toggle-btn" aria-label="Toggle Dashboard Menu">
+            ☰ <span>Menu</span>
           </button>
-          <h2 style="font-size: 1.35rem; color: var(--primary-navy);">Chambers Legal Portal</h2>
+          <h2 style="font-size: 1.35rem; color: var(--primary-navy); margin: 0;">Chambers Legal Portal</h2>
           <span id="dashUserRole" style="background: rgba(197, 155, 39, 0.15); color: #b0891f; border: 1px solid rgba(197, 155, 39, 0.3); padding: 0.2rem 0.75rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Managing Partner</span>
         </div>
 
@@ -115,297 +124,813 @@
         </div>
       </header>
 
-      <!-- Dashboard Main Body (Smooth Scrollable) -->
+      <!-- Dashboard Main Body with Tab Panes -->
       <main class="dash-body">
-        <!-- SECTION 1: WELCOME & DYNAMIC TIME-OF-DAY GREETING -->
-        <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">
-              <span class="time-greeting" data-suffix="Alexander Wright">Good day</span>
-            </h1>
-            <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">
-              Active Docket Status: <strong>All statutory filings are synchronized</strong>. No contempt or sanctions exposure reported across jurisdictions.
-            </p>
+        
+        <!-- =========================================================================
+             TAB 1: CHAMBERS OVERVIEW (Default Active)
+             ========================================================================= -->
+        <div id="tab-overview" class="dash-tab-pane active">
+          <!-- Welcome Card -->
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">
+                <span class="time-greeting" data-suffix="Alexander Wright">Good day</span>
+              </h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">
+                Active Docket Status: <strong>All statutory filings are synchronized</strong>. No contempt or sanctions exposure reported across jurisdictions.
+              </p>
+            </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">+ Initiate Emergency Brief</a>
+            </div>
           </div>
-          <div>
-            <a href="404.html" class="btn btn-primary btn-sm">+ Initiate Emergency Brief</a>
+
+          <!-- 4 Core KPI Cards -->
+          <section class="dash-kpi-grid" aria-label="KPI Metrics">
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Active Matters</span>
+                <div id="kpiVal1" class="dash-kpi-value">48</div>
+                <span style="font-size: 0.8rem; color: #10b981;">↑ 4 filings this month</span>
+              </div>
+              <div style="font-size: 2.2rem; color: var(--primary-navy);">🏛️</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Compliance Index</span>
+                <div id="kpiVal2" class="dash-kpi-value">99.4%</div>
+                <span style="font-size: 0.8rem; color: #10b981;">ISO 27001 Certified</span>
+              </div>
+              <div style="font-size: 2.2rem; color: var(--accent-gold);">🛡️</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Retainer Hours Logged</span>
+                <div id="kpiVal3" class="dash-kpi-value">164 hrs</div>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">26 hrs remaining in cycle</span>
+              </div>
+              <div style="font-size: 2.2rem; color: var(--secondary-slate);">⏱️</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Escrow Custody</span>
+                <div id="kpiVal4" class="dash-kpi-value">$1.42M</div>
+                <span style="font-size: 0.8rem; color: #10b981;">Protected in Segregated Trust</span>
+              </div>
+              <div style="font-size: 2.2rem; color: #10b981;">🔒</div>
+            </div>
+          </section>
+
+          <!-- Interactive Legal Matters & Docket Table -->
+          <section class="data-table-card" aria-label="Legal Matters Table">
+            <div class="table-header-bar">
+              <div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.2rem;">Chambers Active Docket & Litigation Register</h3>
+                <p style="font-size: 0.85rem; margin: 0;">Real-time status of commercial lawsuits, arbitrations, and regulatory audits.</p>
+              </div>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <input type="text" id="tableSearchInput" placeholder="Search docket or client..." style="padding: 0.45rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
+                <select id="tableStatusFilter" style="padding: 0.45rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
+                  <option value="all">All Statuses</option>
+                  <option value="Active">Active Trial</option>
+                  <option value="In Review">Regulatory Review</option>
+                  <option value="Pending">Pending Ruling</option>
+                  <option value="Resolved">Resolved</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Docket #</th>
+                    <th>Matter Title</th>
+                    <th>Client / Entity</th>
+                    <th>Practice Area</th>
+                    <th>Lead Advocate</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="Active">
+                    <td><strong>#SK-2026-104</strong></td>
+                    <td>Apex Logistics vs. Port Maritime Authority</td>
+                    <td>Apex Global Logistics</td>
+                    <td>Trade Sanctions</td>
+                    <td>Alexander Wright, Esq.</td>
+                    <td><span class="badge-status badge-active">Active</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
+                  </tr>
+                  <tr data-status="In Review">
+                    <td><strong>#SK-2026-088</strong></td>
+                    <td>BioTech Patent Infringement Counterclaim</td>
+                    <td>BioTech Innovations Labs</td>
+                    <td>Intellectual Property</td>
+                    <td>Dr. Sophia Chen</td>
+                    <td><span class="badge-status badge-review">In Review</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
+                  </tr>
+                  <tr data-status="Pending">
+                    <td><strong>#SK-2026-052</strong></td>
+                    <td>Meridian $320M M&A Antitrust Clearance</td>
+                    <td>Meridian Financial Holdings</td>
+                    <td>Corporate & M&A</td>
+                    <td>Eleanor Vance, J.D.</td>
+                    <td><span class="badge-status badge-pending">Pending</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
+                  </tr>
+                  <tr data-status="Active">
+                    <td><strong>#SK-2026-041</strong></td>
+                    <td>SIAC Energy Concession Arbitral Award</td>
+                    <td>Helios Renewable Consortium</td>
+                    <td>Arbitration</td>
+                    <td>Marcus Sterling, KC</td>
+                    <td><span class="badge-status badge-active">Active</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
+                  </tr>
+                  <tr data-status="Resolved">
+                    <td><strong>#SK-2025-912</strong></td>
+                    <td>Statutory AML Whistle-blower Audit</td>
+                    <td>QuantEdge Trading Ltd</td>
+                    <td>Governance</td>
+                    <td>Alexander Wright, Esq.</td>
+                    <td><span class="badge-status badge-resolved">Resolved</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Analytics Chart & Court Calendar -->
+          <div class="card-grid-2" style="margin-bottom: 2rem;">
+            <!-- SVG Analytics Chart -->
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <h3 style="font-size: 1.15rem;">Case Filings & Outcome Trajectory</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Past 6 Months</span>
+              </div>
+
+              <svg viewBox="0 0 500 220" style="width: 100%; height: auto;" aria-label="Legal outcomes bar chart">
+                <line x1="40" y1="20" x2="480" y2="20" stroke="#f1f5f9" stroke-width="1.5" />
+                <line x1="40" y1="70" x2="480" y2="70" stroke="#f1f5f9" stroke-width="1.5" />
+                <line x1="40" y1="120" x2="480" y2="120" stroke="#f1f5f9" stroke-width="1.5" />
+                <line x1="40" y1="170" x2="480" y2="170" stroke="#f1f5f9" stroke-width="1.5" />
+
+                <text x="15" y="25" font-size="11" fill="#94a3b8">50</text>
+                <text x="15" y="75" font-size="11" fill="#94a3b8">35</text>
+                <text x="15" y="125" font-size="11" fill="#94a3b8">20</text>
+                <text x="15" y="175" font-size="11" fill="#94a3b8">0</text>
+
+                <rect x="70" y="60" width="36" height="110" rx="4" fill="#103654" />
+                <text x="75" y="195" font-size="11" fill="#475569">Nov</text>
+
+                <rect x="135" y="45" width="36" height="125" rx="4" fill="#103654" />
+                <text x="140" y="195" font-size="11" fill="#475569">Dec</text>
+
+                <rect x="200" y="55" width="36" height="115" rx="4" fill="#103654" />
+                <text x="205" y="195" font-size="11" fill="#475569">Jan</text>
+
+                <rect x="265" y="30" width="36" height="140" rx="4" fill="#103654" />
+                <text x="270" y="195" font-size="11" fill="#475569">Feb</text>
+
+                <rect x="330" y="40" width="36" height="130" rx="4" fill="#103654" />
+                <text x="335" y="195" font-size="11" fill="#475569">Mar</text>
+
+                <rect x="395" y="25" width="36" height="145" rx="4" fill="#c59b27" />
+                <text x="400" y="195" font-size="11" fill="#475569" font-weight="bold">Apr</text>
+              </svg>
+
+              <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 0.5rem; font-size: 0.8rem;">
+                <span style="display: flex; align-items: center; gap: 0.35rem;"><span style="width: 10px; height: 10px; background: #103654; border-radius: 2px;"></span> Successful Verdicts</span>
+                <span style="display: flex; align-items: center; gap: 0.35rem;"><span style="width: 10px; height: 10px; background: #c59b27; border-radius: 2px;"></span> Current Month Peak</span>
+              </div>
+            </div>
+
+            <!-- Hearing Calendar Preview -->
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <h3 style="font-size: 1.15rem;">Upcoming Court Hearings & Deadlines</h3>
+                <a href="404.html" style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 600;">Sync iCal <span>→</span></a>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: flex; gap: 1rem; align-items: center; padding: 0.85rem; background: var(--bg-main); border-radius: var(--radius-md); border-left: 3.5px solid var(--primary-navy);">
+                  <div style="background: #ffffff; padding: 0.5rem 0.75rem; text-align: center; border-radius: var(--radius-sm); border: 1px solid var(--border-light); min-width: 60px;">
+                    <span style="font-size: 0.7rem; color: #ef4444; font-weight: bold; display: block;">APR</span>
+                    <strong style="font-size: 1.1rem; color: var(--primary-navy);">14</strong>
+                  </div>
+                  <div>
+                    <h4 style="font-size: 0.95rem; margin-bottom: 0.15rem;">High Court Motion for Injunction</h4>
+                    <p style="font-size: 0.8rem; margin: 0;">Bench 3 • Madras High Court • 10:30 AM IST</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; align-items: center; padding: 0.85rem; background: var(--bg-main); border-radius: var(--radius-md); border-left: 3.5px solid var(--accent-gold);">
+                  <div style="background: #ffffff; padding: 0.5rem 0.75rem; text-align: center; border-radius: var(--radius-sm); border: 1px solid var(--border-light); min-width: 60px;">
+                    <span style="font-size: 0.7rem; color: #ef4444; font-weight: bold; display: block;">APR</span>
+                    <strong style="font-size: 1.1rem; color: var(--primary-navy);">19</strong>
+                  </div>
+                  <div>
+                    <h4 style="font-size: 0.95rem; margin-bottom: 0.15rem;">SIAC Virtual Preliminary Hearing</h4>
+                    <p style="font-size: 0.8rem; margin: 0;">Arbitral Tribunal Session • Singapore Seat</p>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; align-items: center; padding: 0.85rem; background: var(--bg-main); border-radius: var(--radius-md); border-left: 3.5px solid var(--secondary-slate);">
+                  <div style="background: #ffffff; padding: 0.5rem 0.75rem; text-align: center; border-radius: var(--radius-sm); border: 1px solid var(--border-light); min-width: 60px;">
+                    <span style="font-size: 0.7rem; color: #ef4444; font-weight: bold; display: block;">APR</span>
+                    <strong style="font-size: 1.1rem; color: var(--primary-navy);">24</strong>
+                  </div>
+                  <div>
+                    <h4 style="font-size: 0.95rem; margin-bottom: 0.15rem;">Statutory Annual Filing Deadline</h4>
+                    <p style="font-size: 0.8rem; margin: 0;">Ministry of Corporate Affairs ROC Portal</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- SECTION 2: 4 CORE KPI / METRIC CARDS -->
-        <section class="dash-kpi-grid" aria-label="KPI Metrics">
-          <div class="dash-kpi-card">
+        <!-- =========================================================================
+             TAB 2: ACTIVE LEGAL MATTERS
+             ========================================================================= -->
+        <div id="tab-matters" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div>
-              <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Active Matters</span>
-              <div id="kpiVal1" class="dash-kpi-value">48</div>
-              <span style="font-size: 0.8rem; color: #10b981;">↑ 4 filings this month</span>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Active Court & Arbitration Matters</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Comprehensive litigation dockets across Supreme Court, High Courts, NCLT, and Arbitral Seats.</p>
             </div>
-            <div style="font-size: 2.2rem; color: var(--primary-navy);">🏛️</div>
-          </div>
-
-          <div class="dash-kpi-card">
             <div>
-              <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Compliance Index</span>
-              <div id="kpiVal2" class="dash-kpi-value">99.4%</div>
-              <span style="font-size: 0.8rem; color: #10b981;">ISO 27001 Certified</span>
-            </div>
-            <div style="font-size: 2.2rem; color: var(--accent-gold);">🛡️</div>
-          </div>
-
-          <div class="dash-kpi-card">
-            <div>
-              <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Retainer Hours Logged</span>
-              <div id="kpiVal3" class="dash-kpi-value">164 hrs</div>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">26 hrs remaining in cycle</span>
-            </div>
-            <div style="font-size: 2.2rem; color: var(--secondary-slate);">⏱️</div>
-          </div>
-
-          <div class="dash-kpi-card">
-            <div>
-              <span style="font-size: 0.825rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Escrow Custody</span>
-              <div id="kpiVal4" class="dash-kpi-value">$1.42M</div>
-              <span style="font-size: 0.8rem; color: #10b981;">Protected in Segregated Trust</span>
-            </div>
-            <div style="font-size: 2.2rem; color: #10b981;">🔒</div>
-          </div>
-        </section>
-
-        <!-- SECTION 3: INTERACTIVE LEGAL MATTERS & DOCKET TABLE -->
-        <section class="data-table-card" aria-label="Legal Matters Table">
-          <div class="table-header-bar">
-            <div>
-              <h3 style="font-size: 1.15rem; margin-bottom: 0.2rem;">Chambers Active Docket & Litigation Register</h3>
-              <p style="font-size: 0.85rem; margin: 0;">Real-time status of commercial lawsuits, arbitrations, and regulatory audits.</p>
-            </div>
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-              <input type="text" id="tableSearchInput" placeholder="Search docket or client..." style="padding: 0.45rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
-              <select id="tableStatusFilter" style="padding: 0.45rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
-                <option value="all">All Statuses</option>
-                <option value="Active">Active Trial</option>
-                <option value="In Review">Regulatory Review</option>
-                <option value="Pending">Pending Ruling</option>
-                <option value="Resolved">Resolved</option>
-              </select>
+              <a href="404.html" class="btn btn-primary btn-sm">+ File Emergency Petition</a>
             </div>
           </div>
 
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Docket #</th>
-                  <th>Matter Title</th>
-                  <th>Client / Entity</th>
-                  <th>Practice Area</th>
-                  <th>Lead Advocate</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr data-status="Active">
-                  <td><strong>#SK-2026-104</strong></td>
-                  <td>Apex Logistics vs. Port Maritime Authority</td>
-                  <td>Apex Global Logistics</td>
-                  <td>Trade Sanctions</td>
-                  <td>Alexander Wright, Esq.</td>
-                  <td><span class="badge-status badge-active">Active</span></td>
-                  <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
-                </tr>
-                <tr data-status="In Review">
-                  <td><strong>#SK-2026-088</strong></td>
-                  <td>BioTech Patent Infringement Counterclaim</td>
-                  <td>BioTech Innovations Labs</td>
-                  <td>Intellectual Property</td>
-                  <td>Dr. Sophia Chen</td>
-                  <td><span class="badge-status badge-review">In Review</span></td>
-                  <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
-                </tr>
-                <tr data-status="Pending">
-                  <td><strong>#SK-2026-052</strong></td>
-                  <td>Meridian $320M M&A Antitrust Clearance</td>
-                  <td>Meridian Financial Holdings</td>
-                  <td>Corporate & M&A</td>
-                  <td>Eleanor Vance, J.D.</td>
-                  <td><span class="badge-status badge-pending">Pending</span></td>
-                  <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
-                </tr>
-                <tr data-status="Active">
-                  <td><strong>#SK-2026-041</strong></td>
-                  <td>SIAC Energy Concession Arbitral Award</td>
-                  <td>Helios Renewable Consortium</td>
-                  <td>Arbitration</td>
-                  <td>Marcus Sterling, KC</td>
-                  <td><span class="badge-status badge-active">Active</span></td>
-                  <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
-                </tr>
-                <tr data-status="Resolved">
-                  <td><strong>#SK-2025-912</strong></td>
-                  <td>Statutory AML Whistle-blower Audit</td>
-                  <td>QuantEdge Trading Ltd</td>
-                  <td>Governance</td>
-                  <td>Alexander Wright, Esq.</td>
-                  <td><span class="badge-status badge-resolved">Resolved</span></td>
-                  <td><a href="404.html" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.65rem; font-size: 0.75rem;">View Brief</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- SECTION 4: LITIGATION ANALYTICS (SVG Chart) & COURT CALENDAR -->
-        <div class="card-grid-2" style="margin-bottom: 2rem;">
-          <!-- SVG Analytics Chart -->
-          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-              <h3 style="font-size: 1.15rem;">Case Filings & Outcome Trajectory</h3>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Past 6 Months</span>
-            </div>
-
-            <!-- Responsive SVG Bar Chart -->
-            <svg viewBox="0 0 500 220" style="width: 100%; height: auto;" aria-label="Legal outcomes bar chart">
-              <line x1="40" y1="20" x2="480" y2="20" stroke="#f1f5f9" stroke-width="1.5" />
-              <line x1="40" y1="70" x2="480" y2="70" stroke="#f1f5f9" stroke-width="1.5" />
-              <line x1="40" y1="120" x2="480" y2="120" stroke="#f1f5f9" stroke-width="1.5" />
-              <line x1="40" y1="170" x2="480" y2="170" stroke="#f1f5f9" stroke-width="1.5" />
-
-              <text x="15" y="25" font-size="11" fill="#94a3b8">50</text>
-              <text x="15" y="75" font-size="11" fill="#94a3b8">35</text>
-              <text x="15" y="125" font-size="11" fill="#94a3b8">20</text>
-              <text x="15" y="175" font-size="11" fill="#94a3b8">0</text>
-
-              <rect x="70" y="60" width="36" height="110" rx="4" fill="#103654" />
-              <text x="75" y="195" font-size="11" fill="#475569">Nov</text>
-
-              <rect x="135" y="45" width="36" height="125" rx="4" fill="#103654" />
-              <text x="140" y="195" font-size="11" fill="#475569">Dec</text>
-
-              <rect x="200" y="55" width="36" height="115" rx="4" fill="#103654" />
-              <text x="205" y="195" font-size="11" fill="#475569">Jan</text>
-
-              <rect x="265" y="30" width="36" height="140" rx="4" fill="#103654" />
-              <text x="270" y="195" font-size="11" fill="#475569">Feb</text>
-
-              <rect x="330" y="40" width="36" height="130" rx="4" fill="#103654" />
-              <text x="335" y="195" font-size="11" fill="#475569">Mar</text>
-
-              <rect x="395" y="25" width="36" height="145" rx="4" fill="#c59b27" />
-              <text x="400" y="195" font-size="11" fill="#475569" font-weight="bold">Apr</text>
-            </svg>
-
-            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 0.5rem; font-size: 0.8rem;">
-              <span style="display: flex; align-items: center; gap: 0.35rem;"><span style="width: 10px; height: 10px; background: #103654; border-radius: 2px;"></span> Successful Verdicts</span>
-              <span style="display: flex; align-items: center; gap: 0.35rem;"><span style="width: 10px; height: 10px; background: #c59b27; border-radius: 2px;"></span> Current Month Peak</span>
-            </div>
-          </div>
-
-          <!-- Hearing Calendar -->
-          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-              <h3 style="font-size: 1.15rem;">Upcoming Court Hearings & Deadlines</h3>
-              <a href="404.html" style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 600;">Sync iCal <span>→</span></a>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 1rem;">
-              <div style="display: flex; gap: 1rem; align-items: center; padding: 0.85rem; background: var(--bg-main); border-radius: var(--radius-md); border-left: 3.5px solid var(--primary-navy);">
-                <div style="background: #ffffff; padding: 0.5rem 0.75rem; text-align: center; border-radius: var(--radius-sm); border: 1px solid var(--border-light); min-width: 60px;">
-                  <span style="font-size: 0.7rem; color: #ef4444; font-weight: bold; display: block;">APR</span>
-                  <strong style="font-size: 1.1rem; color: var(--primary-navy);">14</strong>
-                </div>
-                <div>
-                  <h4 style="font-size: 0.95rem; margin-bottom: 0.15rem;">High Court Motion for Injunction</h4>
-                  <p style="font-size: 0.8rem; margin: 0;">Bench 3 • Madras High Court • 10:30 AM IST</p>
-                </div>
+          <div class="dash-kpi-grid" style="margin-bottom: 2rem;">
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">High Court Actions</span>
+                <div class="dash-kpi-value">22</div>
+                <span style="font-size: 0.8rem; color: #10b981;">100% Injunction Preservation</span>
               </div>
-
-              <div style="display: flex; gap: 1rem; align-items: center; padding: 0.85rem; background: var(--bg-main); border-radius: var(--radius-md); border-left: 3.5px solid var(--accent-gold);">
-                <div style="background: #ffffff; padding: 0.5rem 0.75rem; text-align: center; border-radius: var(--radius-sm); border: 1px solid var(--border-light); min-width: 60px;">
-                  <span style="font-size: 0.7rem; color: #ef4444; font-weight: bold; display: block;">APR</span>
-                  <strong style="font-size: 1.1rem; color: var(--primary-navy);">19</strong>
-                </div>
-                <div>
-                  <h4 style="font-size: 0.95rem; margin-bottom: 0.15rem;">SIAC Virtual Preliminary Hearing</h4>
-                  <p style="font-size: 0.8rem; margin: 0;">Arbitral Tribunal Session • Singapore Seat</p>
-                </div>
+              <div style="font-size: 2rem; color: var(--primary-navy);">⚖️</div>
+            </div>
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Arbitral Tribunals</span>
+                <div class="dash-kpi-value">14</div>
+                <span style="font-size: 0.8rem; color: var(--accent-gold);">SIAC, LCIA, ICC</span>
               </div>
-
-              <div style="display: flex; gap: 1rem; align-items: center; padding: 0.85rem; background: var(--bg-main); border-radius: var(--radius-md); border-left: 3.5px solid var(--secondary-slate);">
-                <div style="background: #ffffff; padding: 0.5rem 0.75rem; text-align: center; border-radius: var(--radius-sm); border: 1px solid var(--border-light); min-width: 60px;">
-                  <span style="font-size: 0.7rem; color: #ef4444; font-weight: bold; display: block;">APR</span>
-                  <strong style="font-size: 1.1rem; color: var(--primary-navy);">24</strong>
-                </div>
-                <div>
-                  <h4 style="font-size: 0.95rem; margin-bottom: 0.15rem;">Statutory Annual Filing Deadline</h4>
-                  <p style="font-size: 0.8rem; margin: 0;">Ministry of Corporate Affairs ROC Portal</p>
-                </div>
+              <div style="font-size: 2rem; color: var(--accent-gold);">🌐</div>
+            </div>
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">NCLT & Insolvency</span>
+                <div class="dash-kpi-value">8</div>
+                <span style="font-size: 0.8rem; color: #10b981;">Creditor Recovery Track</span>
               </div>
+              <div style="font-size: 2rem; color: var(--secondary-slate);">🏢</div>
+            </div>
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Appellate Writs</span>
+                <div class="dash-kpi-value">4</div>
+                <span style="font-size: 0.8rem; color: #10b981;">Stay Orders Maintained</span>
+              </div>
+              <div style="font-size: 2rem; color: #10b981;">📜</div>
+            </div>
+          </div>
+
+          <div class="data-table-card">
+            <div class="table-header-bar">
+              <div>
+                <h3 style="font-size: 1.15rem; margin: 0 0 0.25rem 0;">Full Case Registry & Next Hearing Schedules</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Comprehensive docket across High Courts, NCLT, and Arbitral Seats.</p>
+              </div>
+              <div class="table-actions-group">
+                <input type="text" id="mattersSearchInput" class="form-control" placeholder="Search case, forum or party..." style="width: 220px; font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                <select id="mattersStatusFilter" class="form-control" style="width: 140px; font-size: 0.85rem; padding: 0.5rem 0.75rem;">
+                  <option value="all">All Statuses</option>
+                  <option value="injunction">Injunction</option>
+                  <option value="evidence">Evidence Stage</option>
+                  <option value="stay">Stay Argued</option>
+                  <option value="approved">Approved</option>
+                </select>
+                <a href="404.html" class="btn btn-secondary btn-sm">Export PDF</a>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Docket ID</th>
+                    <th>Matter Summary</th>
+                    <th>Judicial Forum</th>
+                    <th>Opposing Party</th>
+                    <th>Hearing Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="injunction">
+                    <td><strong>#HC-2026-991</strong></td>
+                    <td>Ex-Parte Algorithmic Source Code Freeze</td>
+                    <td>Madras High Court</td>
+                    <td>Ex-Executive Promoters</td>
+                    <td>Apr 14, 2026</td>
+                    <td><span class="badge-status badge-active">Interim Injunction</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Review Brief</a></td>
+                  </tr>
+                  <tr data-status="evidence">
+                    <td><strong>#ARB-2026-312</strong></td>
+                    <td>Maritime Charter Repudiation ($35M)</td>
+                    <td>SIAC Singapore</td>
+                    <td>Sovereign Shipping Corp</td>
+                    <td>Apr 19, 2026</td>
+                    <td><span class="badge-status badge-review">Evidence Stage</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Review Brief</a></td>
+                  </tr>
+                  <tr data-status="stay">
+                    <td><strong>#NCLT-2026-084</strong></td>
+                    <td>Section 241 Minority Shareholder Oppression</td>
+                    <td>NCLT Chennai Bench</td>
+                    <td>Dissident Investor Group</td>
+                    <td>Apr 28, 2026</td>
+                    <td><span class="badge-status badge-pending">Stay Argued</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Review Brief</a></td>
+                  </tr>
+                  <tr data-status="approved">
+                    <td><strong>#CCI-2026-049</strong></td>
+                    <td>Antitrust Review on $320M Cross-Border Merger</td>
+                    <td>Competition Commission</td>
+                    <td>Regulatory Bench</td>
+                    <td>May 04, 2026</td>
+                    <td><span class="badge-status badge-resolved">Combination Approved</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Review Brief</a></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <!-- SECTION 5: ASSIGNED ADVOCATE TEAM DIRECTORY -->
-        <section style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);" aria-label="Counsel Team Directory">
-          <h3 style="font-size: 1.15rem; margin-bottom: 1.25rem;">Dedicated Retainer Advocacy Bench</h3>
-          <div class="card-grid-3">
-            <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-main); border-radius: var(--radius-md);">
-              <img src="images/attorney_managing_partner.webp" alt="Alexander Wright, Senior Partner" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: top center; border: 2px solid var(--accent-gold);" width="54" height="54">
-              <div>
-                <h4 style="font-size: 0.95rem; margin-bottom: 0.1rem;">Alexander Wright</h4>
-                <p style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 0.3rem;">Senior Partner</p>
-                <a href="404.html" style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Direct Chambers Line <span>→</span></a>
-              </div>
+        <!-- =========================================================================
+             TAB 3: COMPLIANCE AUDITS
+             ========================================================================= -->
+        <div id="tab-compliance" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Corporate Compliance & Statutory Audit Matrix</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Comprehensive verification of Companies Act filings, SEBI LODR disclosures, and ESG compliance.</p>
             </div>
-
-            <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-main); border-radius: var(--radius-md);">
-              <img src="images/attorney_senior_counsel.webp" alt="Eleanor Vance, Partner Corporate Governance" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: top center; border: 2px solid var(--accent-gold);" width="54" height="54">
-              <div>
-                <h4 style="font-size: 0.95rem; margin-bottom: 0.1rem;">Eleanor Vance</h4>
-                <p style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 0.3rem;">Governance Lead</p>
-                <a href="404.html" style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Direct Chambers Line <span>→</span></a>
-              </div>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-main); border-radius: var(--radius-md);">
-              <img src="images/attorney_litigation_lead.webp" alt="Marcus Sterling, Head of Commercial Litigation" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: top center; border: 2px solid var(--accent-gold);" width="54" height="54">
-              <div>
-                <h4 style="font-size: 0.95rem; margin-bottom: 0.1rem;">Marcus Sterling</h4>
-                <p style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 0.3rem;">Litigation Advocate</p>
-                <a href="404.html" style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Direct Chambers Line <span>→</span></a>
-              </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">Run Automated Audit Check</a>
             </div>
           </div>
-        </section>
 
-        <!-- SECTION 6: QUICK ACTIONS & ADVISORY DISPATCH -->
-        <section aria-label="Portal Quick Actions">
-          <h3 style="font-size: 1.15rem; margin-bottom: 1rem;">Expedited Legal Operations</h3>
+          <div class="card-grid-4" style="margin-bottom: 2rem;">
+            <div class="service-card" style="padding: 1.5rem;">
+              <span style="font-size: 0.75rem; color: #10b981; font-weight: 700; text-transform: uppercase;">100% Certified</span>
+              <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">MCA ROC Filings</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Annual AOC-4, MGT-7, and director DIR-3 KYC compliance completed.</p>
+              <span class="badge-status badge-resolved" style="display: inline-block; margin-top: 0.5rem;">Synchronized</span>
+            </div>
+
+            <div class="service-card" style="padding: 1.5rem;">
+              <span style="font-size: 0.75rem; color: #10b981; font-weight: 700; text-transform: uppercase;">Clean Slate</span>
+              <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">SEBI LODR Disclosures</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Regulation 30 price-sensitive notifications pre-cleared by partner counsel.</p>
+              <span class="badge-status badge-resolved" style="display: inline-block; margin-top: 0.5rem;">Compliant</span>
+            </div>
+
+            <div class="service-card" style="padding: 1.5rem;">
+              <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase;">In Review</span>
+              <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">BRSR & ESG Mandate</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Supply-chain carbon disclosure and human capital governance audits.</p>
+              <span class="badge-status badge-review" style="display: inline-block; margin-top: 0.5rem;">92% Ready</span>
+            </div>
+
+            <div class="service-card" style="padding: 1.5rem;">
+              <span style="font-size: 0.75rem; color: #10b981; font-weight: 700; text-transform: uppercase;">Zero Liability</span>
+              <h3 style="font-size: 1.1rem; margin: 0.5rem 0;">Whistleblower Registry</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">3 confidential inquiries investigated; zero statutory exposure reported.</p>
+              <span class="badge-status badge-active" style="display: inline-block; margin-top: 0.5rem;">Fully Exonerated</span>
+            </div>
+          </div>
+
+          <div class="data-table-card">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0;">Statutory Inquest & Compliance Log</h3>
+              <a href="404.html" class="btn btn-secondary btn-sm">Download Compliance Certificate</a>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Audit ID</th>
+                    <th>Regulatory Area</th>
+                    <th>Scope</th>
+                    <th>Auditing Advocate</th>
+                    <th>Verification Date</th>
+                    <th>Audit Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#AUD-2026-01</strong></td>
+                    <td>Companies Act 2013</td>
+                    <td>Related-Party Disclosures & Board Charters</td>
+                    <td>Meera Krishnan, LL.M.</td>
+                    <td>Apr 02, 2026</td>
+                    <td><span class="badge-status badge-resolved">Certified Flawless</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#AUD-2026-02</strong></td>
+                    <td>SEBI Insider Trading (PIT)</td>
+                    <td>Structured Digital Database (SDD) Audit</td>
+                    <td>Alexander Wright, Esq.</td>
+                    <td>Mar 28, 2026</td>
+                    <td><span class="badge-status badge-resolved">Pass (Zero Leaks)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#AUD-2026-03</strong></td>
+                    <td>POSH & Labour Laws</td>
+                    <td>Internal Complaints Committee Composition</td>
+                    <td>Meera Krishnan, LL.M.</td>
+                    <td>Mar 15, 2026</td>
+                    <td><span class="badge-status badge-resolved">Statutory Seal</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 4: CONTRACTS & ESCROW
+             ========================================================================= -->
+        <div id="tab-contracts" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Transactional Contracts & Trust Escrow Custody</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Management of deal escrow funds, bilateral NDAs, and executed Share Purchase Agreements.</p>
+            </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">+ Deposit Consideration</a>
+            </div>
+          </div>
+
+          <div style="background: linear-gradient(135deg, var(--primary-navy) 0%, #16466c 100%); color: #ffffff; padding: 2rem; border-radius: var(--radius-lg); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <span style="font-size: 0.85rem; color: #dfb15b; font-weight: 700; text-transform: uppercase;">Active Trust Escrow Balance</span>
+              <div style="font-size: 2.5rem; font-weight: 800; font-family: var(--font-heading); margin: 0.25rem 0;">$14,250,000 USD</div>
+              <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0;">Segregated statutory client escrow custody maintained under Bar Council fiduciary rules.</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <a href="404.html" class="btn btn-primary btn-sm">Request Escrow Release</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">Escrow Statement</a>
+            </div>
+          </div>
+
+          <div class="data-table-card">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0;">Executed Contracts & Agreement Archive</h3>
+              <a href="404.html" class="btn btn-secondary btn-sm">Upload New Agreement</a>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Contract ID</th>
+                    <th>Document Title</th>
+                    <th>Transaction Parties</th>
+                    <th>Governing Law</th>
+                    <th>Escrow Allocation</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#CTR-2026-44</strong></td>
+                    <td>Mergers & Acquisition Share Purchase Deed</td>
+                    <td>Stackly Client vs. European Buyer</td>
+                    <td>England & Wales</td>
+                    <td>$10,000,000</td>
+                    <td><span class="badge-status badge-active">Escrow Locked</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">View Agreement</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#CTR-2026-39</strong></td>
+                    <td>International Technology Licensing Deed</td>
+                    <td>Client Labs vs. Asian Distributor</td>
+                    <td>Singapore Law</td>
+                    <td>$4,250,000</td>
+                    <td><span class="badge-status badge-resolved">Executed</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">View Agreement</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#CTR-2026-18</strong></td>
+                    <td>C-Suite Executive Severance Mutual Release</td>
+                    <td>Enterprise Board vs. Departing VP</td>
+                    <td>Indian Contract Act</td>
+                    <td>N/A</td>
+                    <td><span class="badge-status badge-resolved">Fully Released</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">View Agreement</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 5: LITIGATION CALENDAR
+             ========================================================================= -->
+        <div id="tab-calendar" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Court Appearance & Arbitral Hearing Calendar</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Comprehensive hearing schedule, bench dates, discovery filing deadlines, and statutory limitations.</p>
+            </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">Export to Outlook / Google Calendar</a>
+            </div>
+          </div>
+
+          <div class="card-grid-3" style="margin-bottom: 2rem;">
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--border-light); border-top: 4px solid var(--primary-navy);">
+              <span style="font-size: 0.8rem; color: #ef4444; font-weight: 700;">URGENT HEARING • APR 14</span>
+              <h3 style="font-size: 1.1rem; margin: 0.4rem 0;">Madras High Court (Bench 3)</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Motion for injunction in trade secret algorithmic cloning matter.</p>
+              <div style="font-size: 0.8rem; color: var(--primary-navy); font-weight: 600; margin-top: 0.5rem;">Lead Counsel: Vikramaditya Sen</div>
+            </div>
+
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--border-light); border-top: 4px solid var(--accent-gold);">
+              <span style="font-size: 0.8rem; color: #b0891f; font-weight: 700;">ARBITRATION SESSION • APR 19</span>
+              <h3 style="font-size: 1.1rem; margin: 0.4rem 0;">SIAC Virtual Tribunal Chamber</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Cross-examination of maritime freight charter expert witnesses.</p>
+              <div style="font-size: 0.8rem; color: var(--primary-navy); font-weight: 600; margin-top: 0.5rem;">Lead Counsel: Alexander Wright</div>
+            </div>
+
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--border-light); border-top: 4px solid #10b981;">
+              <span style="font-size: 0.8rem; color: #10b981; font-weight: 700;">STATUTORY FILING • APR 24</span>
+              <h3 style="font-size: 1.1rem; margin: 0.4rem 0;">MCA ROC Annual Certifications</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Filing of audited statements and secretarial compliance reports.</p>
+              <div style="font-size: 0.8rem; color: var(--primary-navy); font-weight: 600; margin-top: 0.5rem;">Lead Counsel: Meera Krishnan</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 6: ASSIGNED COUNSEL
+             ========================================================================= -->
+        <div id="tab-counsel" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Assigned Senior Advocates & Practice Group</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Direct access to your dedicated chambers counsel team with verified Bar admissions.</p>
+            </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">Request Emergency Partner Conference</a>
+            </div>
+          </div>
+
           <div class="card-grid-4">
-            <div class="service-card" style="padding: 1.5rem;">
-              <h4>Draft Emergency Injunction</h4>
-              <p style="font-size: 0.85rem; margin-top: 0.3rem; margin-bottom: 1rem;">Mobilize trial bench within 4 hours for emergency asset freeze motions.</p>
-              <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Dispatch Request</a>
+            <!-- Advocate 1 -->
+            <div class="attorney-card">
+              <div class="attorney-img-wrap" style="height: 240px;">
+                <img src="images/attorney_managing_partner.webp" alt="Alexander Wright, Senior Partner" class="attorney-img" width="300" height="240">
+              </div>
+              <div class="attorney-body" style="padding: 1.25rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Alexander Wright</h3>
+                <p style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.5rem;">Managing Partner</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">18+ Years • Bar Council of India, Supreme Court Bar</p>
+                <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Direct Line</a>
+              </div>
             </div>
 
-            <div class="service-card" style="padding: 1.5rem;">
-              <h4>Deposit Deal Escrow</h4>
-              <p style="font-size: 0.85rem; margin-top: 0.3rem; margin-bottom: 1rem;">Transmit M&A earnest consideration into segregated statutory escrow account.</p>
-              <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Escrow Portal</a>
+            <!-- Advocate 2 -->
+            <div class="attorney-card">
+              <div class="attorney-img-wrap" style="height: 240px;">
+                <img src="images/attorney_senior_counsel.webp" alt="Eleanor Vance, Partner" class="attorney-img" width="300" height="240">
+              </div>
+              <div class="attorney-body" style="padding: 1.25rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Eleanor Vance</h3>
+                <p style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.5rem;">Corporate & M&A Lead</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">15+ Years • Cross-Border Antitrust & PE Structuring</p>
+                <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Direct Line</a>
+              </div>
             </div>
 
-            <div class="service-card" style="padding: 1.5rem;">
-              <h4>Order Statutory Audit</h4>
-              <p style="font-size: 0.85rem; margin-top: 0.3rem; margin-bottom: 1rem;">Initiate complete internal compliance check against MCA and SEBI guidelines.</p>
-              <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Initiate Audit</a>
+            <!-- Advocate 3 -->
+            <div class="attorney-card">
+              <div class="attorney-img-wrap" style="height: 240px;">
+                <img src="images/attorney_litigation_lead.webp" alt="Marcus Sterling, Trial Lead" class="attorney-img" width="300" height="240">
+              </div>
+              <div class="attorney-body" style="padding: 1.25rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Marcus Sterling</h3>
+                <p style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.5rem;">Commercial Litigation Head</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">20+ Years • High Court Trial & SIAC Arbitration</p>
+                <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Direct Line</a>
+              </div>
             </div>
 
-            <div class="service-card" style="padding: 1.5rem;">
-              <h4>Download Retainer Docket</h4>
-              <p style="font-size: 0.85rem; margin-top: 0.3rem; margin-bottom: 1rem;">Export time logs, case briefs, and statutory court orders as encrypted PDF.</p>
-              <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%;">Export Report</a>
+            <!-- Advocate 4 -->
+            <div class="attorney-card">
+              <div class="attorney-img-wrap" style="height: 240px;">
+                <img src="images/attorney_compliance_head.webp" alt="Meera Krishnan, Compliance Head" class="attorney-img" width="300" height="240">
+              </div>
+              <div class="attorney-body" style="padding: 1.25rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.2rem;">Meera Krishnan</h3>
+                <p style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.5rem;">Statutory Governance Head</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">16+ Years • MCA, SEBI LODR & Labour Advisory</p>
+                <a href="404.html" class="btn btn-navy btn-sm" style="width: 100%;">Direct Line</a>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 7: INVOICES & ESCROW
+             ========================================================================= -->
+        <div id="tab-billing" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Retainer Invoices & Fiduciary Fee Statements</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Transparent itemized legal billing, verified escrow allocations, and tax deduction certificates.</p>
+            </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">Download Annual Tax Ledger</a>
+            </div>
+          </div>
+
+          <div class="dash-kpi-grid" style="margin-bottom: 2rem;">
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Monthly Retainer</span>
+                <div class="dash-kpi-value">$25,000</div>
+                <span style="font-size: 0.8rem; color: #10b981;">Enterprise General Counsel Tier</span>
+              </div>
+              <div style="font-size: 2rem; color: var(--primary-navy);">💳</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Unbilled Hours</span>
+                <div class="dash-kpi-value">18.5 hrs</div>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Cycle Closes Apr 30</span>
+              </div>
+              <div style="font-size: 2rem; color: var(--accent-gold);">⏱️</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Total Paid YTD</span>
+                <div class="dash-kpi-value">$420,000</div>
+                <span style="font-size: 0.8rem; color: #10b981;">Zero Overdue Invoices</span>
+              </div>
+              <div style="font-size: 2rem; color: #10b981;">✓</div>
+            </div>
+
+            <div class="dash-kpi-card">
+              <div>
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Escrow Custody</span>
+                <div class="dash-kpi-value">$14.25M</div>
+                <span style="font-size: 0.8rem; color: #10b981;">Fiduciary Protected</span>
+              </div>
+              <div style="font-size: 2rem; color: var(--secondary-slate);">🔒</div>
+            </div>
+          </div>
+
+          <div class="data-table-card">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0;">Recent Retainer Invoices & Payment Receipts</h3>
+              <a href="404.html" class="btn btn-secondary btn-sm">Export Ledger CSV</a>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Invoice #</th>
+                    <th>Billing Cycle</th>
+                    <th>Matter / Retainer Description</th>
+                    <th>Hours Logged</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Invoice PDF</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#INV-2026-03</strong></td>
+                    <td>March 2026</td>
+                    <td>Enterprise Retainer & High Court Injunction Motion</td>
+                    <td>82.4 hrs</td>
+                    <td>$25,000</td>
+                    <td><span class="badge-status badge-resolved">Paid (Wire)</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Download</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#INV-2026-02</strong></td>
+                    <td>February 2026</td>
+                    <td>$320M M&A Antitrust Representation</td>
+                    <td>104.2 hrs</td>
+                    <td>$45,000</td>
+                    <td><span class="badge-status badge-resolved">Paid (Wire)</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Download</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#INV-2026-01</strong></td>
+                    <td>January 2026</td>
+                    <td>Annual Statutory Governance Audit & Secretarial Review</td>
+                    <td>68.0 hrs</td>
+                    <td>$25,000</td>
+                    <td><span class="badge-status badge-resolved">Paid (Wire)</span></td>
+                    <td><a href="404.html" class="btn btn-secondary btn-sm">Download</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             TAB 8: SECURITY & SETTINGS
+             ========================================================================= -->
+        <div id="tab-settings" class="dash-tab-pane">
+          <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Chambers Security & Role Management</h1>
+              <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Configure attorney-client privilege encryption, 2FA protocols, and test mock role dashboards.</p>
+            </div>
+            <div>
+              <a href="404.html" class="btn btn-primary btn-sm">Save Preferences</a>
+            </div>
+          </div>
+
+          <div class="card-grid-2">
+            <!-- Mock Role Switcher (Simulates different role views) -->
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Mock Role Dashboard Switcher</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Switch portal perspective to preview role-specific permissions and KPI focus.</p>
+
+              <div class="form-group">
+                <label for="mockRoleSelect" class="form-label">Current Active Role Preview</label>
+                <select id="mockRoleSelect" class="form-control" style="font-weight: 600;">
+                  <option value="Managing Partner">Managing Partner (Full Oversight)</option>
+                  <option value="Corporate Counsel">Corporate Counsel (Litigation & Regulatory)</option>
+                  <option value="Enterprise Client">Enterprise Client (Briefs & Billing)</option>
+                  <option value="Legal Associate">Legal Associate (Drafting & Research)</option>
+                </select>
+              </div>
+
+              <div style="background: var(--bg-main); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; border-left: 3.5px solid var(--accent-gold);">
+                <strong>Current Privileges:</strong> Full administrative clearance, escrow transaction signing, attorney-client privileged discovery transmission.
+              </div>
+            </div>
+
+            <!-- Encryption & Security Verification -->
+            <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Cryptographic Security Status</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Bar Council attorney-client privilege compliant communications.</p>
+
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong style="font-size: 0.9rem;">AES-256 Bit Encryption</strong>
+                    <div style="font-size: 0.75rem; color: #10b981;">TLS 1.3 Active & Sealed</div>
+                  </div>
+                  <span class="badge-status badge-resolved">Active</span>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong style="font-size: 0.9rem;">Two-Factor Authentication</strong>
+                    <div style="font-size: 0.75rem; color: #10b981;">Hardware Security Key Linked</div>
+                  </div>
+                  <span class="badge-status badge-resolved">Enforced</span>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-main); border-radius: var(--radius-md);">
+                  <div>
+                    <strong style="font-size: 0.9rem;">Document Auto-Expunge</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Confidential discovery shredding after 90 days</div>
+                  </div>
+                  <span class="badge-status badge-review">90 Days</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </main>
     </div>
   </div>
