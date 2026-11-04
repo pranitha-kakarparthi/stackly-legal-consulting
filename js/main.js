@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormValidations();
   initDashboard();
   initHeroCarousel();
+  initScrollProgress();
+  initHeroParallax();
 });
 
 /* ==========================================================================
@@ -178,7 +180,13 @@ function initAosAnimations() {
     rootMargin: '0px 0px -40px 0px'
   });
 
-  animatedElements.forEach(el => observer.observe(el));
+  animatedElements.forEach(el => {
+    const delay = el.getAttribute('data-aos-delay');
+    if (delay) {
+      el.style.transitionDelay = `${delay}ms`;
+    }
+    observer.observe(el);
+  });
 }
 
 /* ==========================================================================
@@ -812,4 +820,86 @@ function initHeroCarousel() {
   // Initialize first slide
   showSlide(0);
   startAutoPlay();
+}
+
+/* ==========================================================================
+   13. SCROLL PROGRESS INDICATOR (Smooth Top Bar)
+   ========================================================================== */
+function initScrollProgress() {
+  const bar = document.getElementById('scrollProgressBar');
+  if (!bar) return;
+
+  let ticking = false;
+  const updateProgress = () => {
+    const winScroll = window.scrollY || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    bar.style.width = `${scrolled}%`;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   14. HERO 3D TILT & PARALLAX (Buttery 60fps, Compositor Only)
+   ========================================================================== */
+function initHeroParallax() {
+  // Respect reduced motion preference and only run on desktop
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 992) {
+    return;
+  }
+
+  const visualContainers = document.querySelectorAll('.hero-visual-wrap, .subpage-visual-wrap');
+  visualContainers.forEach(container => {
+    const card = container.querySelector('.hero-main-img-card, .subpage-visual-card, .precedent-spotlight-card, .retainer-showcase-card, .chambers-dispatch-card');
+    if (!card) return;
+
+    let rafId = null;
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+
+    const updateCardTransform = () => {
+      currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+      currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+
+      card.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translateZ(0)`;
+
+      if (Math.abs(targetRotateX - currentRotateX) > 0.01 || Math.abs(targetRotateY - currentRotateY) > 0.01) {
+        rafId = requestAnimationFrame(updateCardTransform);
+      } else {
+        rafId = null;
+      }
+    };
+
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      targetRotateX = ((y - centerY) / centerY) * -6;
+      targetRotateY = ((x - centerX) / centerX) * 6;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateCardTransform);
+      }
+    });
+
+    container.addEventListener('mouseleave', () => {
+      targetRotateX = 0;
+      targetRotateY = 0;
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateCardTransform);
+      }
+    });
+  });
 }

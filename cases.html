@@ -14,6 +14,9 @@
 </head>
 <body>
 
+  <!-- Executive Scroll Progress Indicator -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- Full Viewport Loader -->
   <div id="loader-wrapper" role="status" aria-live="polite">
     <div class="loader-content">
@@ -104,8 +107,8 @@
   </div>
 
   <main>
-    <!-- SECTION 1: CASES HERO WITH ANIMATED BACKGROUND -->
-    <section class="subpage-hero" aria-label="Cases Hero">
+    <!-- SECTION 1: CASES HERO WITH ANIMATED BACKGROUND & LANDMARK DOSSIER SPOTLIGHT -->
+    <section class="subpage-hero" aria-label="Landmark Precedents Hero">
       <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
       <div class="container">
         <div class="subpage-hero-grid">
@@ -113,33 +116,53 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <a href="index.html">Home</a>
               <span class="sep">/</span>
-              <span class="current">Landmark Cases</span>
+              <span class="current">Judicial Precedents</span>
             </nav>
-            <h1 class="subpage-hero-title">Definitive Precedents & Decisive Courtroom Victories</h1>
+            <div class="hero-badge-pill" style="margin-bottom: 1rem;">
+              <span class="beacon-dot"></span>
+              <span>Supreme Court & International Arbitral Seats</span>
+            </div>
+            <h1 class="subpage-hero-title">
+              Definitive Precedents & Decisive <span class="gold-highlight">Courtroom Victories</span>
+            </h1>
             <p class="subpage-hero-desc">
-              When institutional survival, intellectual capital, and hundreds of millions of dollars are on the docket, corporations retain Stackly's trial division.
+              When enterprise survival, trade secret sovereignty, and hundreds of millions in shareholder value are at stake, visionary leaders retain Stackly's high-stakes trial counsel.
             </p>
+            <div class="hero-cta-group" style="margin-bottom: 1.5rem;">
+              <a href="#cases-grid" class="btn btn-primary btn-lg">Explore Case Precedents</a>
+              <a href="contact.html" class="btn btn-ghost btn-lg">Retain Trial Counsel</a>
+            </div>
+            <div class="trust-check-strip">
+              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>$1.2B+</strong> Claims Defended</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>140+</strong> Appellate Victories</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>100%</strong> SIAC Enforcement</div>
+            </div>
           </div>
 
-          <div class="subpage-hero-badge-box" data-aos="fade-left">
-            <h3 style="color: #dfb15b; margin-bottom: 0.75rem;">Verified Trial Metrics</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
-              <div>
-                <strong style="color: #ffffff; font-size: 1.6rem; font-family: var(--font-heading); display: block;">$1.2B+</strong>
-                <span style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;">Claims Defended</span>
+          <!-- Hero Right: High-Stakes Precedent Spotlight Dossier Card -->
+          <div class="subpage-visual-wrap" data-aos="fade-left">
+            <div class="subpage-halo" aria-hidden="true"></div>
+
+            <div class="precedent-spotlight-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <span class="badge-status badge-active">Docket #HC-2026-991</span>
+                <span class="badge-status badge-resolved">Mandamus Granted</span>
               </div>
-              <div>
-                <strong style="color: #ffffff; font-size: 1.6rem; font-family: var(--font-heading); display: block;">99.4%</strong>
-                <span style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;">Arbitration Success</span>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem; color: #ffffff;">Ex-Parte Algorithmic Source Code Freeze</h3>
+              <p style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1.25rem;">
+                Secured emergency High Court injunction restraining ex-promoters from liquidating $140M in proprietary algorithmic IP within 6 hours of filing.
+              </p>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(223, 177, 91, 0.25); margin-bottom: 1.25rem;">
+                <div>
+                  <span style="font-size: 0.725rem; color: #94a3b8; text-transform: uppercase;">Judicial Forum</span>
+                  <strong style="display: block; font-size: 0.85rem; color: #dfb15b;">High Court & Supreme Court</strong>
+                </div>
+                <div>
+                  <span style="font-size: 0.725rem; color: #94a3b8; text-transform: uppercase;">Relief Status</span>
+                  <strong style="display: block; font-size: 0.85rem; color: #10b981;">100% Preservation</strong>
+                </div>
               </div>
-              <div>
-                <strong style="color: #ffffff; font-size: 1.6rem; font-family: var(--font-heading); display: block;">140+</strong>
-                <span style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;">Appellate Wins</span>
-              </div>
-              <div>
-                <strong style="color: #ffffff; font-size: 1.6rem; font-family: var(--font-heading); display: block;">&lt; 24h</strong>
-                <span style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;">Injunction Drafting</span>
-              </div>
+              <a href="cases.html#cases-grid" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">View Full Case Precedent →</a>
             </div>
           </div>
         </div>

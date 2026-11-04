@@ -1,4 +1,20 @@
 /* ==========================================================================
+   SCROLL PROGRESS BAR (Executive Gold Accent)
+   ========================================================================== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  background: var(--accent-gold-gradient);
+  z-index: 10001;
+  width: 0%;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(223, 177, 91, 0.8);
+  transition: width 0.08s ease-out;
+}
+
+/* ==========================================================================
    STACKLY LEGAL CONSULTING - MASTER STYLESHEET
    Brand Palette: Royal Navy (#103654), Deep Slate (#2a3b4e), Accent Gold (#c59b27)
    WCAG AA Compliant, Fully Responsive, High Performance
@@ -222,6 +238,54 @@ button, input, select, textarea {
   box-shadow: 0 4px 16px rgba(197, 155, 39, 0.3);
   font-weight: 700;
 }
+
+/* Executive Golden Button Light Sheen (Purposeful 60fps) */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.32) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(420%) rotate(25deg);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 8px 24px -4px rgba(197, 155, 39, 0.45);
+}
+
+.btn-ghost:hover {
+  transform: translateY(-2px) translateZ(0);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-navy:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 8px 22px -4px rgba(16, 54, 84, 0.35);
+}
+
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(197, 155, 39, 0.45);
@@ -920,6 +984,208 @@ button, input, select, textarea {
 }
 
 
+
+/* Ambient Sculpture Halo & Glow */
+.hero-ambient-glow {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 54, 84, 0.6) 0%, rgba(10, 34, 53, 0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-sculpture-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(197, 155, 39, 0.28) 0%, rgba(16, 54, 84, 0.15) 50%, rgba(10, 34, 53, 0) 75%);
+  border-radius: 50%;
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 1;
+  animation: haloPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes haloPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+/* Floating Top Statutory Metric Badge */
+.hero-floating-stat {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  z-index: 4;
+  background: rgba(10, 34, 53, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 177, 91, 0.45);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(223, 177, 91, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  animation: heroCardFloatReverse 5.5s ease-in-out infinite alternate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-floating-stat:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(223, 177, 91, 0.35);
+}
+
+.beacon-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: beaconPulse 2.2s infinite cubic-bezier(0.66, 0, 0, 1);
+  flex-shrink: 0;
+}
+
+@keyframes beaconPulse {
+  to {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+}
+
+.hero-stat-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stat-val {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #dfb15b;
+  line-height: 1.1;
+}
+
+.hero-stat-lbl {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@keyframes heroCardFloatReverse {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(7px) rotate(-0.4deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Staggered Hero Entrance Animations */
+.hero-badge-pill {
+  animation: heroFadeSlideDown 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.hero-home-title {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-home-desc {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+.hero-cta-group {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+}
+
+.hero-carousel-slider {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both;
+}
+
+.hero-stats-row {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+}
+
+.hero-visual-wrap {
+  animation: heroFadeScaleIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+@keyframes heroFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes heroFadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes heroFadeScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(18px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) translateZ(0);
+  }
+}
+
+/* Sheen sweep effect on Lady Justice image card */
+.hero-main-img-card {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(223, 177, 91, 0.35);
+  background: var(--primary-navy-dark);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.hero-main-img-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.hero-main-img-card:hover::after {
+  transform: translateX(100%);
+}
+
 /* Hero Practice Highlight Carousel Slider */
 .hero-carousel-slider {
   background: rgba(16, 54, 84, 0.65);
@@ -1068,11 +1334,13 @@ button, input, select, textarea {
   }
 }
 
-/* 2. Subpage Hero Standard (Animated Background across About, Services, Cases, Pricing, Contact) */
+/* ==========================================================================
+   UNIQUE TOP-LEVEL SUBPAGE HEROES & VISUAL ARTIFACTS
+   ========================================================================== */
 .subpage-hero {
   position: relative;
   color: #ffffff;
-  padding: 4.5rem 0 4.25rem;
+  padding: 5rem 0 4.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
   background-color: var(--primary-navy-dark);
@@ -1080,22 +1348,248 @@ button, input, select, textarea {
 
 .subpage-hero-bg-anim {
   position: absolute;
-  inset: -15px;
-  background-image: linear-gradient(135deg, rgba(16, 54, 84, 0.93) 0%, rgba(30, 58, 95, 0.9) 50%, rgba(10, 34, 53, 0.96) 100%),
-                    url('../images/legal_hero_bg.webp');
-  background-size: cover;
+  inset: -20px;
+  background-image: 
+    radial-gradient(rgba(197, 155, 39, 0.14) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, rgba(16, 54, 84, 0.94) 0%, rgba(22, 58, 88, 0.91) 50%, rgba(10, 34, 53, 0.98) 100%),
+    url('../images/legal_hero_bg.webp');
+  background-size: 32px 32px, cover, cover;
   background-position: center;
-  animation: heroKenBurns 30s infinite alternate ease-in-out;
+  animation: heroKenBurns 32s infinite alternate ease-in-out;
   z-index: 0;
+}
+
+.subpage-hero::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  right: -10%;
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(197, 155, 39, 0.22) 0%, rgba(16, 54, 84, 0) 70%);
+  animation: heroGlowShift 9s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.subpage-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to top, var(--bg-main), transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .subpage-hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 3rem;
+  gap: 3.5rem;
   position: relative;
   z-index: 2;
+}
+
+/* Subpage Hero Visual Frame & Floating Badges */
+.subpage-visual-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.subpage-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 460px;
+  height: 460px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(197, 155, 39, 0.25) 0%, rgba(16, 54, 84, 0.15) 50%, rgba(10, 34, 53, 0) 75%);
+  border-radius: 50%;
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 1;
+  animation: haloPulse 8s ease-in-out infinite alternate;
+}
+
+.subpage-visual-card {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(223, 177, 91, 0.35);
+  background: var(--primary-navy-dark);
+  width: 100%;
+  max-width: 460px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.subpage-visual-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(223, 177, 91, 0.55);
+}
+
+.subpage-visual-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.subpage-visual-card:hover .subpage-visual-img {
+  transform: scale(1.04);
+}
+
+/* Floating Subpage Badges */
+.subpage-floating-badge {
+  position: absolute;
+  z-index: 3;
+  background: rgba(10, 34, 53, 0.94);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 177, 91, 0.45);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.65), 0 0 15px rgba(223, 177, 91, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: transform 0.3s ease;
+}
+
+.subpage-floating-badge.top-right {
+  top: -18px;
+  right: -18px;
+  animation: heroCardFloatReverse 5.5s ease-in-out infinite alternate;
+}
+
+.subpage-floating-badge.bottom-left {
+  bottom: -20px;
+  left: -20px;
+  animation: heroCardFloat 5s ease-in-out infinite alternate;
+}
+
+.subpage-floating-badge:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Unique Precedent Docket Showcase Card (Cases Hero) */
+.precedent-spotlight-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(10, 34, 53, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(223, 177, 91, 0.45);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(223, 177, 91, 0.25);
+  width: 100%;
+  max-width: 480px;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.precedent-spotlight-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(223, 177, 91, 0.7);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 177, 91, 0.3);
+}
+
+/* Unique Retainer Calculator Showcase Card (Pricing Hero) */
+.retainer-showcase-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(10, 34, 53, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(223, 177, 91, 0.45);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 460px;
+  transition: transform 0.4s ease;
+}
+
+.retainer-showcase-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Unique Chambers Rapid Intake Card (Contact Hero) */
+.chambers-dispatch-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(10, 34, 53, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(223, 177, 91, 0.45);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 460px;
+  transition: transform 0.4s ease;
+}
+
+.chambers-dispatch-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Quick Jump Tag Pills & Trust Strip */
+.hero-tag-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(223, 177, 91, 0.3);
+  font-size: 0.8rem;
+  color: #f6e0a4;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.hero-tag-pill:hover {
+  background: var(--accent-gold);
+  color: #0b1a27;
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.trust-check-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.trust-check-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.trust-check-item .gold-check {
+  color: var(--accent-gold);
+  font-weight: 700;
 }
 
 .breadcrumbs {
@@ -1120,24 +1614,68 @@ button, input, select, textarea {
   font-weight: 600;
 }
 
+.subpage-hero .breadcrumbs {
+  animation: heroFadeSlideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.subpage-hero .hero-badge-pill {
+  animation: heroFadeSlideDown 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
 .subpage-hero-title {
   color: #ffffff;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   margin-bottom: 1.25rem;
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
 .subpage-hero-desc {
   color: #cbd5e1;
   font-size: 1.1rem;
   max-width: 580px;
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.subpage-hero .hero-cta-group,
+.subpage-hero .hero-tag-pills {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s both;
+}
+
+.subpage-hero .trust-check-strip {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.56s both;
+}
+
+.subpage-visual-wrap,
+.subpage-hero-badge-box {
+  animation: heroFadeScaleIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 
 .subpage-hero-badge-box {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(223, 177, 91, 0.35);
+  background: rgba(10, 34, 53, 0.94);
+  border: 1px solid rgba(223, 177, 91, 0.45);
   border-radius: var(--radius-lg);
-  padding: 2rem;
-  backdrop-filter: blur(10px);
+  padding: 2.25rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(223, 177, 91, 0.2);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.subpage-hero-badge-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-gold-gradient);
+}
+
+.subpage-hero-badge-box:hover {
+  transform: translateY(-5px);
+  border-color: rgba(223, 177, 91, 0.7);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.75), 0 0 20px rgba(223, 177, 91, 0.3);
 }
 
 /* ==========================================================================
@@ -2615,6 +3153,30 @@ button, input, select, textarea {
 
 /* 768px to 1023px (Tablet) */
 @media (max-width: 991px) {
+  /* Subpage Hero Visual Cards Responsive Fix */
+  .subpage-visual-wrap {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  .subpage-visual-card,
+  .precedent-spotlight-card,
+  .retainer-showcase-card,
+  .chambers-dispatch-card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .subpage-floating-badge.top-right,
+  .subpage-floating-badge.bottom-left {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin: 1rem auto 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
   .nav-menu-desktop,
   .nav-actions-desktop {
     display: none;
@@ -2649,6 +3211,14 @@ button, input, select, textarea {
     height: auto;
     aspect-ratio: 800 / 533;
     object-fit: cover;
+  }
+  .hero-floating-stat {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 0 auto 1.25rem;
+    max-width: 440px;
+    width: 100%;
   }
   .hero-floating-quote {
   animation: heroCardFloat 5s ease-in-out infinite alternate;
@@ -2728,6 +3298,19 @@ button, input, select, textarea {
     height: auto;
     aspect-ratio: 800 / 533;
     object-fit: cover;
+  }
+  .hero-floating-stat {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 0 auto 1.25rem;
+    max-width: 440px;
+    width: 100%;
+  }
+  .hero-floating-stat {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
   }
   .hero-floating-quote {
   animation: heroCardFloat 5s ease-in-out infinite alternate;

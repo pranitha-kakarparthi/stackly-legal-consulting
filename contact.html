@@ -14,6 +14,9 @@
 </head>
 <body>
 
+  <!-- Executive Scroll Progress Indicator -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- Full Viewport Loader -->
   <div id="loader-wrapper" role="status" aria-live="polite">
     <div class="loader-content">
@@ -104,8 +107,8 @@
   </div>
 
   <main>
-    <!-- SECTION 1: CONTACT HERO WITH ANIMATED BACKGROUND -->
-    <section class="subpage-hero" aria-label="Contact Hero">
+    <!-- SECTION 1: CONTACT HERO WITH ANIMATED BACKGROUND & DISPATCH BOARD CARD -->
+    <section class="subpage-hero" aria-label="Executive Consultation Hero">
       <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
       <div class="container">
         <div class="subpage-hero-grid">
@@ -113,24 +116,52 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <a href="index.html">Home</a>
               <span class="sep">/</span>
-              <span class="current">Contact Chambers</span>
+              <span class="current">Privileged Retainer Intake</span>
             </nav>
-            <h1 class="subpage-hero-title">Initiate a Confidential Strategic Legal Consultation</h1>
+            <div class="hero-badge-pill" style="margin-bottom: 1rem;">
+              <span class="beacon-dot"></span>
+              <span>Encrypted Privileged Communications</span>
+            </div>
+            <h1 class="subpage-hero-title">
+              Mobilize Senior Counsel for Your <span class="gold-highlight">Corporate Defense</span>
+            </h1>
             <p class="subpage-hero-desc">
-              Connect directly with our Senior Managing Advocates at our Salem chambers or arrange a confidential secure video conference.
+              Connect directly with our Senior Managing Advocates at our Salem headquarters or schedule an immediate, AES-256 encrypted emergency video conference.
             </p>
+            <div class="hero-cta-group" style="margin-bottom: 1.5rem;">
+              <a href="#contact-form-section" class="btn btn-primary btn-lg">Initiate Privileged Intake</a>
+              <a href="tel:+919876543210" class="btn btn-ghost btn-lg">Emergency Hotline Call</a>
+            </div>
+            <div class="trust-check-strip">
+              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>&lt; 4h</strong> Emergency Response</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> Bar Council Privilege Sealed</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> Direct Partner Access</div>
+            </div>
           </div>
 
-          <div class="subpage-hero-badge-box" data-aos="fade-left">
-            <h3 style="color: #dfb15b; margin-bottom: 0.5rem;">Salem Chambers Headquarters</h3>
-            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 0.75rem;">
-              MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu 636008
-            </p>
-            <div style="display: inline-block; background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: var(--radius-full); margin-bottom: 1rem; border: 1px solid rgba(16, 185, 129, 0.4);">
-              ● Chambers Open: 09:00 - 19:00 IST
-            </div>
-            <div>
-              <a href="#booking-form" class="btn btn-primary btn-sm">Direct Consultation Form</a>
+          <!-- Hero Right: Chambers Rapid Dispatch Board Card -->
+          <div class="subpage-visual-wrap" data-aos="fade-left">
+            <div class="subpage-halo" aria-hidden="true"></div>
+
+            <div class="chambers-dispatch-card">
+              <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.35rem 0.85rem; border-radius: var(--radius-full); margin-bottom: 1rem; font-size: 0.8rem; color: #34d399; font-weight: 700;">
+                <span class="beacon-dot"></span> Chambers Open: 09:00 - 19:00 IST
+              </div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #ffffff;">Salem Chambers Headquarters</h3>
+              <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1.25rem;">
+                MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu 636008
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.65rem; padding: 1rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(223, 177, 91, 0.25); margin-bottom: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                  <span style="color: #94a3b8;">Direct Line:</span>
+                  <strong style="color: #ffffff;">+91 9876543210</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                  <span style="color: #94a3b8;">Encrypted Email:</span>
+                  <strong style="color: #dfb15b;">hello@thestackly.com</strong>
+                </div>
+              </div>
+              <a href="#contact-form-section" class="btn btn-primary btn-sm" style="width: 100%; text-align: center;">Jump to Privileged Intake Form ↓</a>
             </div>
           </div>
         </div>

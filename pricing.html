@@ -14,6 +14,9 @@
 </head>
 <body>
 
+  <!-- Executive Scroll Progress Indicator -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- Full Viewport Loader -->
   <div id="loader-wrapper" role="status" aria-live="polite">
     <div class="loader-content">
@@ -104,8 +107,8 @@
   </div>
 
   <main>
-    <!-- SECTION 1: PRICING HERO WITH ANIMATED BACKGROUND -->
-    <section class="subpage-hero" aria-label="Pricing Hero">
+    <!-- SECTION 1: PRICING HERO WITH ANIMATED BACKGROUND & RETAINER CALCULATOR CARD -->
+    <section class="subpage-hero" aria-label="Fee Architecture Hero">
       <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
       <div class="container">
         <div class="subpage-hero-grid">
@@ -113,20 +116,55 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <a href="index.html">Home</a>
               <span class="sep">/</span>
-              <span class="current">Fee Structure</span>
+              <span class="current">Transparent Fee Structure</span>
             </nav>
-            <h1 class="subpage-hero-title">Predictable Legal Retainers. Zero Billable Ambiguity.</h1>
+            <div class="hero-badge-pill" style="margin-bottom: 1rem;">
+              <span class="beacon-dot"></span>
+              <span>Fiduciary Retainer Architecture</span>
+            </div>
+            <h1 class="subpage-hero-title">
+              Predictable Legal Retainers. <span class="gold-highlight">Zero Billable Ambiguity.</span>
+            </h1>
             <p class="subpage-hero-desc">
-              We reject the opacity of unpredictable legal billing. Stackly provides institutional clients with transparent monthly retainers and capped hybrid litigation models.
+              We reject the opacity of runaway hourly billing. Stackly provides institutional clients with predictable flat-fee general counsel retainers, capped hybrid litigation models, and guaranteed partner responsiveness.
             </p>
+            <div class="hero-cta-group" style="margin-bottom: 1.5rem;">
+              <a href="#plans" class="btn btn-primary btn-lg">Explore Retainer Plans</a>
+              <a href="contact.html" class="btn btn-ghost btn-lg">Request Custom Counsel Quote</a>
+            </div>
+            <div class="trust-check-strip">
+              <div class="trust-check-item"><span class="gold-check">✓</span> Rollover Advisory Hours</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> Emergency TRO Drafting Included</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> Capped Litigation Ceilings</div>
+            </div>
           </div>
 
-          <div class="subpage-hero-badge-box" data-aos="fade-left">
-            <h3 style="color: #dfb15b; margin-bottom: 0.75rem;">Fiduciary Fee Guarantee</h3>
-            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.25rem;">
-              Every retainer agreement features detailed scope boundaries, rollover advisory hours, and dedicated senior partner supervision.
-            </p>
-            <a href="contact.html" class="btn btn-primary btn-sm">Request Custom Retainer Quote</a>
+          <!-- Hero Right: Retainer Value Showcase Card -->
+          <div class="subpage-visual-wrap" data-aos="fade-left">
+            <div class="subpage-halo" aria-hidden="true"></div>
+
+            <div class="retainer-showcase-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span class="badge-status badge-active">Retainer Guarantee</span>
+                <span style="font-size: 0.8rem; color: #dfb15b; font-weight: 700;">Bar Council Privileged</span>
+              </div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: #ffffff;">Institutional Fiduciary Model</h3>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; padding: 0.65rem 0.85rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.85rem; color: #cbd5e1;">Managing Partner Oversight</span>
+                  <strong style="color: #10b981; font-size: 0.85rem;">Included 24/7</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.65rem 0.85rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.85rem; color: #cbd5e1;">Average Enterprise Savings</span>
+                  <strong style="color: #dfb15b; font-size: 0.85rem;">38% vs BigLaw Hourly</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.65rem 0.85rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.85rem; color: #cbd5e1;">Statutory Compliance Audit</span>
+                  <strong style="color: #10b981; font-size: 0.85rem;">Complimentary</strong>
+                </div>
+              </div>
+              <a href="#plans" class="btn btn-primary btn-sm" style="width: 100%; text-align: center;">Compare Retainer Tiers ↓</a>
+            </div>
           </div>
         </div>
       </div>

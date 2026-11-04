@@ -14,6 +14,9 @@
 </head>
 <body>
 
+  <!-- Executive Scroll Progress Indicator -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- Full Viewport Loader -->
   <div id="loader-wrapper" role="status" aria-live="polite">
     <div class="loader-content">
@@ -104,8 +107,8 @@
   </div>
 
   <main>
-    <!-- SECTION 1: SERVICES HERO WITH ANIMATED BACKGROUND -->
-    <section class="subpage-hero" aria-label="Services Hero">
+    <!-- SECTION 1: SERVICES HERO WITH ANIMATED BACKGROUND & COURTROOM SCALES VISUAL -->
+    <section class="subpage-hero" aria-label="Practice Areas Matrix">
       <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
       <div class="container">
         <div class="subpage-hero-grid">
@@ -113,20 +116,55 @@
             <nav class="breadcrumbs" aria-label="Breadcrumb">
               <a href="index.html">Home</a>
               <span class="sep">/</span>
-              <span class="current">Practice Areas</span>
+              <span class="current">Institutional Practice Matrix</span>
             </nav>
-            <h1 class="subpage-hero-title">Specialized Legal Counsel for Complex Enterprise Stakes</h1>
+            <div class="hero-badge-pill" style="margin-bottom: 1rem;">
+              <span class="beacon-dot"></span>
+              <span>Multidisciplinary Trial & Deal Practice</span>
+            </div>
+            <h1 class="subpage-hero-title">
+              Precision Legal Architecture for <span class="gold-highlight">High-Stakes Enterprise Stakes</span>
+            </h1>
             <p class="subpage-hero-desc">
-              From strategic risk avoidance to contentious trial litigation, we deploy multi-disciplinary legal teams tailored to the demands of institutional leadership.
+              Deploying elite trial litigators and transactional architects calibrated to corporate velocity, regulatory antitrust scrutiny, and cross-border commercial friction.
             </p>
+            <div class="hero-tag-pills">
+              <a href="#corporate" class="hero-tag-pill">• Corporate Governance</a>
+              <a href="#dispute" class="hero-tag-pill">• High-Stakes Litigation</a>
+              <a href="#ma" class="hero-tag-pill">• M&A Transactions</a>
+              <a href="#ip" class="hero-tag-pill">• IP & Patents</a>
+              <a href="#labour" class="hero-tag-pill">• Executive Labour</a>
+            </div>
+            <div class="trust-check-strip">
+              <div class="trust-check-item"><span class="gold-check">✓</span> Boardroom Direct Access</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> Cross-Border Jurisdiction</div>
+              <div class="trust-check-item"><span class="gold-check">✓</span> Flat-Fee Predictability</div>
+            </div>
           </div>
 
-          <div class="subpage-hero-badge-box" data-aos="fade-left">
-            <h3 style="color: #dfb15b; margin-bottom: 0.75rem;">Multidisciplinary Trial & Deal Teams</h3>
-            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.25rem;">
-              Over $4.8 Billion in corporate transactions structured, 16,000+ disputes resolved, and 99.4% client satisfaction index.
-            </p>
-            <a href="contact.html" class="btn btn-primary btn-sm">Retain Practice Group</a>
+          <!-- Hero Right: Courtroom Scales Visual with Floating Metric Badges -->
+          <div class="subpage-visual-wrap" data-aos="fade-left">
+            <div class="subpage-halo" aria-hidden="true"></div>
+
+            <div class="subpage-floating-badge top-right">
+              <span class="beacon-dot"></span>
+              <div>
+                <strong style="color: #dfb15b; font-size: 1.15rem; display: block; font-family: var(--font-heading);">$4.8B+ Structured</strong>
+                <span style="font-size: 0.75rem; color: #cbd5e1;">M&A & Private Equity Transactions</span>
+              </div>
+            </div>
+
+            <div class="subpage-visual-card">
+              <img src="images/courtroom_scales.webp" alt="Scales of Justice and Gavel" class="subpage-visual-img" width="800" height="600">
+            </div>
+
+            <div class="subpage-floating-badge bottom-left">
+              <span style="font-size: 1.3rem; color: #10b981;">🛡️</span>
+              <div>
+                <strong style="color: #ffffff; font-size: 1.15rem; display: block; font-family: var(--font-heading);">48 Retained Conglomerates</strong>
+                <span style="font-size: 0.75rem; color: #94a3b8;">Zero Regulatory Fines Incurred</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
