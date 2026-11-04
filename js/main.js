@@ -1,12 +1,14 @@
 /**
  * STACKLY LEGAL CONSULTING - MAIN APPLICATION SCRIPT
- * Version 2.0 - Production Ready
+ * Version 2.1 - Production Ready with BackToTop & Collapsible Sidebar
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initStickyHeader();
   initMobileMenu();
+  initMobileDropdown();
+  initBackToTop();
   initTimeGreeting();
   initAosAnimations();
   initAccordions();
@@ -31,7 +33,6 @@ function initLoader() {
     }, 600);
   };
 
-  // Immediate hide if ready, with safety timeout fallback
   if (document.readyState === 'complete') {
     setTimeout(hideLoader, 300);
   } else {
@@ -67,7 +68,7 @@ function initStickyHeader() {
 }
 
 /* ==========================================================================
-   3. MOBILE NAVIGATION DRAWER
+   3. MOBILE NAVIGATION DRAWER & DROPDOWN
    ========================================================================== */
 function initMobileMenu() {
   const hamburger = document.querySelector('.hamburger-btn');
@@ -82,7 +83,7 @@ function initMobileMenu() {
 
   hamburger.addEventListener('click', toggleMenu);
 
-  // Close when clicking overlay or any link inside
+  // Close when clicking overlay or any direct link inside (except dropdown button)
   overlay.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('active');
@@ -92,8 +93,43 @@ function initMobileMenu() {
   });
 }
 
+function initMobileDropdown() {
+  const practiceToggle = document.getElementById('mobilePracticeToggle');
+  const practiceList = document.getElementById('mobilePracticeList');
+  if (!practiceToggle || !practiceList) return;
+
+  practiceToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isOpen = practiceToggle.classList.toggle('open');
+    practiceList.classList.toggle('open', isOpen);
+  });
+}
+
 /* ==========================================================================
-   4. DYNAMIC TIME-OF-DAY GREETING
+   4. BACK TO TOP BUTTON WITH ANIMATION
+   ========================================================================== */
+function initBackToTop() {
+  const btn = document.getElementById('backToTopBtn');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 320) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+/* ==========================================================================
+   5. DYNAMIC TIME-OF-DAY GREETING
    ========================================================================== */
 function initTimeGreeting() {
   const greetingElements = document.querySelectorAll('.time-greeting');
@@ -118,7 +154,7 @@ function initTimeGreeting() {
 }
 
 /* ==========================================================================
-   5. AOS SCROLL ANIMATION OBSERVER
+   6. AOS SCROLL ANIMATION OBSERVER
    ========================================================================== */
 function initAosAnimations() {
   const animatedElements = document.querySelectorAll('[data-aos]');
@@ -145,7 +181,7 @@ function initAosAnimations() {
 }
 
 /* ==========================================================================
-   6. ACCORDIONS (FAQ)
+   7. ACCORDIONS (FAQ)
    ========================================================================== */
 function initAccordions() {
   const accordions = document.querySelectorAll('.accordion');
@@ -175,7 +211,7 @@ function initAccordions() {
 }
 
 /* ==========================================================================
-   7. CHARACTER COUNTER (Textarea)
+   8. CHARACTER COUNTER (Textarea)
    ========================================================================== */
 function initCharCounters() {
   const textareas = document.querySelectorAll('textarea[data-counter]');
@@ -196,7 +232,7 @@ function initCharCounters() {
 }
 
 /* ==========================================================================
-   8. PASSWORD TOGGLES & STRENGTH METER
+   9. PASSWORD TOGGLES & STRENGTH METER
    ========================================================================== */
 function initPasswordToggles() {
   const toggleButtons = document.querySelectorAll('.password-toggle-btn');
@@ -235,7 +271,7 @@ function initPasswordStrength() {
 
     let fillWidth = '0%';
     let fillColor = '#ef4444';
-    let statusText = 'Very Weak';
+    let statusText = '';
 
     if (val.length === 0) {
       fillWidth = '0%';
@@ -266,7 +302,7 @@ function initPasswordStrength() {
 }
 
 /* ==========================================================================
-   9. STRICT FORM VALIDATIONS
+   10. STRICT FORM VALIDATIONS (Empty by Default)
    ========================================================================== */
 function initFormValidations() {
   // Alphabet only constraint for Name fields
@@ -299,7 +335,6 @@ function initFormValidations() {
       const subjectField = contactForm.querySelector('#contactSubject');
       const successAlert = document.getElementById('contactSuccessAlert');
 
-      // Reset states
       [nameField, emailField, phoneField, subjectField].forEach(f => f && f.classList.remove('is-invalid'));
 
       // Validate Name (Alphabets only)
@@ -341,6 +376,8 @@ function initFormValidations() {
         successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       contactForm.reset();
+      const charCounter = document.getElementById('contactCharCounter');
+      if (charCounter) charCounter.textContent = '0 / 500 characters';
     });
   }
 
@@ -499,7 +536,7 @@ function initFormValidations() {
 }
 
 /* ==========================================================================
-   10. DASHBOARD PORTAL LOGIC
+   11. DASHBOARD PORTAL LOGIC (Fixed Sidebar + Collapse + Search Filter)
    ========================================================================== */
 function initDashboard() {
   const dashContainer = document.querySelector('.dashboard-layout');
@@ -508,7 +545,6 @@ function initDashboard() {
   // Verify authentication
   const sessionStr = localStorage.getItem('currentUser');
   if (!sessionStr) {
-    // Demo seed fallback if testing directly
     const demoUser = {
       name: 'Alexander Wright',
       email: 'a.wright@firmchambers.com',
@@ -554,11 +590,29 @@ function initDashboard() {
   if (kpi3El) kpi3El.textContent = currentKpi.kpi3;
   if (kpi4El) kpi4El.textContent = currentKpi.kpi4;
 
-  // Sidebar toggle for mobile/collapse
+  // Sidebar collapse toggle
   const sidebar = document.querySelector('.dash-sidebar');
-  const sidebarToggle = document.getElementById('sidebarToggleBtn');
-  if (sidebar && sidebarToggle) {
-    sidebarToggle.addEventListener('click', () => {
+  const mainArea = document.querySelector('.dash-main-area');
+  const collapseBtn = document.getElementById('sidebarCollapseBtn');
+  const mobileToggleBtn = document.getElementById('sidebarToggleBtn');
+
+  // Check saved state
+  const isCollapsed = localStorage.getItem('dashSidebarCollapsed') === 'true';
+  if (isCollapsed && sidebar && mainArea && window.innerWidth > 991) {
+    sidebar.classList.add('collapsed');
+    mainArea.classList.add('sidebar-collapsed');
+  }
+
+  if (collapseBtn && sidebar && mainArea) {
+    collapseBtn.addEventListener('click', () => {
+      const nowCollapsed = sidebar.classList.toggle('collapsed');
+      mainArea.classList.toggle('sidebar-collapsed', nowCollapsed);
+      localStorage.setItem('dashSidebarCollapsed', nowCollapsed);
+    });
+  }
+
+  if (mobileToggleBtn && sidebar) {
+    mobileToggleBtn.addEventListener('click', () => {
       sidebar.classList.toggle('open');
     });
   }
@@ -597,4 +651,3 @@ function initDashboard() {
   if (tableSearch) tableSearch.addEventListener('input', filterTable);
   if (statusFilter) statusFilter.addEventListener('change', filterTable);
 }
-

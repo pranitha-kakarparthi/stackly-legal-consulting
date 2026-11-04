@@ -42,11 +42,11 @@
               Practice Areas <span class="dropdown-arrow"></span>
             </a>
             <div class="dropdown-menu">
-              <a href="services.html#corporate" class="dropdown-link">Corporate Governance & Compliance</a>
-              <a href="services.html#dispute" class="dropdown-link">High-Stakes Dispute Resolution</a>
-              <a href="services.html#ma" class="dropdown-link">Mergers & Acquisitions Advisory</a>
-              <a href="services.html#ip" class="dropdown-link">Intellectual Property & Patents</a>
-              <a href="services.html#employment" class="dropdown-link">Executive Employment & Labour</a>
+              <a href="practice-corporate-governance.html" class="dropdown-link">Corporate Governance & Compliance</a>
+              <a href="practice-dispute-resolution.html" class="dropdown-link">High-Stakes Dispute Resolution</a>
+              <a href="practice-mergers-acquisitions.html" class="dropdown-link">Mergers & Acquisitions Advisory</a>
+              <a href="practice-intellectual-property.html" class="dropdown-link">Intellectual Property & Patents</a>
+              <a href="practice-executive-employment.html" class="dropdown-link">Executive Employment & Labour</a>
             </div>
           </div>
           <a href="cases.html" class="nav-link active">Landmark Cases</a>
@@ -70,16 +70,33 @@
     </div>
   </header>
 
-  <!-- Mobile Menu Drawer Overlay -->
+  <!-- Mobile Menu Drawer Overlay with Dropdown -->
   <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
     <div class="mobile-menu-list">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="about.html" class="mobile-link">About Us</a>
-      <a href="services.html" class="mobile-link">Practice Areas</a>
+      
+      <!-- Interactive Practice Areas Accordion Dropdown -->
+      <div>
+        <button id="mobilePracticeToggle" class="mobile-dropdown-btn" aria-expanded="false">
+          <span>Practice Areas</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div id="mobilePracticeList" class="mobile-dropdown-links">
+          <a href="practice-corporate-governance.html" class="mobile-dropdown-link">• Corporate Governance</a>
+          <a href="practice-dispute-resolution.html" class="mobile-dropdown-link">• Dispute Resolution</a>
+          <a href="practice-mergers-acquisitions.html" class="mobile-dropdown-link">• Mergers & Acquisitions</a>
+          <a href="practice-intellectual-property.html" class="mobile-dropdown-link">• Intellectual Property</a>
+          <a href="practice-executive-employment.html" class="mobile-dropdown-link">• Executive Labour Law</a>
+        </div>
+      </div>
+
       <a href="cases.html" class="mobile-link active">Landmark Cases</a>
       <a href="pricing.html" class="mobile-link">Fee Structure</a>
       <a href="contact.html" class="mobile-link">Contact</a>
     </div>
+
+    <!-- Visible Sign In Button on Mobile -->
     <div class="mobile-actions">
       <a href="sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
       <a href="sign-up.html" class="btn btn-primary">Retain Counsel</a>
@@ -87,8 +104,9 @@
   </div>
 
   <main>
-    <!-- SECTION 1: CASES HERO -->
+    <!-- SECTION 1: CASES HERO WITH ANIMATED BACKGROUND -->
     <section class="subpage-hero" aria-label="Cases Hero">
+      <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
       <div class="container">
         <div class="subpage-hero-grid">
           <div data-aos="fade-up">
@@ -216,7 +234,7 @@
     <!-- SECTION 3: IN-DEPTH CASE BREAKDOWN -->
     <section class="section-padding" style="background: var(--bg-alt);" aria-label="Deep Dive Case Study">
       <div class="container">
-        <div class="hero-home-grid" style="grid-template-columns: 1.1fr 0.9fr;">
+        <div class="hero-home-grid" style="grid-template-columns: 1.1fr 0.9fr; align-items: center;">
           <div data-aos="fade-right">
             <span class="section-tag">Landmark Case Study</span>
             <h2 class="section-title">The Apex Cross-Border Trade Sanctions Triumph</h2>
@@ -233,13 +251,13 @@
           </div>
 
           <div data-aos="fade-left">
-            <img src="images/corporate_boardroom.webp" alt="Stackly Case Strategy Session" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%; height: 380px; object-fit: cover;" width="500" height="380">
+            <img src="images/corporate_boardroom.webp" alt="Stackly Case Strategy Session" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%; max-height: 400px; object-fit: cover; object-position: center;" width="500" height="400">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: CLIENT VERIFICATION STATEMENT -->
+    <!-- SECTION 4: CLIENT VERIFICATION STATEMENT (Face Positioning) -->
     <section class="section-padding" style="background: #ffffff;" aria-label="Verified Case Testimonials">
       <div class="container">
         <div class="text-center" data-aos="fade-up">
@@ -342,10 +360,22 @@
             Stackly Legal Consulting provides elite corporate governance, cross-border M&A advisory, and resolute commercial trial representation for visionary businesses worldwide.
           </p>
           <div class="social-links-row">
-            <a href="404.html" class="social-btn" aria-label="LinkedIn"><span>in</span> LinkedIn</a>
-            <a href="404.html" class="social-btn" aria-label="Twitter"><span>𝕏</span> Twitter</a>
-            <a href="404.html" class="social-btn" aria-label="YouTube"><span>▶</span> YouTube</a>
-            <a href="404.html" class="social-btn" aria-label="Facebook"><span>f</span> Facebook</a>
+            <a href="404.html" class="social-btn" aria-label="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="404.html" class="social-btn" aria-label="Twitter">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>Twitter / 𝕏</span>
+            </a>
+            <a href="404.html" class="social-btn" aria-label="YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>YouTube</span>
+            </a>
+            <a href="404.html" class="social-btn" aria-label="Facebook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Facebook</span>
+            </a>
           </div>
         </div>
 
@@ -407,7 +437,9 @@
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top" title="Back to top">↑</button>
+
   <script src="js/main.js"></script>
 </body>
 </html>
-

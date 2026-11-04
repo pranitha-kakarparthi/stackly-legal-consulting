@@ -10,7 +10,6 @@
   <meta property="og:type" content="website">
   <title>Stackly Legal Consulting | Corporate Legal Solutions You Can Trust</title>
   
-  <!-- Google Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,18 +39,18 @@
 
         <!-- Desktop Menu -->
         <nav class="nav-menu-desktop" aria-label="Main Navigation">
-          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html" class="nav-link active">Home</a>
           <a href="about.html" class="nav-link">About Us</a>
           <div class="nav-item-dropdown">
             <a href="services.html" class="nav-link dropdown-toggle" aria-haspopup="true">
               Practice Areas <span class="dropdown-arrow"></span>
             </a>
             <div class="dropdown-menu">
-              <a href="services.html#corporate" class="dropdown-link">Corporate Governance & Compliance</a>
-              <a href="services.html#dispute" class="dropdown-link">High-Stakes Dispute Resolution</a>
-              <a href="services.html#ma" class="dropdown-link">Mergers & Acquisitions Advisory</a>
-              <a href="services.html#ip" class="dropdown-link">Intellectual Property & Patents</a>
-              <a href="services.html#employment" class="dropdown-link">Executive Employment & Labour</a>
+              <a href="practice-corporate-governance.html" class="dropdown-link">Corporate Governance & Compliance</a>
+              <a href="practice-dispute-resolution.html" class="dropdown-link">High-Stakes Dispute Resolution</a>
+              <a href="practice-mergers-acquisitions.html" class="dropdown-link">Mergers & Acquisitions Advisory</a>
+              <a href="practice-intellectual-property.html" class="dropdown-link">Intellectual Property & Patents</a>
+              <a href="practice-executive-employment.html" class="dropdown-link">Executive Employment & Labour</a>
             </div>
           </div>
           <a href="cases.html" class="nav-link">Landmark Cases</a>
@@ -75,22 +74,33 @@
     </div>
   </header>
 
-  <!-- Mobile Menu Drawer Overlay -->
+  <!-- Mobile Menu Drawer Overlay with Dropdown -->
   <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
     <div class="mobile-menu-list">
-      <a href="index.html" class="mobile-link">Home</a>
+      <a href="index.html" class="mobile-link active">Home</a>
       <a href="about.html" class="mobile-link">About Us</a>
-      <a href="services.html" class="mobile-link">Practice Areas</a>
-      <div class="mobile-dropdown-links">
-        <a href="services.html#corporate" class="mobile-dropdown-link">• Corporate Governance</a>
-        <a href="services.html#dispute" class="mobile-dropdown-link">• Dispute Resolution</a>
-        <a href="services.html#ma" class="mobile-dropdown-link">• Mergers & Acquisitions</a>
-        <a href="services.html#ip" class="mobile-dropdown-link">• Intellectual Property</a>
+      
+      <!-- Interactive Practice Areas Accordion Dropdown -->
+      <div>
+        <button id="mobilePracticeToggle" class="mobile-dropdown-btn" aria-expanded="false">
+          <span>Practice Areas</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div id="mobilePracticeList" class="mobile-dropdown-links">
+          <a href="practice-corporate-governance.html" class="mobile-dropdown-link">• Corporate Governance</a>
+          <a href="practice-dispute-resolution.html" class="mobile-dropdown-link">• Dispute Resolution</a>
+          <a href="practice-mergers-acquisitions.html" class="mobile-dropdown-link">• Mergers & Acquisitions</a>
+          <a href="practice-intellectual-property.html" class="mobile-dropdown-link">• Intellectual Property</a>
+          <a href="practice-executive-employment.html" class="mobile-dropdown-link">• Executive Labour Law</a>
+        </div>
       </div>
+
       <a href="cases.html" class="mobile-link">Landmark Cases</a>
       <a href="pricing.html" class="mobile-link">Fee Structure</a>
       <a href="contact.html" class="mobile-link">Contact</a>
     </div>
+
+    <!-- Visible Sign In Button on Mobile -->
     <div class="mobile-actions">
       <a href="sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
       <a href="sign-up.html" class="btn btn-primary">Retain Counsel</a>
@@ -98,8 +108,11 @@
   </div>
 
   <main>
-    <!-- SECTION 1: HERO (Inspired by the attached reference) -->
+    <!-- SECTION 1: HERO (Animated Background, Responsive Non-Cutting Visual) -->
     <section class="hero-home" aria-label="Hero Corporate Legal Solutions">
+      <!-- Animated Background Layer -->
+      <div class="hero-home-bg-anim" aria-hidden="true"></div>
+
       <div class="container">
         <div class="hero-home-grid">
           <div class="hero-content" data-aos="fade-up">
@@ -123,7 +136,7 @@
               <a href="404.html" class="btn btn-ghost btn-lg">Download Firm Profile</a>
             </div>
 
-            <!-- Stats Row Matching Inspiration -->
+            <!-- Stats Row -->
             <div class="hero-stats-row">
               <div class="hero-stat-card">
                 <div class="stat-number">10+</div>
@@ -140,16 +153,16 @@
             </div>
           </div>
 
-          <!-- Hero Right Visual Column with Lady Justice & Floating Badge -->
+          <!-- Hero Right Visual Column - Responsive Proportional Non-Cutting Design -->
           <div class="hero-visual-wrap" data-aos="fade-in">
             <div class="hero-diagonal-shape"></div>
             <div class="hero-main-img-card">
-              <img src="images/justice_statue.webp" alt="Lady Justice bronze sculpture holding scales of justice" class="hero-main-img" width="440" height="480">
+              <img src="images/justice_statue.webp" alt="Lady Justice bronze sculpture holding scales of justice" class="hero-main-img" width="800" height="533">
             </div>
 
             <!-- Floating Trust Quote Card -->
             <div class="hero-floating-quote">
-              <img src="images/client_testimonial_1.webp" alt="Corporate General Counsel Review" class="hero-quote-avatar" width="48" height="48">
+              <img src="images/client_testimonial_1.webp" alt="Corporate General Counsel Review" class="hero-quote-avatar" width="50" height="50">
               <div class="hero-quote-text">
                 <strong>99.4% Dispute Resolution</strong><br>
                 Tailored corporate counsel handling precision litigation.
@@ -205,7 +218,7 @@
               <h3 class="service-card-title">Corporate Governance & Compliance</h3>
               <p class="service-card-desc">Comprehensive board advisory, statutory filings, AML risk audits, and internal ESG policy enforcement protecting institutional leadership from regulatory liability.</p>
             </div>
-            <a href="404.html" class="service-link">Explore Governance <span>→</span></a>
+            <a href="practice-corporate-governance.html" class="service-link">Explore Governance <span>→</span></a>
           </div>
 
           <!-- Card 2 -->
@@ -215,7 +228,7 @@
               <h3 class="service-card-title">High-Stakes Commercial Litigation</h3>
               <p class="service-card-desc">Fierce trial representation in contractual disputes, shareholder arbitrations, international trade tribunals, and emergency injunction defense.</p>
             </div>
-            <a href="404.html" class="service-link">Explore Litigation <span>→</span></a>
+            <a href="practice-dispute-resolution.html" class="service-link">Explore Litigation <span>→</span></a>
           </div>
 
           <!-- Card 3 -->
@@ -225,7 +238,7 @@
               <h3 class="service-card-title">Mergers, Acquisitions & Joint Ventures</h3>
               <p class="service-card-desc">End-to-end deal structuring, exhaustive due diligence investigations, antitrust clearance, and escrow management for seed-stage to Fortune 500 transactions.</p>
             </div>
-            <a href="404.html" class="service-link">Explore M&A <span>→</span></a>
+            <a href="practice-mergers-acquisitions.html" class="service-link">Explore M&A <span>→</span></a>
           </div>
 
           <!-- Card 4 -->
@@ -235,7 +248,7 @@
               <h3 class="service-card-title">Intellectual Property & Patent Defense</h3>
               <p class="service-card-desc">Worldwide trademark defense, patent portfolio management, licensing architecture, and assertive trade secret protection in technological markets.</p>
             </div>
-            <a href="404.html" class="service-link">Explore IP Counsel <span>→</span></a>
+            <a href="practice-intellectual-property.html" class="service-link">Explore IP Counsel <span>→</span></a>
           </div>
 
           <!-- Card 5 -->
@@ -245,7 +258,7 @@
               <h3 class="service-card-title">Executive Employment & Labour Audits</h3>
               <p class="service-card-desc">Drafting golden parachute covenants, non-compete agreements, executive severance settlements, and navigating complex union arbitration proceedings.</p>
             </div>
-            <a href="404.html" class="service-link">Explore Labour Law <span>→</span></a>
+            <a href="practice-executive-employment.html" class="service-link">Explore Labour Law <span>→</span></a>
           </div>
 
           <!-- Card 6 -->
@@ -261,12 +274,12 @@
       </div>
     </section>
 
-    <!-- SECTION 4: ABOUT FIRM HIGHLIGHT & INTERACTIVE VALUE PROPOSITION -->
+    <!-- SECTION 4: WHY VISIONARIES RETAIN STACKLY (Responsive Non-Cutting Image) -->
     <section class="section-padding" style="background: #ffffff;" aria-label="About Stackly">
       <div class="container">
-        <div class="hero-home-grid" style="grid-template-columns: 0.9fr 1.1fr;">
-          <div class="hero-visual-wrap" data-aos="fade-right">
-            <img src="images/corporate_boardroom.webp" alt="Stackly Legal Consulting Executive Chambers Boardroom" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%; height: 420px; object-fit: cover;" width="500" height="420">
+        <div class="split-grid-boardroom">
+          <div class="boardroom-img-wrap" data-aos="fade-right">
+            <img src="images/corporate_boardroom.webp" alt="Stackly Legal Consulting Executive Chambers Boardroom" class="boardroom-img" width="800" height="534">
           </div>
           <div class="hero-content" data-aos="fade-left">
             <span class="section-tag">Why Visionaries Retain Stackly</span>
@@ -303,7 +316,7 @@
       </div>
     </section>
 
-    <!-- SECTION 5: SENIOR COUNSEL & LEADERSHIP -->
+    <!-- SECTION 5: SENIOR COUNSEL & LEADERSHIP (Faces Fully Visible) -->
     <section class="section-padding" style="background: var(--bg-alt);" aria-label="Legal Experts">
       <div class="container">
         <div class="text-center" data-aos="fade-up">
@@ -316,7 +329,7 @@
           <!-- Counsel 1 -->
           <div class="attorney-card" data-aos="fade-up">
             <div class="attorney-img-wrap">
-              <img src="images/attorney_managing_partner.webp" alt="Alexander Wright, Senior Managing Partner" class="attorney-img" width="300" height="290">
+              <img src="images/attorney_managing_partner.webp" alt="Alexander Wright, Senior Managing Partner" class="attorney-img" width="300" height="300">
             </div>
             <div class="attorney-body">
               <div class="attorney-role">Managing Partner</div>
@@ -329,7 +342,7 @@
           <!-- Counsel 2 -->
           <div class="attorney-card" data-aos="fade-up">
             <div class="attorney-img-wrap">
-              <img src="images/attorney_senior_counsel.webp" alt="Eleanor Vance, Partner Corporate Governance" class="attorney-img" width="300" height="290">
+              <img src="images/attorney_senior_counsel.webp" alt="Eleanor Vance, Partner Corporate Governance" class="attorney-img" width="300" height="300">
             </div>
             <div class="attorney-body">
               <div class="attorney-role">Corporate Governance</div>
@@ -342,7 +355,7 @@
           <!-- Counsel 3 -->
           <div class="attorney-card" data-aos="fade-up">
             <div class="attorney-img-wrap">
-              <img src="images/attorney_litigation_lead.webp" alt="Marcus Sterling, Head of Dispute Resolution" class="attorney-img" width="300" height="290">
+              <img src="images/attorney_litigation_lead.webp" alt="Marcus Sterling, Head of Dispute Resolution" class="attorney-img" width="300" height="300">
             </div>
             <div class="attorney-body">
               <div class="attorney-role">Litigation Lead</div>
@@ -355,7 +368,7 @@
           <!-- Counsel 4 -->
           <div class="attorney-card" data-aos="fade-up">
             <div class="attorney-img-wrap">
-              <img src="images/attorney_compliance_head.webp" alt="Sophia Chen, Partner Regulatory & IP" class="attorney-img" width="300" height="290">
+              <img src="images/attorney_compliance_head.webp" alt="Dr. Sophia Chen, Partner Regulatory & IP" class="attorney-img" width="300" height="300">
             </div>
             <div class="attorney-body">
               <div class="attorney-role">Patents & Trade Secrets</div>
@@ -368,7 +381,7 @@
       </div>
     </section>
 
-    <!-- SECTION 6: CLIENT REVIEWS & TESTIMONIALS -->
+    <!-- SECTION 6: CLIENT REVIEWS & TESTIMONIALS (Face Positioning) -->
     <section class="section-padding" style="background: #ffffff;" aria-label="Client Testimonials">
       <div class="container">
         <div class="text-center" data-aos="fade-up">
@@ -495,7 +508,7 @@
     </section>
   </main>
 
-  <!-- CONSISTENT SITE FOOTER -->
+  <!-- CONSISTENT SITE FOOTER WITH ORIGINAL BRAND SVGs -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -508,10 +521,22 @@
             Stackly Legal Consulting provides elite corporate governance, cross-border M&A advisory, and resolute commercial trial representation for visionary businesses worldwide.
           </p>
           <div class="social-links-row">
-            <a href="404.html" class="social-btn" aria-label="LinkedIn"><span>in</span> LinkedIn</a>
-            <a href="404.html" class="social-btn" aria-label="Twitter"><span>𝕏</span> Twitter</a>
-            <a href="404.html" class="social-btn" aria-label="YouTube"><span>▶</span> YouTube</a>
-            <a href="404.html" class="social-btn" aria-label="Facebook"><span>f</span> Facebook</a>
+            <a href="404.html" class="social-btn" aria-label="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="404.html" class="social-btn" aria-label="Twitter">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>Twitter / 𝕏</span>
+            </a>
+            <a href="404.html" class="social-btn" aria-label="YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>YouTube</span>
+            </a>
+            <a href="404.html" class="social-btn" aria-label="Facebook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Facebook</span>
+            </a>
           </div>
         </div>
 
@@ -573,7 +598,9 @@
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top" title="Back to top">↑</button>
+
   <script src="js/main.js"></script>
 </body>
 </html>
-

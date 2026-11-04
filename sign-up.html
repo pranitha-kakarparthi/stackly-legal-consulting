@@ -26,25 +26,24 @@
   </div>
 
   <div class="auth-page-wrapper">
-    <!-- Fixed Header (No navbar) -->
-    <header class="auth-header">
-      <a href="index.html" class="brand-logo-link" aria-label="Stackly Home">
-        <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="150" height="40">
-      </a>
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <a href="index.html" class="btn btn-secondary btn-sm">← Back to Home</a>
-        <a href="sign-in.html" class="btn btn-ghost btn-sm" style="color: var(--primary-navy); border-color: var(--border-light);">Sign In</a>
-      </div>
-    </header>
-
-    <!-- Split Registration Grid -->
+    <!-- Split Registration Grid (Full-Height Layout) -->
     <div class="auth-split-grid">
-      <!-- Left Banner Side -->
+      <!-- Left Banner Side (Includes Brand Logo at Left Top and Back to Home at Right Top) -->
       <div class="auth-banner-side">
+        <!-- Brand Logo at Left Top Corner & Back to Home at Right Top Side -->
+        <div class="auth-banner-top">
+          <a href="index.html" class="brand-logo-link" aria-label="Stackly Chambers Home">
+            <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="150" height="40">
+          </a>
+          <a href="index.html" class="auth-back-btn">
+            ← Back to Home
+          </a>
+        </div>
+
         <div>
           <span class="section-tag light">Corporate Onboarding</span>
           <h1 class="auth-banner-title">Empower Your Corporation with Elite Counsel</h1>
-          <p style="color: #cbd5e1; font-size: 1.1rem; max-width: 480px; margin-bottom: 2rem;">
+          <p style="color: #cbd5e1; font-size: 1.05rem; max-width: 480px; margin-bottom: 2rem;">
             Establish your privileged portal account to coordinate with dedicated Senior Advocates and monitor statutory compliance across your enterprise.
           </p>
         </div>
@@ -65,39 +64,57 @@
         </div>
       </div>
 
-      <!-- Right Form Side -->
-      <div class="auth-form-side" style="padding-top: 2.5rem; padding-bottom: 2.5rem;">
+      <!-- Right Form Side (Clean & Empty by Default) -->
+      <div class="auth-form-side" style="padding-top: 2rem; padding-bottom: 2rem;">
         <div class="auth-card-inner">
-          <h2 style="font-size: 1.85rem; margin-bottom: 0.5rem;">Register Enterprise Account</h2>
-          <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Fill out the mandatory legal intake details below.</p>
+          <div class="auth-top-switch">
+            <span>Already have a Chambers account?</span>
+            <a href="sign-in.html">Sign In Here →</a>
+          </div>
+
+          <h2 style="font-size: 1.75rem; margin-bottom: 0.35rem;">Register Enterprise Account</h2>
+          <p style="font-size: 0.925rem; margin-bottom: 1.25rem;">Complete the corporate onboarding details below.</p>
 
           <div id="regSuccessBanner" class="alert-success" role="alert">
             <strong>Account Registered Successfully!</strong> Redirecting to Sign In portal...
           </div>
 
-          <!-- Social Registrations (Redirect to 404) -->
+          <!-- Social Registrations (Original Brand Icons) -->
           <div class="social-login-grid">
-            <a href="404.html" class="btn-social" title="Register with Google">Google</a>
-            <a href="404.html" class="btn-social" title="Register with Microsoft">Microsoft</a>
-            <a href="404.html" class="btn-social" title="Register with LinkedIn">LinkedIn</a>
-            <a href="404.html" class="btn-social" title="Register with Twitter/X">𝕏 Corp</a>
+            <a href="404.html" class="btn-social" title="Register with Google">
+              <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3h3.86c2.26-2.09 3.68-5.16 3.68-9.1z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.27v3.09C3.25 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.27C.46 8.24 0 10.06 0 12s.46 3.76 1.27 5.38l4-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.62l4 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
+              Google
+            </a>
+            <a href="404.html" class="btn-social" title="Register with Microsoft">
+              <svg width="15" height="15" viewBox="0 0 23 23"><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
+              Microsoft
+            </a>
+            <a href="404.html" class="btn-social" title="Register with LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              LinkedIn
+            </a>
+            <a href="404.html" class="btn-social" title="Register with Twitter / X">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              𝕏 Corp
+            </a>
           </div>
 
           <div class="auth-divider">
             <span>or complete standard registration</span>
           </div>
 
+          <!-- Empty Form by Default (No hardcoded credentials) -->
           <form id="signUpForm" novalidate>
             <!-- First Name & Last Name (Alphabets Only) -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
               <div class="form-group">
                 <label for="regFirstName" class="form-label">First Name <span class="req">*</span></label>
-                <input type="text" id="regFirstName" class="form-control" placeholder="e.g. Anandha" data-alpha-only="true" required value="Devanand">
+                <input type="text" id="regFirstName" class="form-control" placeholder="e.g. Anandha" data-alpha-only="true" required>
                 <div class="form-feedback">Only alphabets allowed (no numbers).</div>
               </div>
               <div class="form-group">
                 <label for="regLastName" class="form-label">Last Name <span class="req">*</span></label>
-                <input type="text" id="regLastName" class="form-control" placeholder="e.g. Kumar" data-alpha-only="true" required value="Subramaniam">
+                <input type="text" id="regLastName" class="form-control" placeholder="e.g. Kumar" data-alpha-only="true" required>
                 <div class="form-feedback">Only alphabets allowed (no numbers).</div>
               </div>
             </div>
@@ -105,7 +122,7 @@
             <!-- Email -->
             <div class="form-group">
               <label for="regEmail" class="form-label">Corporate Email Address <span class="req">*</span></label>
-              <input type="email" id="regEmail" class="form-control" placeholder="counsel@enterprise.com" required value="devanand@stacklyenterprise.com">
+              <input type="email" id="regEmail" class="form-control" placeholder="counsel@enterprise.com" required>
               <div class="form-feedback">Please enter a valid business email.</div>
             </div>
 
@@ -119,7 +136,7 @@
                   <option value="+44">UK (+44)</option>
                   <option value="+65">Singapore (+65)</option>
                 </select>
-                <input type="tel" id="regPhone" class="form-control" placeholder="9876543210" data-phone="true" maxlength="10" required value="9876543210">
+                <input type="tel" id="regPhone" class="form-control" placeholder="10-digit mobile number" data-phone="true" maxlength="10" required>
               </div>
               <div class="form-feedback">Mobile number must be exactly 10 digits.</div>
             </div>
@@ -128,7 +145,8 @@
             <div class="form-group">
               <label for="regRole" class="form-label">Portal Role Designation <span class="req">*</span></label>
               <select id="regRole" class="form-control" required>
-                <option value="Enterprise Client" selected>Enterprise Client</option>
+                <option value="" disabled selected>Select Portal Role</option>
+                <option value="Enterprise Client">Enterprise Client</option>
                 <option value="Corporate Counsel">Corporate Counsel</option>
                 <option value="Managing Partner">Managing Partner</option>
                 <option value="Legal Associate">Legal Associate</option>
@@ -140,7 +158,7 @@
             <div class="form-group">
               <label for="registerPassword" class="form-label">Password <span class="req">*</span></label>
               <div class="password-input-wrap">
-                <input type="password" id="registerPassword" class="form-control" placeholder="••••••••••••" required value="StacklySecure2026!">
+                <input type="password" id="registerPassword" class="form-control" placeholder="Create strong password" required>
                 <button type="button" class="password-toggle-btn" data-target="registerPassword" aria-label="Show password">
                   <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 </button>
@@ -155,13 +173,13 @@
             <!-- Confirm Password -->
             <div class="form-group">
               <label for="regConfirmPassword" class="form-label">Confirm Password <span class="req">*</span></label>
-              <input type="password" id="regConfirmPassword" class="form-control" placeholder="••••••••••••" required value="StacklySecure2026!">
+              <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required>
               <div class="form-feedback">Passwords do not match.</div>
             </div>
 
             <!-- Terms & Conditions Checkbox (Mandatory) -->
             <div class="form-check">
-              <input type="checkbox" id="regTerms" class="form-check-input" required checked>
+              <input type="checkbox" id="regTerms" class="form-check-input" required>
               <label for="regTerms" class="form-check-label">
                 I agree to the <a href="404.html" style="color: var(--primary-navy); font-weight: 700; text-decoration: underline;">Terms of Use</a> and <a href="404.html" style="color: var(--primary-navy); font-weight: 700; text-decoration: underline;">Privacy Policy</a>. <span class="req">*</span>
               </label>
@@ -170,7 +188,7 @@
 
             <!-- Newsletter Checkbox (Optional) -->
             <div class="form-check">
-              <input type="checkbox" id="regNewsletter" class="form-check-input" checked>
+              <input type="checkbox" id="regNewsletter" class="form-check-input">
               <label for="regNewsletter" class="form-check-label">
                 I would like to receive corporate legal bulletins, statutory updates, and court precedent announcements. <a href="404.html" style="color: var(--accent-gold); font-size: 0.8rem;">Read More</a>
               </label>
@@ -180,11 +198,6 @@
               Complete Portal Registration
             </button>
           </form>
-
-          <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
-            Already registered with Chambers? 
-            <a href="sign-in.html" style="color: var(--primary-navy); font-weight: 700; text-decoration: underline;">Sign In to Portal</a>
-          </div>
         </div>
       </div>
     </div>
@@ -193,4 +206,3 @@
   <script src="js/main.js"></script>
 </body>
 </html>
-
