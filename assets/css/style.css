@@ -1602,6 +1602,7 @@ textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
+  overflow: hidden;
 }
 
 .subpage-halo {
@@ -2781,7 +2782,9 @@ textarea {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  transition: width var(--transition-normal), transform var(--transition-normal);
+  transition:
+    width var(--transition-normal),
+    transform var(--transition-normal);
   z-index: 1020;
   overflow-y: auto;
   overflow-x: hidden;
@@ -2969,7 +2972,11 @@ textarea {
 }
 
 .dash-nav-item.active {
-  background: linear-gradient(90deg, rgba(223, 177, 91, 0.2) 0%, rgba(16, 54, 84, 0.5) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(223, 177, 91, 0.2) 0%,
+    rgba(16, 54, 84, 0.5) 100%
+  );
   color: #ffffff;
   font-weight: 600;
   border: 1px solid rgba(223, 177, 91, 0.45);
@@ -3511,6 +3518,28 @@ textarea {
   .chambers-dispatch-card {
     max-width: 100%;
     margin: 0 auto;
+    box-sizing: border-box !important;
+  }
+  .subpage-hero {
+    padding: 3.5rem 0 3rem !important;
+  }
+  .subpage-hero-title {
+    font-size: clamp(1.8rem, 5.5vw, 2.5rem) !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  .subpage-hero .gold-highlight {
+    word-break: break-word !important;
+    display: inline !important;
+  }
+  .subpage-hero-desc {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+  .precedent-spotlight-card {
+    padding: 1.75rem 1.5rem !important;
+    width: 100% !important;
   }
   .subpage-floating-badge.top-right,
   .subpage-floating-badge.bottom-left {
@@ -3602,7 +3631,12 @@ textarea {
     z-index: 99999 !important;
     display: flex !important;
     flex-direction: column !important;
-    background: linear-gradient(180deg, #071724 0%, #0d283e 50%, #081723 100%) !important;
+    background: linear-gradient(
+      180deg,
+      #071724 0%,
+      #0d283e 50%,
+      #081723 100%
+    ) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
@@ -3702,8 +3736,80 @@ textarea {
   }
 
   /* Hero section on small screens - Responsive Proportional Non-Cutting Visual */
-  .hero-home {
-    padding: 2.5rem 0 3.5rem;
+  .hero-home,
+  .subpage-hero {
+    padding: 2.5rem 0 2rem !important;
+  }
+  .subpage-hero-title {
+    font-size: clamp(1.4rem, 6.2vw, 1.95rem) !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 0.85rem !important;
+  }
+  .subpage-hero .gold-highlight {
+    word-break: break-word !important;
+    display: inline !important;
+  }
+  .subpage-hero-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.15rem !important;
+  }
+  .subpage-visual-wrap {
+    margin-top: 1.25rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+  .subpage-halo {
+    width: 260px !important;
+    height: 260px !important;
+    max-width: 100% !important;
+  }
+  .precedent-spotlight-card {
+    padding: 1.25rem 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: var(--radius-md) !important;
+  }
+  .hero-hud-tabs {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+    margin-bottom: 0.85rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  .hero-hud-tab-btn {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.72rem !important;
+    flex: 1 1 auto !important;
+    text-align: center !important;
+  }
+  .docket-header-badges {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .docket-header-badges .badge-status {
+    font-size: 0.72rem !important;
+    padding: 0.2rem 0.55rem !important;
+  }
+  .docket-details-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0.65rem 0.85rem !important;
+    gap: 0.5rem !important;
+  }
+  .trust-check-strip {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.6rem 1rem !important;
+    padding-top: 1rem !important;
+    margin-top: 1rem !important;
+  }
+  .trust-check-item {
+    font-size: 0.78rem !important;
   }
   .hero-home-title {
     font-size: clamp(2rem, 6.5vw, 2.4rem);
@@ -4063,7 +4169,6 @@ textarea {
   opacity: 0;
 }
 
-
 /* ==========================================================================
    ENHANCED DASHBOARD LAYOUT, ALIGNMENT, TABLES & MARGINS
    ========================================================================== */
@@ -4360,7 +4465,7 @@ textarea {
     display: inline-flex !important;
   }
   .dash-topbar-subtitle {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -4368,21 +4473,47 @@ textarea {
 @media (max-width: 768px) {
   .dash-topbar {
     padding: 0 1rem;
-    height: 64px;
+    height: 62px;
     gap: 0.5rem;
   }
   .dash-topbar-title {
     font-size: 1.05rem;
+    max-width: 220px;
   }
   .dash-topbar-role-badge {
-    display: none;
+    display: none !important;
   }
+  .dash-user-profile-badge .dash-user-details,
+  .dash-topbar-left .dash-user-details,
   .dash-user-details {
-    display: none;
+    display: none !important;
   }
   .dash-topbar-right {
-    gap: 0.6rem;
-    margin-left: 0.5rem;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.55rem;
+    margin-left: auto;
+  }
+  .dash-topbar-signout-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    padding: 0.38rem 0.75rem !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .dash-topbar-signout-btn .signout-text {
+    display: inline !important;
+    font-weight: 600 !important;
+  }
+  .dash-topbar-signout-btn .signout-icon {
+    width: 14px !important;
+    height: 14px !important;
   }
 }
 
@@ -4390,32 +4521,63 @@ textarea {
 @media (max-width: 576px) {
   .dash-topbar {
     padding: 0 0.75rem;
-    height: 60px;
-    gap: 0.4rem;
+    height: 58px;
+    gap: 0.45rem;
   }
   .dash-mobile-toggle-btn {
     padding: 0.35rem 0.5rem;
     font-size: 0.8rem;
+    flex-shrink: 0;
   }
   .dash-mobile-toggle-btn .toggle-text {
-    display: none;
+    display: none !important;
   }
   .dash-topbar-title {
-    font-size: 0.95rem;
-    max-width: 140px;
+    font-size: 0.9rem;
+    max-width: 135px;
   }
-  .dash-topbar-signout-btn {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.75rem;
+  .dash-topbar-right {
+    gap: 0.45rem;
+  }
+  .dash-user-profile-badge {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    flex-shrink: 0;
   }
   .dash-topbar .dash-user-avatar {
-    width: 34px;
-    height: 34px;
-    font-size: 0.8rem;
+    width: 32px;
+    height: 32px;
+    font-size: 0.78rem;
+    flex-shrink: 0;
   }
   .dash-topbar-icon-btn {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  .dash-topbar-signout-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    padding: 0.32rem 0.6rem !important;
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .dash-topbar-signout-btn .signout-text {
+    display: inline !important;
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
+  }
+  .dash-topbar-signout-btn .signout-icon {
+    width: 13px !important;
+    height: 13px !important;
   }
 }
 
@@ -4427,31 +4589,81 @@ textarea {
     gap: 0.35rem;
   }
   .dash-topbar-title {
-    font-size: 0.85rem;
-    max-width: 110px;
+    font-size: 0.82rem;
+    max-width: 95px;
   }
   .dash-topbar-right {
     gap: 0.35rem;
-    margin-left: 0.25rem;
-  }
-  .dash-topbar-signout-btn .signout-text {
-    display: none;
+    margin-left: auto;
   }
   .dash-topbar-signout-btn {
-    padding: 0.35rem;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    padding: 0.28rem 0.5rem !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .dash-topbar-signout-btn .signout-text {
+    display: inline !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+  }
+  .dash-topbar-signout-btn .signout-icon {
+    width: 12px !important;
+    height: 12px !important;
   }
   .dash-topbar .dash-user-avatar {
     width: 30px;
     height: 30px;
-    font-size: 0.75rem;
+    font-size: 0.74rem;
   }
   .dash-topbar-icon-btn {
     width: 30px;
     height: 30px;
+  }
+}
+
+/* Ultra Small Screen (<= 320px) */
+@media (max-width: 320px) {
+  .dash-topbar {
+    padding: 0 0.35rem;
+    height: 52px;
+    gap: 0.25rem;
+  }
+  .dash-topbar-title {
+    font-size: 0.78rem;
+    max-width: 80px;
+  }
+  .dash-topbar-right {
+    gap: 0.25rem;
+  }
+  .dash-topbar-signout-btn {
+    padding: 0.24rem 0.42rem !important;
+    font-size: 0.68rem !important;
+    gap: 0.2rem !important;
+  }
+  .dash-topbar-signout-btn .signout-text {
+    display: inline !important;
+    font-size: 0.68rem !important;
+  }
+  .dash-topbar-signout-btn .signout-icon {
+    width: 11px !important;
+    height: 11px !important;
+  }
+  .dash-topbar .dash-user-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.68rem;
+  }
+  .dash-topbar-icon-btn {
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -4497,7 +4709,9 @@ textarea {
   padding: 1.75rem 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .dash-section:hover,
@@ -4618,7 +4832,9 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .dash-kpi-card:hover {

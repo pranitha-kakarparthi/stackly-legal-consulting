@@ -476,11 +476,20 @@ function initFormValidations() {
         return;
       }
 
-      // Save user session to localStorage
+      // Save user session to localStorage based on login email
+      const emailVal = emailField.value.trim();
+      const rawUser = emailVal.split('@')[0];
+      const formattedName = rawUser
+        .replace(/[._\-+]/g, ' ')
+        .split(' ')
+        .filter(Boolean)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+
       const userSession = {
-        email: emailField.value.trim(),
+        email: emailVal,
         role: roleField.value,
-        name: emailField.value.split('@')[0].replace(/[._]/g, ' '),
+        name: formattedName || emailVal,
         loginTimestamp: new Date().toISOString(),
         isLoggedIn: true
       };
@@ -621,19 +630,56 @@ function initDashboard() {
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
   const userRole = currentUser.role || 'Legal Associate';
-  const userName = currentUser.name || (userRole === 'Associate Client' ? 'Vikramaditya S.' : 'Ananya Sen');
+  const userEmail = currentUser.email || '';
 
-  // Update DOM elements in topbar/badge
-  const nameEl = document.getElementById('dashUserName') || document.querySelector('.dash-user-name');
-  const roleEl = document.getElementById('dashUserRole') || document.querySelector('.dash-user-role');
-  const avatarEl = document.getElementById('dashUserAvatar') || document.querySelector('.dash-user-avatar');
-
-  if (nameEl) nameEl.textContent = userName;
-  if (roleEl) roleEl.textContent = userRole;
-  if (avatarEl && !avatarEl.querySelector('img')) {
-    const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-    avatarEl.textContent = initials || (userRole === 'Associate Client' ? 'VS' : 'AS');
+  let userName = currentUser.name;
+  if (!userName && userEmail) {
+    const rawUser = userEmail.split('@')[0];
+    userName = rawUser
+      .replace(/[._\-+]/g, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
+  if (!userName) {
+    userName = userRole === 'Associate Client' ? 'Vikramaditya S.' : 'Ananya Sen';
+  }
+
+  const initials = userName
+    .split(' ')
+    .filter(Boolean)
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2) || (userRole === 'Associate Client' ? 'VS' : 'AS');
+
+  // Update ALL user name elements on the page (both topbar and sidebar)
+  document.querySelectorAll('.dash-user-name, #dashUserName').forEach(el => {
+    el.textContent = userName;
+    if (userEmail) el.setAttribute('title', `${userName} (${userEmail})`);
+  });
+
+  // Update ALL user role elements
+  document.querySelectorAll('.dash-user-role, #dashUserRole').forEach(el => {
+    el.textContent = userRole;
+  });
+
+  // Update ALL avatar elements on the page (both topbar and sidebar)
+  document.querySelectorAll('.dash-user-avatar, #dashUserAvatar').forEach(el => {
+    if (!el.querySelector('img')) {
+      el.textContent = initials;
+      if (userEmail) el.setAttribute('title', `${userName} (${userEmail})`);
+    }
+  });
+
+  // Update user subtext / email if present
+  document.querySelectorAll('.dash-user-subtext').forEach(el => {
+    if (userEmail) {
+      el.textContent = `● ${userEmail}`;
+      el.setAttribute('title', userEmail);
+    }
+  });
 
   // --- SIDEBAR & DOM ELEMENTS ---
   const sidebar = document.getElementById('dashSidebar') || document.querySelector('.dash-sidebar');
@@ -1235,13 +1281,13 @@ function initInteractiveHeroWidgets() {
         docketDisplay.classList.add('fade-out');
         setTimeout(() => {
           docketDisplay.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+            <div class="docket-header-badges" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.4rem;">
               <span class="badge-status badge-active">Docket ${d.id}</span>
               <span class="badge-status badge-resolved">Relief Granted</span>
             </div>
             <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: #ffffff;">${d.title}</h3>
             <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">${d.desc}</p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.75rem 1rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(223, 177, 91, 0.25);">
+            <div class="docket-details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.75rem 1rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(223, 177, 91, 0.25);">
               <div>
                 <span style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Forum</span>
                 <strong style="display: block; font-size: 0.825rem; color: #dfb15b;">${d.forum}</strong>
