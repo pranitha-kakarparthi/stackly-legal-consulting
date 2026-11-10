@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=pages/dashboard.html">
   <title>Stackly Legal Chambers Workspace Portal</title>
   <script>
     (function() {
       try {
-        var user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        var user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (!user || !user.isLoggedIn) {
+          window.location.replace('pages/sign-in.html');
+          return;
+        }
         if (user.role === 'Associate Client') {
           window.location.replace('pages/dashboard-client.html');
           return;
         }
-      } catch (e) {}
-      window.location.replace('pages/dashboard.html');
+        window.location.replace('pages/dashboard-associate.html');
+      } catch (e) {
+        window.location.replace('pages/sign-in.html');
+      }
     })();
   </script>
 </head>
@@ -22,10 +27,9 @@
   <div style="background: #0d283e; border: 1px solid rgba(212,175,55,0.4); border-radius: 12px; padding: 2.5rem; max-width: 500px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
     <img src="assets/images/logoStackly.webp" alt="Stackly Chambers" style="height: 40px; margin-bottom: 1.5rem;">
     <h2 style="margin: 0 0 0.5rem 0; font-family: serif; color: #d4af37;">Entering Chambers Portal</h2>
-    <p style="color: #cbd5e0; font-size: 0.95rem; margin-bottom: 2rem;">Please choose your designated Chambers portal role to enter:</p>
+    <p style="color: #cbd5e0; font-size: 0.95rem; margin-bottom: 2rem;">Redirecting to authorized Chambers workspace...</p>
     <div style="display: flex; flex-direction: column; gap: 1rem;">
-      <a href="pages/dashboard-associate.html" style="background: #dfb15b; color: #071724; display: block; padding: 0.85rem; font-weight: 700; text-decoration: none; border-radius: 6px;">Legal Associate Portal &rarr;</a>
-      <a href="pages/dashboard-client.html" style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; display: block; padding: 0.85rem; font-weight: 700; text-decoration: none; border-radius: 6px;">Associate Client Shield &rarr;</a>
+      <a href="pages/sign-in.html" style="background: #dfb15b; color: #071724; display: block; padding: 0.85rem; font-weight: 700; text-decoration: none; border-radius: 6px;">Sign In to Chambers Portal &rarr;</a>
     </div>
   </div>
 </body>

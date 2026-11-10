@@ -4,6 +4,7 @@
  */
 
 function initApp() {
+  initStorageModules();
   initLoader();
   initStickyHeader();
   initMobileMenu();
@@ -26,6 +27,48 @@ function initApp() {
   initInteractiveHeroWidgets();
   initHeroPedestal();
   initHero3DTilt();
+}
+
+/* ==========================================================================
+   0. STORAGE MODULES (Global Standards frontend simulation)
+   ========================================================================== */
+function initStorageModules() {
+  try {
+    if (!localStorage.getItem('users')) {
+      localStorage.setItem('users', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('preferences')) {
+      localStorage.setItem('preferences', JSON.stringify({
+        notificationsEnabled: true,
+        emailAlerts: true,
+        compactView: false,
+        autoSaveBriefs: true
+      }));
+    }
+    if (!localStorage.getItem('themeSettings')) {
+      localStorage.setItem('themeSettings', JSON.stringify({
+        theme: 'navy-gold',
+        contrast: 'high',
+        fontSize: 'normal',
+        reducedMotion: false
+      }));
+    }
+    if (!localStorage.getItem('notifications')) {
+      localStorage.setItem('notifications', JSON.stringify([
+        { id: 1, title: 'Cause List Notice: Item 14 High Court Bench', time: '10 mins ago', unread: true },
+        { id: 2, title: 'Ex-Parte Interim Stay Order Issued in Docket #HC-2026-991', time: '1 hour ago', unread: true },
+        { id: 3, title: 'Retainer Escrow Replenishment Confirmed ($250,000)', time: 'Yesterday', unread: false }
+      ]));
+    }
+    if (!localStorage.getItem('savedForms')) {
+      localStorage.setItem('savedForms', JSON.stringify({
+        contactDraft: null,
+        lastBriefing: null
+      }));
+    }
+  } catch (e) {
+    console.warn('LocalStorage unavailable:', e);
+  }
 }
 
 if (document.readyState === 'loading') {
@@ -84,8 +127,13 @@ function initStickyHeader() {
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
   navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    const href = link.getAttribute('href') || '';
+    const cleanHref = href.split('/').pop();
+    if (cleanHref === currentPath || (currentPath === '' && cleanHref === 'index.html')) {
+      link.classList.add('active');
+    }
+    // Highlight parent Practice Areas link when viewing a specific practice subpage
+    if (currentPath.startsWith('practice-') && (cleanHref === 'services.html' || href.includes('services.html'))) {
       link.classList.add('active');
     }
   });
@@ -428,6 +476,23 @@ function initFormValidations() {
         return;
       }
 
+      // Persist to localStorage savedForms module (Rule 914)
+      try {
+        const savedForms = JSON.parse(localStorage.getItem('savedForms') || '[]');
+        savedForms.push({
+          type: 'contact',
+          name: nameField.value.trim(),
+          email: emailField.value.trim(),
+          phone: phoneField.value.trim(),
+          subject: subjectField.value.trim(),
+          message: (contactForm.querySelector('#contactMessage')?.value || '').trim(),
+          submittedAt: new Date().toISOString()
+        });
+        localStorage.setItem('savedForms', JSON.stringify(savedForms));
+      } catch (e) {
+        console.warn('LocalStorage savedForms error:', e);
+      }
+
       // Success
       if (successAlert) {
         successAlert.style.display = 'block';
@@ -476,7 +541,7 @@ function initFormValidations() {
         return;
       }
 
-      // Save user session to localStorage based on login email
+      // Save user session to localStorage based on login email & registered accounts
       const emailVal = emailField.value.trim();
       const rawUser = emailVal.split('@')[0];
       const formattedName = rawUser
@@ -486,10 +551,21 @@ function initFormValidations() {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(' ');
 
+      let registeredUser = null;
+      try {
+        const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+        registeredUser = existingUsers.find(u => u.email && u.email.toLowerCase() === emailVal.toLowerCase());
+      } catch (err) {
+        registeredUser = null;
+      }
+
       const userSession = {
         email: emailVal,
+        username: registeredUser?.username || rawUser,
         role: roleField.value,
-        name: formattedName || emailVal,
+        name: registeredUser?.name || formattedName || emailVal,
+        phone: registeredUser?.phone || '',
+        country: registeredUser?.country || '',
         loginTimestamp: new Date().toISOString(),
         isLoggedIn: true
       };
@@ -513,19 +589,39 @@ function initFormValidations() {
       let isValid = true;
       let firstErrorField = null;
 
+      const username = document.getElementById('regUsername');
       const firstName = document.getElementById('regFirstName');
       const lastName = document.getElementById('regLastName');
       const email = document.getElementById('regEmail');
       const phone = document.getElementById('regPhone');
+      const country = document.getElementById('regCountry');
+      const address = document.getElementById('regAddress');
+      const newsletter = document.getElementById('regNewsletter');
       const pass = document.getElementById('registerPassword');
       const confirmPass = document.getElementById('regConfirmPassword');
       const role = document.getElementById('regRole');
       const termsCheck = document.getElementById('regTerms');
       const successBanner = document.getElementById('regSuccessBanner');
 
-      [firstName, lastName, email, phone, pass, confirmPass, role, termsCheck].forEach(f => {
+      [username, firstName, lastName, email, phone, pass, confirmPass, role, termsCheck].forEach(f => {
         if (f) f.classList.remove('is-invalid');
       });
+
+      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+
+      // Username validation if provided (min 3 chars & unique)
+      if (username && username.value.trim()) {
+        const uVal = username.value.trim();
+        if (uVal.length < 3) {
+          username.classList.add('is-invalid');
+          isValid = false;
+          if (!firstErrorField) firstErrorField = username;
+        } else if (existingUsers.some(u => u.username && u.username.toLowerCase() === uVal.toLowerCase())) {
+          username.classList.add('is-invalid');
+          isValid = false;
+          if (!firstErrorField) firstErrorField = username;
+        }
+      }
 
       if (!firstName.value.trim() || !/^[A-Za-z\s]+$/.test(firstName.value.trim())) {
         firstName.classList.add('is-invalid');
@@ -584,16 +680,28 @@ function initFormValidations() {
       }
 
       // Save user to localStorage.users array
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
       const newUser = {
+        username: username ? username.value.trim() : '',
         name: `${firstName.value.trim()} ${lastName.value.trim()}`,
+        firstName: firstName.value.trim(),
+        lastName: lastName.value.trim(),
         email: email.value.trim(),
         role: role.value,
         phone: phone.value.trim(),
+        country: country ? country.value.trim() : 'India',
+        address: address ? address.value.trim() : '',
         createdAt: new Date().toISOString()
       };
       existingUsers.push(newUser);
       localStorage.setItem('users', JSON.stringify(existingUsers));
+
+      // Persist preferences
+      try {
+        const preferences = JSON.parse(localStorage.getItem('preferences') || '{}');
+        preferences.newsletter = newsletter ? newsletter.checked : true;
+        preferences.role = role.value;
+        localStorage.setItem('preferences', JSON.stringify(preferences));
+      } catch (err) {}
 
       if (successBanner) {
         successBanner.style.display = 'block';
@@ -614,21 +722,21 @@ function initDashboard() {
   const dashContainer = document.querySelector('.dashboard-layout, .dash-layout');
   if (!dashContainer) return;
 
-  // Default to Legal Associate (Ananya Sen)
+  // Strict session check: Accessible only after authentication
   const sessionStr = localStorage.getItem('currentUser');
-  if (!sessionStr) {
-    const demoUser = {
-      name: 'Ananya Sen',
-      email: 'a.sen@stacklylegal.com',
-      role: 'Legal Associate',
-      loginTimestamp: new Date().toISOString(),
-      isLoggedIn: true
-    };
-    localStorage.setItem('currentUser', JSON.stringify(demoUser));
-    localStorage.setItem('role', 'Legal Associate');
+  let currentUser = null;
+  try {
+    currentUser = sessionStr ? JSON.parse(sessionStr) : null;
+  } catch (e) {
+    currentUser = null;
   }
 
-  const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  if (!currentUser || !currentUser.isLoggedIn) {
+    const isPagesDir = window.location.pathname.includes('/pages/') || window.location.href.includes('/pages/');
+    window.location.replace(isPagesDir ? 'sign-in.html' : 'pages/sign-in.html');
+    return;
+  }
+
   const userRole = currentUser.role || 'Legal Associate';
   const userEmail = currentUser.email || '';
 
@@ -679,6 +787,13 @@ function initDashboard() {
       el.textContent = `● ${userEmail}`;
       el.setAttribute('title', userEmail);
     }
+  });
+
+  // Update login timestamp
+  const loginDate = currentUser.loginTimestamp ? new Date(currentUser.loginTimestamp) : new Date();
+  const formattedLoginTime = loginDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  document.querySelectorAll('.dash-login-timestamp, #dashLoginTimestamp').forEach(el => {
+    el.textContent = formattedLoginTime;
   });
 
   // --- SIDEBAR & DOM ELEMENTS ---
@@ -780,14 +895,14 @@ function initDashboard() {
     mainArea.classList.add('sidebar-collapsed');
   }
 
-  // Sign out button
-  const signOutBtn = document.getElementById('dashSignOutBtn') || document.querySelector('.dash-sidebar-footer .btn');
-  if (signOutBtn && signOutBtn.getAttribute('href') && signOutBtn.getAttribute('href').includes('sign-in')) {
-    signOutBtn.addEventListener('click', () => {
+  // Sign out buttons (Rule 796 & 929)
+  const signOutBtns = document.querySelectorAll('#dashSignOutBtn, .dash-topbar-signout-btn, a[href*="sign-in"]');
+  signOutBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
       localStorage.removeItem('currentUser');
       localStorage.removeItem('role');
     });
-  }
+  });
 
   // --- TABLE SEARCH & FILTERS (Overview & Active Matters) ---
   const overviewSearch = document.getElementById('tableSearchInput');

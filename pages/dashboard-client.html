@@ -7,6 +7,23 @@
   <meta name="description" content="Secure Client Legal Shield & Retainer Portal for Stackly Legal Consulting enterprise clients. Track matters, compliance, contracts, and counsel.">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="icon" type="image/webp" href="../assets/images/logoStackly.webp">
+  <script>
+    (function() {
+      try {
+        var user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (!user || !user.isLoggedIn) {
+          window.location.replace('sign-in.html');
+          return;
+        }
+        if (user.role === 'Legal Associate') {
+          window.location.replace('dashboard-associate.html');
+          return;
+        }
+      } catch (e) {
+        window.location.replace('sign-in.html');
+      }
+    })();
+  </script>
 </head>
 <body class="dashboard-body">
 
@@ -34,35 +51,35 @@
 
       <nav class="dash-nav dash-sidebar-menu" aria-label="Client Workspace Tabs">
         <div class="dash-nav-section-title">PORTAL NAVIGATION</div>
-        <button class="dash-nav-item active" data-tab="overview">
+        <button class="dash-nav-item active" data-tab="overview" title="Retainer Overview">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           <span>Retainer Overview</span>
         </button>
-        <button class="dash-nav-item" data-tab="matters">
+        <button class="dash-nav-item" data-tab="matters" title="Retained Matters">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
           <span>Retained Matters</span>
         </button>
-        <button class="dash-nav-item" data-tab="compliance">
+        <button class="dash-nav-item" data-tab="compliance" title="Statutory Health">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           <span>Statutory Health</span>
         </button>
-        <button class="dash-nav-item" data-tab="contracts">
+        <button class="dash-nav-item" data-tab="contracts" title="Contract Vault">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           <span>Contract Vault</span>
         </button>
-        <button class="dash-nav-item" data-tab="calendar">
+        <button class="dash-nav-item" data-tab="calendar" title="Court & Briefings">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           <span>Court & Briefings</span>
         </button>
-        <button class="dash-nav-item" data-tab="counsel">
+        <button class="dash-nav-item" data-tab="counsel" title="Assigned Counsel">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           <span>Assigned Counsel</span>
         </button>
-        <button class="dash-nav-item" data-tab="billing">
+        <button class="dash-nav-item" data-tab="billing" title="Retainer & Escrow">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <span>Retainer & Escrow</span>
         </button>
-        <button class="dash-nav-item" data-tab="settings">
+        <button class="dash-nav-item" data-tab="settings" title="Client Privilege Settings">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           <span>Client Privilege Settings</span>
         </button>
@@ -99,6 +116,11 @@
 
         <!-- Right Section: Notification Alerts, Profile & Sign Out -->
         <div class="dash-topbar-right">
+          <!-- Active Session Status Badge -->
+          <div class="dash-session-badge" style="display: flex; align-items: center; gap: 0.45rem; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.3rem 0.65rem; border-radius: 20px; font-size: 0.75rem; color: #34d399; font-weight: 600;">
+            <span class="beacon-dot" style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; display: inline-block;"></span> Active Session &bull; <span class="dash-login-timestamp">Just now</span>
+          </div>
+
           <a href="404.html" class="dash-topbar-icon-btn" title="Privileged Retainer Notices" aria-label="3 active retainer alerts">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
             <span class="dash-notif-count">3</span>
@@ -134,7 +156,7 @@
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
               <div>
                 <span style="display: inline-block; padding: 4px 10px; background: rgba(212, 175, 55, 0.2); color: #d4af37; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem;">ENTERPRISE CLIENT SHIELD ACTIVE</span>
-                <h2 style="font-family: var(--font-heading); color: #fff; font-size: 1.6rem; margin: 0 0 0.5rem 0;">Apex Technologies Ltd. Corporate Legal Protection</h2>
+                <h2 style="font-family: var(--font-heading); color: #fff; font-size: 1.6rem; margin: 0 0 0.5rem 0;"><span class="time-greeting">Good evening</span>, <span class="dash-user-name">Vikramaditya S.</span> &bull; Apex Technologies Protection</h2>
                 <p style="color: #cbd5e0; margin: 0; font-size: 0.9rem; max-width: 650px;">
                   Stackly Chambers provides continuous 24/7 corporate governance oversight, SIAC cross-border arbitral defense, and strategic commercial advisory for your enterprise entities.
                 </p>
@@ -184,25 +206,25 @@
                 <div style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;">&#128221;</div>
                 <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Request Legal Opinion</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Commission a formal written opinion on statutory exposure or transaction risk within 24 hours.</p>
-                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Draft Opinion Brief</button>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center; text-decoration: none; display: block;">Draft Opinion Brief</a>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
                 <div style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;">&#128196;</div>
                 <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Upload Contract for Audit</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Submit supplier MSAs, executive agreements or term sheets for redlining and liability scrubbing.</p>
-                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Upload Agreement</button>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center; text-decoration: none; display: block;">Upload Agreement</a>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
                 <div style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 0.5rem;">&#9742;</div>
                 <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Emergency Partner Hotline</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Instant telephonic consultation with Managing Partner Rajeshwar Varma for dawn raids or injunctions.</p>
-                <button type="button" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Connect to Hotline</button>
+                <a href="404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center; text-decoration: none; display: block;">Connect to Hotline</a>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
                 <div style="color: #8b5cf6; font-size: 1.5rem; margin-bottom: 0.5rem;">&#128200;</div>
                 <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Download Audit Certificate</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Download Bar-certified quarterly statutory health statement for your Board of Directors & Audit Committee.</p>
-                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Download Statement (PDF)</button>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center; text-decoration: none; display: block;">Download Statement (PDF)</a>
               </div>
             </div>
           </section>
@@ -211,7 +233,7 @@
           <section class="dash-section" style="margin-bottom: 1.5rem;">
             <div class="dash-section-header">
               <h3 class="dash-section-title">Active Retained Matters Status</h3>
-              <a href="cases.html" class="dash-link" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">View Landmark Precedents &rarr;</a>
+              <a href="404.html" class="dash-link" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">View Landmark Precedents &rarr;</a>
             </div>
             <div class="dash-table-container">
               <table class="dash-table">
@@ -349,7 +371,7 @@
           <section class="dash-section" style="margin-bottom: 1.5rem;">
             <div class="dash-section-header">
               <h3 class="dash-section-title">Detailed Retained Matters Dossier</h3>
-              <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Export Matter Dossier (XLSX)</button>
+              <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; text-decoration: none;">Export Matter Dossier (XLSX)</a>
             </div>
             <div class="dash-table-container">
               <table class="dash-table">
@@ -370,7 +392,7 @@
                     <td>Union of India & Central Tax Board</td>
                     <td>Adv. Rajeshwar Varma</td>
                     <td><span class="dash-badge badge-green">Favorable (92%)</span></td>
-                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Brief</button></td>
+                    <td><a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; text-decoration: none; display: inline-block;">View Brief</a></td>
                   </tr>
                   <tr>
                     <td><strong>Nexus Silicon Inc. vs. Apex Technologies</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">SIAC Case No. 891/2025</span></td>
@@ -378,7 +400,7 @@
                     <td>Nexus Silicon International Ltd.</td>
                     <td>Adv. Meera Krishnan</td>
                     <td><span class="dash-badge badge-blue">Arbitral Defense (88%)</span></td>
-                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Pleadings</button></td>
+                    <td><a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; text-decoration: none; display: inline-block;">View Pleadings</a></td>
                   </tr>
                   <tr>
                     <td><strong>Apex Corp Resolution Plan Filing</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">CP(IB) 420/ND/2025</span></td>
@@ -386,7 +408,7 @@
                     <td>Committee of Creditors (Apex Infra)</td>
                     <td>Adv. Ananya Sen</td>
                     <td><span class="dash-badge badge-gold">Sanction Pending</span></td>
-                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Order</button></td>
+                    <td><a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; text-decoration: none; display: inline-block;">View Order</a></td>
                   </tr>
                   <tr>
                     <td><strong>Apex Cloud Telecom Trademark Injunction</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">CS(COMM) 312/2026</span></td>
@@ -394,7 +416,7 @@
                     <td>Apex Global Telecom Ltd.</td>
                     <td>Adv. Meera Krishnan</td>
                     <td><span class="dash-badge badge-green">Ex-Parte Stay Won</span></td>
-                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Injunction</button></td>
+                    <td><a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; text-decoration: none; display: inline-block;">View Injunction</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -417,7 +439,7 @@
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Analysis of Indo-Singapore Double Taxation Avoidance Agreement (DTAA) provisions regarding software license royalties.</p>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
                   <span style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Authored: Adv. Rajeshwar Varma</span>
-                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">Download PDF (18pg)</a>
+                  <a href="404.html" class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">Download PDF (18pg)</a>
                 </div>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
@@ -429,7 +451,7 @@
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Advisory on Indian Contract Act Section 27 limitations and garden leave remuneration structuring for departing CTO.</p>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
                   <span style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Authored: Adv. Meera Krishnan</span>
-                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">Download PDF (12pg)</a>
+                  <a href="404.html" class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">Download PDF (12pg)</a>
                 </div>
               </div>
             </div>
@@ -604,26 +626,26 @@
           <section class="dash-section">
             <div class="dash-section-header">
               <h3 class="dash-section-title">Corporate Governance Attestations & Certificates</h3>
-              <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Download All Certificates (.ZIP)</a>
+              <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Download All Certificates (.ZIP)</a>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
               <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
                 <div style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.35rem;">&#128220;</div>
                 <strong style="font-size: 0.85rem; color: var(--primary-navy); display: block;">Certificate of Good Standing</strong>
                 <span style="font-size: 0.75rem; color: var(--text-muted);">Verified MCA-21 &bull; Oct 2026</span>
-                <a href="../404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
               </div>
               <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
                 <div style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.35rem;">&#128196;</div>
                 <strong style="font-size: 0.85rem; color: var(--primary-navy); display: block;">Secretarial Audit Report (MR-3)</strong>
                 <span style="font-size: 0.75rem; color: var(--text-muted);">Bar Council Verified &bull; Sept 2026</span>
-                <a href="../404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
               </div>
               <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
                 <div style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 0.35rem;">&#128176;</div>
                 <strong style="font-size: 0.85rem; color: var(--primary-navy); display: block;">FDI Compliance Certificate</strong>
                 <span style="font-size: 0.75rem; color: var(--text-muted);">FEMA Foreign Remittance &bull; Aug 2026</span>
-                <a href="../404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
               </div>
             </div>
           </section>
@@ -683,7 +705,7 @@
           <section class="dash-section" style="margin-bottom: 1.5rem;">
             <div class="dash-section-header">
               <h3 class="dash-section-title">Active Commercial Agreements Repository</h3>
-              <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Request Redline Review</button>
+              <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; text-decoration: none;">Request Redline Review</a>
             </div>
             <div class="dash-table-container">
               <table class="dash-table">
@@ -706,7 +728,7 @@
                     <td>Jan 15, 2024</td>
                     <td>90 Days Prior</td>
                     <td><span class="dash-badge badge-green">In Force</span></td>
-                    <td><a href="../404.html" class="dash-link">View Vault Copy</a></td>
+                    <td><a href="404.html" class="dash-link">View Vault Copy</a></td>
                   </tr>
                   <tr>
                     <td><strong>Cross-Border Source Code Escrow Agreement</strong></td>
@@ -715,7 +737,7 @@
                     <td>Mar 01, 2025</td>
                     <td>60 Days Prior</td>
                     <td><span class="dash-badge badge-green">In Force</span></td>
-                    <td><a href="../404.html" class="dash-link">View Vault Copy</a></td>
+                    <td><a href="404.html" class="dash-link">View Vault Copy</a></td>
                   </tr>
                   <tr>
                     <td><strong>Series C Share Purchase & Shareholders Deed</strong></td>
@@ -724,7 +746,7 @@
                     <td>Nov 20, 2024</td>
                     <td>Perpetual Covenant</td>
                     <td><span class="dash-badge badge-purple">Charter Enforced</span></td>
-                    <td><a href="../404.html" class="dash-link">View Vault Copy</a></td>
+                    <td><a href="404.html" class="dash-link">View Vault Copy</a></td>
                   </tr>
                   <tr>
                     <td><strong>Global Hardware Distribution & IP License</strong></td>
@@ -733,7 +755,7 @@
                     <td>Dec 10, 2023</td>
                     <td>30 Days (Renewing Dec 26)</td>
                     <td><span class="dash-badge badge-gold">Renewal Pending</span></td>
-                    <td><a href="../404.html" class="dash-link" style="color: var(--accent-gold); font-weight: 600;">Initiate Review</a></td>
+                    <td><a href="404.html" class="dash-link" style="color: var(--accent-gold); font-weight: 600;">Initiate Review</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -753,8 +775,8 @@
                 Chambers associates will review indemnification clauses, dispute forums, consequential damages caps, and IP assignment warranties within 24 business hours.
               </p>
               <div style="display: flex; gap: 0.75rem; justify-content: center;">
-                <button type="button" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;">Browse Local Documents</button>
-                <button type="button" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;">Import from Google Drive</button>
+                <a href="404.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem; text-decoration: none;">Browse Local Documents</a>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem; text-decoration: none;">Import from Google Drive</a>
               </div>
             </div>
           </section>
@@ -796,8 +818,8 @@
                 <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Schedule of Supreme Court hearings, SIAC arbitration sessions, and executive strategy conferences.</p>
               </div>
               <div style="display: flex; gap: 0.5rem;">
-                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Sync to Outlook / Google</button>
-                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Export Hearing Causelist</button>
+                <a href="404.html" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem; text-decoration: none;">Sync to Outlook / Google</a>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem; text-decoration: none;">Export Hearing Causelist</a>
               </div>
             </div>
           </section>
@@ -817,8 +839,8 @@
                   <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">Lead Counsel: Senior Adv. Rajeshwar Varma &bull; Junior Brief: Adv. Ananya Sen</div>
                 </div>
                 <div style="display: flex; gap: 0.5rem;">
-                  <a href="../404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">Join Virtual Court Link</a>
-                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">View Bench Causelist</a>
+                  <a href="404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">Join Virtual Court Link</a>
+                  <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">View Bench Causelist</a>
                 </div>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #3b82f6; box-shadow: var(--shadow-sm); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
@@ -829,8 +851,8 @@
                   <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">Lead Counsel: Adv. Meera Krishnan &bull; Virtual Hearing Room Maxwell Chambers</div>
                 </div>
                 <div style="display: flex; gap: 0.5rem;">
-                  <a href="../404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">SIAC Maxwell Portal</a>
-                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">Download Hearing Bundle</a>
+                  <a href="404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">SIAC Maxwell Portal</a>
+                  <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">Download Hearing Bundle</a>
                 </div>
               </div>
             </div>
@@ -908,7 +930,7 @@
               <h3 class="dash-section-title">Schedule Executive Strategy Briefing with Senior Partners</h3>
               <span style="font-size: 0.85rem; color: var(--text-muted);">Dedicated Retainer Consultation Allotment</span>
             </div>
-            <form style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);" onsubmit="event.preventDefault(); alert('Consultation request transmitted to Chambers Clerk. Confirmation will be sent within 2 hours.');">
+            <form style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);" onsubmit="event.preventDefault(); window.location.href='404.html';">
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
                 <div>
                   <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Senior Partner Requested</label>
@@ -933,9 +955,9 @@
               </div>
               <div style="margin-bottom: 1rem;">
                 <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Agenda / Subject Matter of Briefing</label>
-                <textarea rows="2" placeholder="Describe the transaction, dispute, or governance matter to be reviewed..." style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;"></textarea>
+                <textarea rows="2" placeholder="Describe the transaction, dispute, or governance matter to be reviewed..." style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;">Comprehensive statutory audit review for FY2026-27 cross-border compliance and IP portfolio reassignment.</textarea>
               </div>
-              <button type="submit" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.5rem;">Submit Briefing Request</button>
+              <a href="404.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.5rem; text-decoration: none; display: inline-block;">Submit Briefing Request</a>
             </form>
           </section>
         </div>
@@ -952,7 +974,7 @@
                 <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Senior advocates, barristers, and corporate counsel assigned exclusively to your enterprise account.</p>
               </div>
               <div>
-                <a href="about.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Chambers Full Attorney Roster</a>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Chambers Full Attorney Roster</a>
               </div>
             </div>
           </section>
@@ -976,7 +998,7 @@
                     <strong>Direct Chambers Extension:</strong> +91 11 4982 7101<br>
                     <strong>PGP Email:</strong> r.varma@stacklylegal.com
                   </div>
-                  <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem;">Call Partner Office</button>
+                  <a href="404.html" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem; display: block; text-align: center;">Call Partner Office</a>
                 </div>
               </div>
               <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
@@ -991,7 +1013,7 @@
                     <strong>Direct Chambers Extension:</strong> +91 11 4982 7104<br>
                     <strong>PGP Email:</strong> m.krishnan@stacklylegal.com
                   </div>
-                  <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem;">Call Partner Office</button>
+                  <a href="404.html" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem; display: block; text-align: center;">Call Partner Office</a>
                 </div>
               </div>
               <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
@@ -1006,7 +1028,7 @@
                     <strong>Direct Chambers Extension:</strong> +91 11 4982 7112<br>
                     <strong>PGP Email:</strong> a.sen@stacklylegal.com
                   </div>
-                  <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem;">Message Lead Associate</button>
+                  <a href="404.html" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem; display: block; text-align: center;">Message Lead Associate</a>
                 </div>
               </div>
             </div>
@@ -1039,22 +1061,22 @@
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
                 <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">Cross-Border Mergers</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">Due diligence, CCI clearances, cross-border share purchase structures.</p>
-                <a href="practice-mergers-acquisitions.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
                 <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">International Arbitration</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">SIAC, LCIA, ICC arbitral representation and enforcement of foreign awards.</p>
-                <a href="practice-dispute-resolution.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
                 <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">Intellectual Property</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">Patent litigation, trademark defense, trade secret protection.</p>
-                <a href="practice-intellectual-property.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
               </div>
               <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
                 <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">Executive Employment</h4>
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">C-Suite retention, severance protocols, restrictive covenant enforceability.</p>
-                <a href="practice-executive-employment.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+                <a href="404.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
               </div>
             </div>
           </section>
@@ -1070,7 +1092,7 @@
                 <strong style="color: var(--primary-navy); font-size: 0.95rem;">Need Jurisdictional Counsel in London, New York, or DIFC Dubai?</strong>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.25rem 0 0 0;">Through our reciprocal partner agreements with Magic Circle and White-Shoe firms, we coordinate unified legal defense across multi-national forums.</p>
               </div>
-              <button type="button" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Initiate International Referral</button>
+              <a href="404.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem; text-decoration: none;">Initiate International Referral</a>
             </div>
           </section>
         </div>
@@ -1088,7 +1110,7 @@
                 <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Compliant with Bar Council of India Trust Account Rules and standard GAAP fiduciary audit procedures.</p>
               </div>
               <div style="text-align: right;">
-                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.9rem;">Replenish Retainer Escrow</button>
+                <a href="404.html" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.9rem; text-decoration: none;">Replenish Retainer Escrow</a>
               </div>
             </div>
           </section>
@@ -1123,7 +1145,7 @@
           <section class="dash-section" style="margin-bottom: 1.5rem;">
             <div class="dash-section-header">
               <h3 class="dash-section-title">Itemized Retainer Invoices & Fee Statements</h3>
-              <a href="pricing.html" class="dash-link" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">View Chambers Fee Structure &rarr;</a>
+              <a href="404.html" class="dash-link" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">View Chambers Fee Structure &rarr;</a>
             </div>
             <div class="dash-table-container">
               <table class="dash-table">
@@ -1146,7 +1168,7 @@
                     <td>$24,000</td>
                     <td>$4,500</td>
                     <td><span class="dash-badge badge-green">Paid from Escrow</span></td>
-                    <td><a href="../404.html" class="dash-link">Download Invoice</a></td>
+                    <td><a href="404.html" class="dash-link">Download Invoice</a></td>
                   </tr>
                   <tr>
                     <td><strong>INV-2026-SEP-082</strong></td>
@@ -1155,7 +1177,7 @@
                     <td>$22,500</td>
                     <td>$2,800</td>
                     <td><span class="dash-badge badge-green">Paid from Escrow</span></td>
-                    <td><a href="../404.html" class="dash-link">Download Invoice</a></td>
+                    <td><a href="404.html" class="dash-link">Download Invoice</a></td>
                   </tr>
                   <tr>
                     <td><strong>INV-2026-AUG-047</strong></td>
@@ -1164,7 +1186,7 @@
                     <td>$31,000</td>
                     <td>$1,200</td>
                     <td><span class="dash-badge badge-green">Paid from Escrow</span></td>
-                    <td><a href="../404.html" class="dash-link">Download Invoice</a></td>
+                    <td><a href="404.html" class="dash-link">Download Invoice</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -1190,11 +1212,11 @@
               <div>
                 <strong style="color: var(--primary-navy); font-size: 0.95rem; display: block; margin-bottom: 0.35rem;">Quick Retainer Top-Up Amount</strong>
                 <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
-                  <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">+$50,000</button>
-                  <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">+$100,000</button>
-                  <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">+$250,000</button>
+                  <a href="404.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem; text-decoration: none;">+$50,000</a>
+                  <a href="404.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem; text-decoration: none;">+$100,000</a>
+                  <a href="404.html" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem; text-decoration: none;">+$250,000</a>
                 </div>
-                <button type="button" class="btn btn-primary" style="width: 100%; font-size: 0.8rem; padding: 0.5rem;">Generate Fiduciary Deposit Challan</button>
+                <a href="404.html" class="btn btn-primary" style="width: 100%; font-size: 0.8rem; padding: 0.5rem; text-decoration: none; display: block; text-align: center;">Generate Fiduciary Deposit Challan</a>
               </div>
             </div>
           </section>
@@ -1317,14 +1339,14 @@
                   <strong style="color: var(--primary-navy); font-size: 0.95rem;">Mutual Non-Disclosure & Privilege Undertaking</strong>
                   <div style="font-size: 0.8rem; color: var(--text-muted);">Executed between Stackly Chambers & Apex Technologies &bull; Perpetual Binding Effect</div>
                 </div>
-                <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Download Executed NDA</a>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Download Executed NDA</a>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                 <div>
                   <strong style="color: var(--primary-navy); font-size: 0.95rem;">End-to-End PGP Encryption Keys</strong>
                   <div style="font-size: 0.8rem; color: var(--text-muted);">Fingerprint: 4A8F 90B2 331C 77E4 8920 F019 4410 8921 &bull; 4096-bit RSA</div>
                 </div>
-                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Copy Public Key</button>
+                <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; text-decoration: none;">Copy Public Key</a>
               </div>
             </div>
           </section>
@@ -1333,7 +1355,7 @@
           <section class="dash-section" style="margin-bottom: 1.5rem;">
             <div class="dash-section-header">
               <h3 class="dash-section-title">Authorized Enterprise Instructing Officers</h3>
-              <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Add Authorized Officer</button>
+              <a href="404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem; text-decoration: none;">Add Authorized Officer</a>
             </div>
             <div class="dash-table-container">
               <table class="dash-table">
