@@ -427,12 +427,8 @@
       >
         <div class="container">
           <div
-            class="hero-home-grid"
-            style="
-              grid-template-columns: 1.15fr 0.85fr;
-              align-items: flex-start;
-              gap: 2.5rem;
-            "
+            class="hero-home-grid split-grid-contact"
+            style="align-items: flex-start; gap: 2.5rem;"
           >
             <!-- Form Left Column (Responsive Padding & Alignment) -->
             <div
@@ -466,7 +462,7 @@
                 business hours.
               </div>
 
-              <!-- Demonstration Form with Valid Default Values (Rule 107) -->
+              <!-- Contact Form (Unfilled per Global Standards) -->
               <form id="contactForm" novalidate>
                 <!-- Full Name (Alphabets Only) -->
                 <div class="form-group">
@@ -478,7 +474,6 @@
                     id="contactName"
                     class="form-control"
                     placeholder="Enter your full name"
-                    value="Rajesh Kannan"
                     data-alpha-only="true"
                     required
                   />
@@ -497,8 +492,7 @@
                     type="email"
                     id="contactEmail"
                     class="form-control"
-                    placeholder="corporate.counsel@enterprise.com"
-                    value="r.kannan@enterprise.com"
+                    placeholder="name@company.com"
                     required
                   />
                   <div class="form-feedback">
@@ -527,7 +521,6 @@
                       id="contactPhone"
                       class="form-control"
                       placeholder="10-digit number"
-                      value="9876543210"
                       data-phone="true"
                       maxlength="10"
                       required
@@ -548,8 +541,7 @@
                     type="text"
                     id="contactSubject"
                     class="form-control"
-                    placeholder="e.g. Cross-Border M&A Due Diligence / High Court Arbitration"
-                    value="Cross-Border M&A Due Diligence & Corporate Governance Review"
+                    placeholder="Enter legal matter domain or subject"
                     required
                   />
                   <div class="form-feedback">
@@ -569,9 +561,9 @@
                     maxlength="500"
                     data-counter="contactCharCounter"
                     placeholder="Brief outline of urgency, opposing parties, or jurisdiction constraints..."
-                  >Urgent review required for cross-border asset purchase agreement and MCA statutory compliance checklist.</textarea>
+                  ></textarea>
                   <div id="contactCharCounter" class="char-counter">
-                    109 / 500 characters
+                    0 / 500 characters
                   </div>
                 </div>
 

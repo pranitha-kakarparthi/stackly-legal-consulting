@@ -103,24 +103,24 @@
             <span>or complete standard registration</span>
           </div>
 
-          <!-- Demonstration Registration Form with Valid Default Values (Rule 107 & Spec Fields) -->
+          <!-- Registration Form (Unfilled per Global Standards) -->
           <form id="signUpForm" novalidate>
             <!-- Username (Optional) -->
             <div class="form-group">
               <label for="regUsername" class="form-label">Username (Optional)</label>
-              <input type="text" id="regUsername" class="form-control" placeholder="e.g. anandha_legal" value="anandha_counsel">
+              <input type="text" id="regUsername" class="form-control" placeholder="Enter username">
             </div>
 
             <!-- First Name & Last Name (Alphabets Only) -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-row-2">
               <div class="form-group">
                 <label for="regFirstName" class="form-label">First Name <span class="req">*</span></label>
-                <input type="text" id="regFirstName" class="form-control" placeholder="e.g. Anandha" value="Anandha" data-alpha-only="true" required>
+                <input type="text" id="regFirstName" class="form-control" placeholder="Enter first name" data-alpha-only="true" required>
                 <div class="form-feedback">Only alphabets allowed (no numbers).</div>
               </div>
               <div class="form-group">
                 <label for="regLastName" class="form-label">Last Name <span class="req">*</span></label>
-                <input type="text" id="regLastName" class="form-control" placeholder="e.g. Kumar" value="Kumar" data-alpha-only="true" required>
+                <input type="text" id="regLastName" class="form-control" placeholder="Enter last name" data-alpha-only="true" required>
                 <div class="form-feedback">Only alphabets allowed (no numbers).</div>
               </div>
             </div>
@@ -128,7 +128,7 @@
             <!-- Email -->
             <div class="form-group">
               <label for="regEmail" class="form-label">Corporate Email Address <span class="req">*</span></label>
-              <input type="email" id="regEmail" class="form-control" placeholder="counsel@enterprise.com" value="counsel@enterprise.com" required>
+              <input type="email" id="regEmail" class="form-control" placeholder="name@company.com" required>
               <div class="form-feedback">Please enter a valid business email.</div>
             </div>
 
@@ -142,20 +142,20 @@
                   <option value="+44">UK (+44)</option>
                   <option value="+65">Singapore (+65)</option>
                 </select>
-                <input type="tel" id="regPhone" class="form-control" placeholder="10-digit mobile number" value="9876543210" data-phone="true" maxlength="10" required>
+                <input type="tel" id="regPhone" class="form-control" placeholder="10-digit mobile number" data-phone="true" maxlength="10" required>
               </div>
               <div class="form-feedback">Mobile number must be exactly 10 digits.</div>
             </div>
 
             <!-- Country (Optional) & Address (Optional) -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-row-2">
               <div class="form-group">
                 <label for="regCountry" class="form-label">Country (Optional)</label>
-                <input type="text" id="regCountry" class="form-control" placeholder="India" value="India">
+                <input type="text" id="regCountry" class="form-control" placeholder="Enter country">
               </div>
               <div class="form-group">
                 <label for="regAddress" class="form-label">Corporate Address (Optional)</label>
-                <input type="text" id="regAddress" class="form-control" placeholder="MMR Complex, Salem" value="MMR Complex, Salem">
+                <input type="text" id="regAddress" class="form-control" placeholder="Enter corporate address">
               </div>
             </div>
 
@@ -163,9 +163,9 @@
             <div class="form-group">
               <label for="regRole" class="form-label">Portal Role Designation <span class="req">*</span></label>
               <select id="regRole" class="form-control" required>
-                <option value="" disabled>Select Portal Role</option>
+                <option value="" disabled selected>Select Portal Role</option>
                 <option value="Legal Associate">Legal Associate</option>
-                <option value="Associate Client" selected>Associate Client</option>
+                <option value="Associate Client">Associate Client</option>
               </select>
               <div class="form-feedback">Please choose your intended portal role.</div>
             </div>
@@ -185,7 +185,7 @@
             <div class="form-group">
               <label for="registerPassword" class="form-label">Password <span class="req">*</span></label>
               <div class="password-input-wrap">
-                <input type="password" id="registerPassword" class="form-control" placeholder="Create strong password" value="Secure@Vault2026" required>
+                <input type="password" id="registerPassword" class="form-control" placeholder="Create strong password" required>
                 <button type="button" class="password-toggle-btn" data-target="registerPassword" aria-label="Show password">
                   <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 </button>
@@ -200,13 +200,13 @@
             <!-- Confirm Password -->
             <div class="form-group">
               <label for="regConfirmPassword" class="form-label">Confirm Password <span class="req">*</span></label>
-              <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" value="Secure@Vault2026" required>
+              <input type="password" id="regConfirmPassword" class="form-control" placeholder="Re-enter password" required>
               <div class="form-feedback">Passwords do not match.</div>
             </div>
 
             <!-- Terms & Conditions Checkbox (Mandatory) -->
             <div class="form-check">
-              <input type="checkbox" id="regTerms" class="form-check-input" checked required>
+              <input type="checkbox" id="regTerms" class="form-check-input" required>
               <label for="regTerms" class="form-check-label">
                 I agree to the <a href="404.html" style="color: var(--primary-navy); font-weight: 700; text-decoration: underline;">Terms of Use</a> and <a href="404.html" style="color: var(--primary-navy); font-weight: 700; text-decoration: underline;">Privacy Policy</a>. <span class="req">*</span>
               </label>
@@ -215,7 +215,7 @@
 
             <!-- Newsletter Checkbox (Optional) -->
             <div class="form-check">
-              <input type="checkbox" id="regNewsletter" class="form-check-input" checked>
+              <input type="checkbox" id="regNewsletter" class="form-check-input">
               <label for="regNewsletter" class="form-check-label">
                 I would like to receive corporate legal bulletins, statutory updates, and court precedent announcements. <a href="404.html" style="color: var(--accent-gold); font-size: 0.8rem;">Read More</a>
               </label>

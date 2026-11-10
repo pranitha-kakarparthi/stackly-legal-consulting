@@ -30,6 +30,17 @@
 </head>
 <body>
 
+  <!-- Full Viewport Loader -->
+  <div id="loader-wrapper" role="status" aria-live="polite">
+    <div class="loader-content">
+      <div class="loader-logo-wrap">
+        <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
+      </div>
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <p class="loader-text">Loading Chambers Portal...</p>
+    </div>
+  </div>
+
   <!-- Executive Scroll Progress Indicator -->
   <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
 
@@ -40,10 +51,15 @@
     <!-- Redesigned Fixed & Collapsible Dashboard Sidebar -->
     <aside class="dash-sidebar" id="dashSidebar" aria-label="Associate Dashboard Sidebar Navigation">
       <div class="dash-sidebar-header">
-        <a href="../index.html" class="brand-logo-link" title="Click to Return to Homepage">
+        <a href="../index.html" class="brand-logo-link" title="Stackly Legal Consulting - Return to Home">
           <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="130" height="35">
+          <span class="brand-logo-icon" aria-hidden="true">⚖️</span>
         </a>
-        <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar" title="Collapse Sidebar">&times;</button>
+        <button type="button" class="sidebar-toggle-btn" id="sidebarCloseBtn" aria-label="Toggle Dashboard Sidebar" title="Collapse Sidebar">
+          <svg class="toggle-icon-collapse" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" /></svg>
+          <svg class="toggle-icon-expand" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
+          <span class="toggle-icon-close">&times;</span>
+        </button>
       </div>
 
       <!-- Tab Buttons for Individual Option Content -->
@@ -88,14 +104,12 @@
       </nav>
 
       <div class="dash-sidebar-footer">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-          <span style="color: var(--accent-gold); font-weight: 700;">Role: Legal Associate</span>
-          <span style="color: #10b981; font-size: 0.75rem;">● Online</span>
+        <div style="font-size: 0.78rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.25rem;">
+          Stackly Legal Chambers
         </div>
-        <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.4;">
-          Salem Chambers HQ<br>
-          Bar Council ID: TN/4821/2021<br>
-          Privileged PGP Terminal Active
+        <div style="font-size: 0.72rem; color: #94a3b8; line-height: 1.4;">
+          Salem Chambers HQ &bull; Bar Council Sealed<br>
+          Privileged AES-256 Terminal
         </div>
       </div>
     </aside>
@@ -122,7 +136,7 @@
         <!-- Right Section: Notification Alerts, Profile & Sign Out -->
         <div class="dash-topbar-right">
           <!-- Active Session Status Badge -->
-          <div class="dash-session-badge" style="display: flex; align-items: center; gap: 0.45rem; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.3rem 0.65rem; border-radius: 20px; font-size: 0.75rem; color: #34d399; font-weight: 600;">
+          <div class="dash-session-badge">
             <span class="beacon-dot" style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; display: inline-block;"></span> Active Session &bull; <span class="dash-login-timestamp">Just now</span>
           </div>
 
@@ -134,11 +148,11 @@
           <!-- Profile Badge -->
           <div class="dash-user-profile-badge">
             <div id="dashUserAvatar" class="dash-user-avatar" title="Counsel Profile">
-              AS
+              AC
             </div>
             <div class="dash-user-details">
-              <span id="dashUserName" class="dash-user-name">Aditya Sen</span>
-              <span class="dash-user-subtext">● Drafting Counsel</span>
+              <span id="dashUserName" class="dash-user-name">Associate Counsel</span>
+              <span class="dash-user-subtext">● Privileged Session</span>
             </div>
           </div>
 
@@ -848,7 +862,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
               <div class="attorney-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden;">
                 <div style="height: 200px; overflow: hidden;">
-                  <img src="../assets/images/attorney_managing_partner.webp" alt="Alexander Wright" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                  <img src="../assets/images/attorney_managing_partner.webp" alt="Alexander Wright" width="260" height="200" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
                 </div>
                 <div style="padding: 1.25rem;">
                   <strong style="font-size: 1.05rem; color: var(--primary-navy); display: block;">Alexander Wright, Esq.</strong>
@@ -859,7 +873,7 @@
               </div>
               <div class="attorney-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden;">
                 <div style="height: 200px; overflow: hidden;">
-                  <img src="../assets/images/attorney_senior_counsel.webp" alt="Eleanor Vance" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                  <img src="../assets/images/attorney_senior_counsel.webp" alt="Eleanor Vance" width="260" height="200" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
                 </div>
                 <div style="padding: 1.25rem;">
                   <strong style="font-size: 1.05rem; color: var(--primary-navy); display: block;">Eleanor Vance, Partner</strong>
@@ -870,7 +884,7 @@
               </div>
               <div class="attorney-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden;">
                 <div style="height: 200px; overflow: hidden;">
-                  <img src="../assets/images/attorney_compliance_head.webp" alt="Meera Krishnan" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%;">
+                  <img src="../assets/images/attorney_compliance_head.webp" alt="Meera Krishnan" width="260" height="200" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%;">
                 </div>
                 <div style="padding: 1.25rem;">
                   <strong style="font-size: 1.05rem; color: var(--primary-navy); display: block;">Meera Krishnan</strong>

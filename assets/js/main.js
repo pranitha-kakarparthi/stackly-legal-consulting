@@ -147,16 +147,30 @@ function initMobileMenu() {
   const overlay = document.querySelector('.mobile-nav-overlay');
   if (!hamburger || !overlay) return;
 
+  let savedMenuScrollY = 0;
+
   const closeMenu = () => {
     hamburger.classList.remove('active');
     overlay.classList.remove('active');
-    document.body.classList.remove('no-scroll');
+    document.body.classList.remove('no-scroll', 'menu-open');
+    document.documentElement.classList.remove('no-scroll', 'menu-open');
+    if (savedMenuScrollY) {
+      window.scrollTo(0, savedMenuScrollY);
+      savedMenuScrollY = 0;
+    }
   };
 
   const toggleMenu = () => {
-    const isOpen = hamburger.classList.toggle('active');
-    overlay.classList.toggle('active');
-    document.body.classList.toggle('no-scroll', isOpen);
+    const willOpen = !hamburger.classList.contains('active');
+    if (willOpen) {
+      savedMenuScrollY = window.scrollY || window.pageYOffset || 0;
+      hamburger.classList.add('active');
+      overlay.classList.add('active');
+      document.body.classList.add('no-scroll', 'menu-open');
+      document.documentElement.classList.add('no-scroll', 'menu-open');
+    } else {
+      closeMenu();
+    }
   };
 
   hamburger.addEventListener('click', toggleMenu);
@@ -190,6 +204,13 @@ function initMobileMenu() {
     link.addEventListener('click', () => {
       closeMenu();
     });
+  });
+
+  // Auto-close on resize to desktop view (> 991px)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 991 && overlay.classList.contains('active')) {
+      closeMenu();
+    }
   });
 }
 
@@ -751,7 +772,7 @@ function initDashboard() {
       .join(' ');
   }
   if (!userName) {
-    userName = userRole === 'Associate Client' ? 'Vikramaditya S.' : 'Ananya Sen';
+    userName = userRole === 'Associate Client' ? 'Authorized Client' : 'Associate Counsel';
   }
 
   const initials = userName
@@ -760,7 +781,7 @@ function initDashboard() {
     .map(n => n[0])
     .join('')
     .toUpperCase()
-    .slice(0, 2) || (userRole === 'Associate Client' ? 'VS' : 'AS');
+    .slice(0, 2) || (userRole === 'Associate Client' ? 'AC' : 'AC');
 
   // Update ALL user name elements on the page (both topbar and sidebar)
   document.querySelectorAll('.dash-user-name, #dashUserName').forEach(el => {
@@ -803,10 +824,25 @@ function initDashboard() {
   const sidebarOpenBtn = document.getElementById('sidebarOpenBtn') || document.getElementById('sidebarToggleBtn') || document.querySelector('.dash-menu-toggle, .dash-mobile-toggle-btn');
   const sidebarOverlay = document.getElementById('dashSidebarOverlay');
 
+  let savedDashScrollY = 0;
+
   const closeSidebarMobile = () => {
     if (sidebar) sidebar.classList.remove('open');
     if (sidebarOverlay) sidebarOverlay.classList.remove('active');
-    document.body.classList.remove('no-scroll');
+    document.body.classList.remove('no-scroll', 'sidebar-open');
+    document.documentElement.classList.remove('no-scroll', 'sidebar-open');
+    if (savedDashScrollY) {
+      window.scrollTo(0, savedDashScrollY);
+      savedDashScrollY = 0;
+    }
+  };
+
+  const openSidebarMobile = () => {
+    savedDashScrollY = window.scrollY || window.pageYOffset || 0;
+    if (sidebar) sidebar.classList.add('open');
+    if (sidebarOverlay) sidebarOverlay.classList.add('active');
+    document.body.classList.add('no-scroll', 'sidebar-open');
+    document.documentElement.classList.add('no-scroll', 'sidebar-open');
   };
 
   // --- TAB SWITCHING LOGIC (All 8 Subsections) ---
@@ -830,10 +866,12 @@ function initDashboard() {
         }
       });
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
       if (window.innerWidth <= 991) {
+        savedDashScrollY = 0;
         closeSidebarMobile();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
   });
@@ -850,36 +888,40 @@ function initDashboard() {
     }
   }
 
-  // --- SIDEBAR COLLAPSE & MOBILE DRAWER LOGIC (WITH 'X' ICON) ---
+  // --- SIDEBAR COLLAPSE & MOBILE DRAWER LOGIC (Both Screen Sizes) ---
+  const toggleSidebarDesktop = () => {
+    if (sidebar && mainArea) {
+      const isCollapsed = sidebar.classList.toggle('collapsed');
+      mainArea.classList.toggle('sidebar-collapsed', isCollapsed);
+      localStorage.setItem('dashSidebarCollapsed', isCollapsed ? 'true' : 'false');
+      const toggleBtns = document.querySelectorAll('#sidebarCloseBtn, .sidebar-toggle-btn, .sidebar-close-btn');
+      toggleBtns.forEach(b => {
+        b.setAttribute('title', isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar');
+      });
+    }
+  };
 
-  // 'X' button collapses or closes sidebar
-  if (sidebarCloseBtn) {
-    sidebarCloseBtn.addEventListener('click', (e) => {
+  // Sidebar header toggle button
+  const sidebarToggleBtns = document.querySelectorAll('#sidebarCloseBtn, .sidebar-toggle-btn, .sidebar-close-btn');
+  sidebarToggleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
       if (window.innerWidth <= 991) {
         closeSidebarMobile();
       } else {
-        if (sidebar && mainArea) {
-          const isCollapsed = sidebar.classList.toggle('collapsed');
-          mainArea.classList.toggle('sidebar-collapsed', isCollapsed);
-          localStorage.setItem('dashSidebarCollapsed', isCollapsed);
-        }
+        toggleSidebarDesktop();
       }
     });
-  }
+  });
 
-  // Open sidebar on mobile
+  // Topbar menu toggle button
   if (sidebarOpenBtn && sidebar) {
     sidebarOpenBtn.addEventListener('click', (e) => {
       e.preventDefault();
       if (window.innerWidth <= 991) {
-        sidebar.classList.add('open');
-        if (sidebarOverlay) sidebarOverlay.classList.add('active');
-        document.body.classList.add('no-scroll');
+        openSidebarMobile();
       } else {
-        sidebar.classList.remove('collapsed');
-        if (mainArea) mainArea.classList.remove('sidebar-collapsed');
-        localStorage.setItem('dashSidebarCollapsed', 'false');
+        toggleSidebarDesktop();
       }
     });
   }
@@ -888,11 +930,20 @@ function initDashboard() {
     sidebarOverlay.addEventListener('click', closeSidebarMobile);
   }
 
+  // Auto-close mobile drawer on resize to desktop view (> 991px)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 991 && sidebar && sidebar.classList.contains('open')) {
+      closeSidebarMobile();
+    }
+  });
+
   // Restore collapsed state on desktop
   const wasCollapsed = localStorage.getItem('dashSidebarCollapsed') === 'true';
   if (wasCollapsed && window.innerWidth > 991 && sidebar && mainArea) {
     sidebar.classList.add('collapsed');
     mainArea.classList.add('sidebar-collapsed');
+    const toggleBtns = document.querySelectorAll('#sidebarCloseBtn, .sidebar-toggle-btn, .sidebar-close-btn');
+    toggleBtns.forEach(b => b.setAttribute('title', 'Expand Sidebar'));
   }
 
   // Sign out buttons (Rule 796 & 929)

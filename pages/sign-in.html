@@ -100,12 +100,12 @@
             <span>or sign in with corporate email</span>
           </div>
 
-          <!-- Demonstration Form with Valid Default Values (Rule 107) -->
+          <!-- Sign In Form (Unfilled per Global Standards) -->
           <form id="signInForm" novalidate>
             <!-- Email -->
             <div class="form-group">
               <label for="loginEmail" class="form-label">Authorized Email Address <span class="req">*</span></label>
-              <input type="email" id="loginEmail" class="form-control" placeholder="corporate.counsel@enterprise.com" value="corporate.counsel@enterprise.com" required>
+              <input type="email" id="loginEmail" class="form-control" placeholder="name@company.com" required>
               <div class="form-feedback">Please enter a valid corporate email address.</div>
             </div>
 
@@ -116,7 +116,7 @@
                 <a href="404.html" style="font-size: 0.8rem; color: var(--accent-gold); font-weight: 600;">Forgot Password?</a>
               </div>
               <div class="password-input-wrap">
-                <input type="password" id="loginPassword" class="form-control" placeholder="Enter portal password" value="Portal@Password2026" required>
+                <input type="password" id="loginPassword" class="form-control" placeholder="Enter portal password" required>
                 <button type="button" class="password-toggle-btn" data-target="loginPassword" aria-label="Show password">
                   <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 </button>
@@ -128,8 +128,8 @@
             <div class="form-group">
               <label for="loginRole" class="form-label">Access Role / Portal Designation <span class="req">*</span></label>
               <select id="loginRole" class="form-control" required>
-                <option value="" disabled>Select Portal Role</option>
-                <option value="Legal Associate" selected>Legal Associate</option>
+                <option value="" disabled selected>Select Portal Role</option>
+                <option value="Legal Associate">Legal Associate</option>
                 <option value="Associate Client">Associate Client</option>
               </select>
               <div class="form-feedback">Please choose your authorized portal role.</div>

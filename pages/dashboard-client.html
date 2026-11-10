@@ -27,6 +27,17 @@
 </head>
 <body class="dashboard-body">
 
+  <!-- Full Viewport Loader -->
+  <div id="loader-wrapper" role="status" aria-live="polite">
+    <div class="loader-content">
+      <div class="loader-logo-wrap">
+        <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
+      </div>
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <p class="loader-text">Loading Client Portal...</p>
+    </div>
+  </div>
+
   <!-- Mobile Sidebar Backdrop Overlay -->
   <div id="dashSidebarOverlay" class="dash-sidebar-overlay" aria-hidden="true"></div>
 
@@ -34,19 +45,15 @@
     <!-- Redesigned Sleek Sidebar -->
     <aside class="dash-sidebar" id="dashSidebar" aria-label="Client Portal Navigation">
       <div class="dash-sidebar-header">
-        <a href="../index.html" class="dash-brand" title="Click to Return to Homepage">
-          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting" class="dash-brand-logo" width="130" height="36">
+        <a href="../index.html" class="brand-logo-link" title="Stackly Legal Consulting - Return to Home">
+          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="130" height="35">
+          <span class="brand-logo-icon" aria-hidden="true">⚖️</span>
         </a>
-        <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar" title="Collapse Sidebar">&times;</button>
-      </div>
-
-      <div class="dash-user-badge">
-        <div class="dash-user-avatar" id="dashUserAvatar" style="background: linear-gradient(135deg, #103654, #d4af37); color: #fff; font-weight: 700; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #d4af37;">VS</div>
-        <div class="dash-user-info">
-          <span class="dash-user-name" id="dashUserName">Vikramaditya S.</span>
-          <span class="dash-user-role" id="dashUserRole" style="color: #d4af37; font-weight: 600; font-size: 0.78rem;">Associate Client</span>
-          <span style="font-size: 0.72rem; color: #a0aec0; display: block;">Apex Technologies Ltd.</span>
-        </div>
+        <button type="button" class="sidebar-toggle-btn" id="sidebarCloseBtn" aria-label="Toggle Dashboard Sidebar" title="Collapse Sidebar">
+          <svg class="toggle-icon-collapse" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" /></svg>
+          <svg class="toggle-icon-expand" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
+          <span class="toggle-icon-close">&times;</span>
+        </button>
       </div>
 
       <nav class="dash-nav dash-sidebar-menu" aria-label="Client Workspace Tabs">
@@ -85,13 +92,14 @@
         </button>
       </nav>
 
-      <div class="dash-sidebar-footer" style="padding: 1.25rem; border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: auto;">
-        <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">ACTIVE RETAINER PLAN</div>
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
-          <span style="font-weight: 700; color: #d4af37; font-size: 0.85rem;">Supreme Tier Retainer</span>
-          <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 600;">ACTIVE</span>
+      <div class="dash-sidebar-footer">
+        <div style="font-size: 0.78rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.25rem;">
+          Stackly Legal Shield
         </div>
-        <a href="sign-in.html" class="btn btn-secondary" style="width: 100%; text-align: center; font-size: 0.8rem; padding: 0.5rem; display: block; border-color: rgba(255,255,255,0.2); color: #fff;">Sign Out of Chambers</a>
+        <div style="font-size: 0.72rem; color: #94a3b8; line-height: 1.4;">
+          Corporate Legal Vault Active &bull; AES-256<br>
+          Supreme Retainer Shield
+        </div>
       </div>
     </aside>
 
@@ -117,7 +125,7 @@
         <!-- Right Section: Notification Alerts, Profile & Sign Out -->
         <div class="dash-topbar-right">
           <!-- Active Session Status Badge -->
-          <div class="dash-session-badge" style="display: flex; align-items: center; gap: 0.45rem; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.3rem 0.65rem; border-radius: 20px; font-size: 0.75rem; color: #34d399; font-weight: 600;">
+          <div class="dash-session-badge">
             <span class="beacon-dot" style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; display: inline-block;"></span> Active Session &bull; <span class="dash-login-timestamp">Just now</span>
           </div>
 
@@ -128,12 +136,12 @@
 
           <!-- Profile Badge -->
           <div class="dash-user-profile-badge">
-            <div class="dash-user-avatar" title="Client Profile" style="background: linear-gradient(135deg, #103654, #d4af37);">
-              VS
+            <div id="dashUserAvatar" class="dash-user-avatar" title="Client Profile" style="background: linear-gradient(135deg, #103654, #d4af37);">
+              CP
             </div>
             <div class="dash-user-details">
-              <span class="dash-user-name">Vikramaditya S.</span>
-              <span class="dash-user-subtext">● Apex Technologies Ltd.</span>
+              <span id="dashUserName" class="dash-user-name">Corporate Client</span>
+              <span class="dash-user-subtext">● Retained Client Session</span>
             </div>
           </div>
 
@@ -942,7 +950,7 @@
                 </div>
                 <div>
                   <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Preferred Date</label>
-                  <input type="date" value="2026-11-20" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;">
+                  <input type="date" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;">
                 </div>
                 <div>
                   <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Mode of Briefing</label>
@@ -988,7 +996,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
               <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
                 <div style="height: 160px; background: #103654; display: flex; align-items: center; justify-content: center; position: relative;">
-                  <img src="../assets/images/attorney_managing_partner.webp" alt="Adv. Rajeshwar Varma" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                  <img src="../assets/images/attorney_managing_partner.webp" alt="Adv. Rajeshwar Varma" width="260" height="160" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
                 </div>
                 <div style="padding: 1.25rem;">
                   <span class="dash-badge badge-gold" style="margin-bottom: 0.5rem; display: inline-block;">Managing Partner</span>
@@ -1003,7 +1011,7 @@
               </div>
               <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
                 <div style="height: 160px; background: #103654; display: flex; align-items: center; justify-content: center; position: relative;">
-                  <img src="../assets/images/attorney_compliance_head.webp" alt="Adv. Meera Krishnan" style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%;">
+                  <img src="../assets/images/attorney_compliance_head.webp" alt="Adv. Meera Krishnan" width="260" height="160" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%;">
                 </div>
                 <div style="padding: 1.25rem;">
                   <span class="dash-badge badge-blue" style="margin-bottom: 0.5rem; display: inline-block;">Senior Partner &bull; Governance</span>
@@ -1018,7 +1026,7 @@
               </div>
               <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
                 <div style="height: 160px; background: #103654; display: flex; align-items: center; justify-content: center; position: relative;">
-                  <img src="../assets/images/attorney_senior_counsel.webp" alt="Adv. Ananya Sen" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                  <img src="../assets/images/attorney_senior_counsel.webp" alt="Adv. Ananya Sen" width="260" height="160" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
                 </div>
                 <div style="padding: 1.25rem;">
                   <span class="dash-badge badge-green" style="margin-bottom: 0.5rem; display: inline-block;">Lead Legal Associate</span>
