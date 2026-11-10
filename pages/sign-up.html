@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
   <div id="loader-wrapper" role="status" aria-live="polite">
     <div class="loader-content">
       <div class="loader-logo-wrap">
-        <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
+        <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
       </div>
       <div class="loader-spinner" aria-hidden="true"></div>
       <p class="loader-text">Stackly Legal • Creating Account</p>
@@ -32,10 +32,10 @@
       <div class="auth-banner-side">
         <!-- Brand Logo at Left Top Corner & Back to Home at Right Top Side -->
         <div class="auth-banner-top">
-          <a href="index.html" class="brand-logo-link" aria-label="Stackly Chambers Home">
-            <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="150" height="40">
+          <a href="../index.html" class="brand-logo-link" aria-label="Stackly Chambers Home">
+            <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="150" height="40">
           </a>
-          <a href="index.html" class="auth-back-btn">
+          <a href="../index.html" class="auth-back-btn">
             ← Back to Home
           </a>
         </div>
@@ -146,10 +146,8 @@
               <label for="regRole" class="form-label">Portal Role Designation <span class="req">*</span></label>
               <select id="regRole" class="form-control" required>
                 <option value="" disabled selected>Select Portal Role</option>
-                <option value="Enterprise Client">Enterprise Client</option>
-                <option value="Corporate Counsel">Corporate Counsel</option>
-                <option value="Managing Partner">Managing Partner</option>
                 <option value="Legal Associate">Legal Associate</option>
+                <option value="Associate Client">Associate Client</option>
               </select>
               <div class="form-feedback">Please choose your intended portal role.</div>
             </div>
@@ -203,6 +201,6 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>

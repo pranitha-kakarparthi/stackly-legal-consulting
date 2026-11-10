@@ -31,7 +31,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <!-- Executive Scroll Progress Indicator -->
@@ -46,7 +46,7 @@
       <div class="loader-content">
         <div class="loader-logo-wrap">
           <img
-            src="images/logoStackly.webp"
+            src="assets/images/logoStackly.webp"
             alt="Stackly Legal Consulting Logo"
             width="160"
             height="42"
@@ -67,7 +67,7 @@
             aria-label="Stackly Home"
           >
             <img
-              src="images/logoStackly.webp"
+              src="assets/images/logoStackly.webp"
               alt="Stackly Legal Consulting Logo"
               class="brand-logo-img"
               width="150"
@@ -78,10 +78,10 @@
           <!-- Desktop Menu -->
           <nav class="nav-menu-desktop" aria-label="Main Navigation">
             <a href="index.html" class="nav-link active">Home</a>
-            <a href="about.html" class="nav-link">About Us</a>
+            <a href="pages/about.html" class="nav-link">About Us</a>
             <div class="nav-item-dropdown">
               <a
-                href="services.html"
+                href="pages/services.html"
                 class="nav-link dropdown-toggle"
                 aria-haspopup="true"
               >
@@ -89,39 +89,39 @@
               </a>
               <div class="dropdown-menu">
                 <a
-                  href="practice-corporate-governance.html"
+                  href="pages/practice-corporate-governance.html"
                   class="dropdown-link"
                   >Corporate Governance & Compliance</a
                 >
-                <a href="practice-dispute-resolution.html" class="dropdown-link"
+                <a href="pages/practice-dispute-resolution.html" class="dropdown-link"
                   >High-Stakes Dispute Resolution</a
                 >
                 <a
-                  href="practice-mergers-acquisitions.html"
+                  href="pages/practice-mergers-acquisitions.html"
                   class="dropdown-link"
                   >Mergers & Acquisitions Advisory</a
                 >
                 <a
-                  href="practice-intellectual-property.html"
+                  href="pages/practice-intellectual-property.html"
                   class="dropdown-link"
                   >Intellectual Property & Patents</a
                 >
                 <a
-                  href="practice-executive-employment.html"
+                  href="pages/practice-executive-employment.html"
                   class="dropdown-link"
                   >Executive Employment & Labour</a
                 >
               </div>
             </div>
-            <a href="cases.html" class="nav-link">Landmark Cases</a>
-            <a href="pricing.html" class="nav-link">Fee Structure</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="pages/cases.html" class="nav-link">Landmark Cases</a>
+            <a href="pages/pricing.html" class="nav-link">Fee Structure</a>
+            <a href="pages/contact.html" class="nav-link">Contact</a>
           </nav>
 
           <!-- Desktop Action Buttons -->
           <div class="nav-actions-desktop">
-            <a href="sign-in.html" class="btn btn-ghost btn-sm">Sign In</a>
-            <a href="sign-up.html" class="btn btn-primary btn-sm"
+            <a href="pages/sign-in.html" class="btn btn-ghost btn-sm">Sign In</a>
+            <a href="pages/sign-up.html" class="btn btn-primary btn-sm"
               >Retain Counsel</a
             >
           </div>
@@ -137,10 +137,16 @@
     </header>
 
     <!-- Mobile Menu Drawer Overlay with Dropdown -->
-    <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
+        <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <a href="index.html" class="brand-logo-link">
+          <img src="assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="140" height="38">
+        </a>
+        <button type="button" class="mobile-nav-close-btn" aria-label="Close Navigation Menu">&times;</button>
+      </div>
       <div class="mobile-menu-list">
         <a href="index.html" class="mobile-link active">Home</a>
-        <a href="about.html" class="mobile-link">About Us</a>
+        <a href="pages/about.html" class="mobile-link">About Us</a>
 
         <!-- Interactive Practice Areas Accordion Dropdown -->
         <div>
@@ -154,42 +160,42 @@
           </button>
           <div id="mobilePracticeList" class="mobile-dropdown-links">
             <a
-              href="practice-corporate-governance.html"
+              href="pages/practice-corporate-governance.html"
               class="mobile-dropdown-link"
               >• Corporate Governance</a
             >
             <a
-              href="practice-dispute-resolution.html"
+              href="pages/practice-dispute-resolution.html"
               class="mobile-dropdown-link"
               >• Dispute Resolution</a
             >
             <a
-              href="practice-mergers-acquisitions.html"
+              href="pages/practice-mergers-acquisitions.html"
               class="mobile-dropdown-link"
               >• Mergers & Acquisitions</a
             >
             <a
-              href="practice-intellectual-property.html"
+              href="pages/practice-intellectual-property.html"
               class="mobile-dropdown-link"
               >• Intellectual Property</a
             >
             <a
-              href="practice-executive-employment.html"
+              href="pages/practice-executive-employment.html"
               class="mobile-dropdown-link"
               >• Executive Labour Law</a
             >
           </div>
         </div>
 
-        <a href="cases.html" class="mobile-link">Landmark Cases</a>
-        <a href="pricing.html" class="mobile-link">Fee Structure</a>
-        <a href="contact.html" class="mobile-link">Contact</a>
+        <a href="pages/cases.html" class="mobile-link">Landmark Cases</a>
+        <a href="pages/pricing.html" class="mobile-link">Fee Structure</a>
+        <a href="pages/contact.html" class="mobile-link">Contact</a>
       </div>
 
       <!-- Visible Sign In Button on Mobile -->
       <div class="mobile-actions">
-        <a href="sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
-        <a href="sign-up.html" class="btn btn-primary">Retain Counsel</a>
+        <a href="pages/sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
+        <a href="pages/sign-up.html" class="btn btn-primary">Retain Counsel</a>
       </div>
     </div>
 
@@ -355,7 +361,7 @@
 
               <div class="hero-main-img-card" id="heroShowcaseCard">
                 <img
-                  src="images/justice_statue_tall.webp"
+                  src="assets/images/justice_statue_tall.webp"
                   alt="Lady Justice bronze sculpture on classical pedestal"
                   class="hero-main-img"
                   width="896"
@@ -403,7 +409,7 @@
               <!-- Floating Trust Quote Card -->
               <div class="hero-floating-quote">
                 <img
-                  src="images/client_testimonial_1.webp"
+                  src="assets/images/client_testimonial_1.webp"
                   alt="Corporate General Counsel Review"
                   class="hero-quote-avatar"
                   width="50"
@@ -634,7 +640,7 @@
           <div class="split-grid-boardroom">
             <div class="boardroom-img-wrap" data-aos="fade-right">
               <img
-                src="images/corporate_boardroom.webp"
+                src="assets/images/corporate_boardroom.webp"
                 alt="Stackly Legal Consulting Executive Chambers Boardroom"
                 class="boardroom-img"
                 width="800"
@@ -730,7 +736,7 @@
             <div class="attorney-card" data-aos="fade-up">
               <div class="attorney-img-wrap">
                 <img
-                  src="images/attorney_managing_partner.webp"
+                  src="assets/images/attorney_managing_partner.webp"
                   alt="Alexander Wright, Senior Managing Partner"
                   class="attorney-img"
                   width="300"
@@ -754,7 +760,7 @@
             <div class="attorney-card" data-aos="fade-up">
               <div class="attorney-img-wrap">
                 <img
-                  src="images/attorney_senior_counsel.webp"
+                  src="assets/images/attorney_senior_counsel.webp"
                   alt="Eleanor Vance, Partner Corporate Governance"
                   class="attorney-img"
                   width="300"
@@ -778,7 +784,7 @@
             <div class="attorney-card" data-aos="fade-up">
               <div class="attorney-img-wrap">
                 <img
-                  src="images/attorney_litigation_lead.webp"
+                  src="assets/images/attorney_litigation_lead.webp"
                   alt="Marcus Sterling, Head of Dispute Resolution"
                   class="attorney-img"
                   width="300"
@@ -802,7 +808,7 @@
             <div class="attorney-card" data-aos="fade-up">
               <div class="attorney-img-wrap">
                 <img
-                  src="images/attorney_compliance_head.webp"
+                  src="assets/images/attorney_compliance_head.webp"
                   alt="Dr. Sophia Chen, Partner Regulatory & IP"
                   class="attorney-img"
                   width="300"
@@ -853,7 +859,7 @@
               </blockquote>
               <div class="testimonial-client">
                 <img
-                  src="images/client_testimonial_1.webp"
+                  src="assets/images/client_testimonial_1.webp"
                   alt="David Sterling, CEO of Apex Logistics Group"
                   class="client-avatar"
                   width="52"
@@ -876,7 +882,7 @@
               </blockquote>
               <div class="testimonial-client">
                 <img
-                  src="images/client_testimonial_2.webp"
+                  src="assets/images/client_testimonial_2.webp"
                   alt="Helena Morales, General Counsel at BioTech Innovations"
                   class="client-avatar"
                   width="52"
@@ -901,7 +907,7 @@
               </blockquote>
               <div class="testimonial-client">
                 <img
-                  src="images/client_testimonial_3.webp"
+                  src="assets/images/client_testimonial_3.webp"
                   alt="Robert K. Henderson, Chairman at Meridian Financial Holdings"
                   class="client-avatar"
                   width="52"
@@ -1064,7 +1070,7 @@
           <div>
             <a href="index.html" aria-label="Stackly Home">
               <img
-                src="images/logoStackly.webp"
+                src="assets/images/logoStackly.webp"
                 alt="Stackly Legal Consulting Logo"
                 class="footer-logo-img"
                 width="160"
@@ -1122,17 +1128,17 @@
             <h4 class="footer-heading">Quick Links</h4>
             <ul class="footer-links-list">
               <li><a href="index.html" class="footer-link">Home</a></li>
-              <li><a href="about.html" class="footer-link">About Us</a></li>
+              <li><a href="pages/about.html" class="footer-link">About Us</a></li>
               <li>
-                <a href="services.html" class="footer-link">Practice Areas</a>
+                <a href="pages/services.html" class="footer-link">Practice Areas</a>
               </li>
               <li>
-                <a href="cases.html" class="footer-link">Landmark Cases</a>
+                <a href="pages/cases.html" class="footer-link">Landmark Cases</a>
               </li>
               <li>
-                <a href="pricing.html" class="footer-link">Fee Structure</a>
+                <a href="pages/pricing.html" class="footer-link">Fee Structure</a>
               </li>
-              <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+              <li><a href="pages/contact.html" class="footer-link">Contact Us</a></li>
             </ul>
           </div>
 
@@ -1251,6 +1257,6 @@
       ↑
     </button>
 
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Executive Employment & Labour Law Advisory - Stackly Legal Consulting: C-suite employment agreements, non-compete covenants, severance arbitration, and workforce restructuring audits."
+    />
+    <title>Executive Employment & Labour Law | Stackly Legal Consulting</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Executive Scroll Progress Indicator -->
+    <div
+      id="scrollProgressBar"
+      class="scroll-progress-bar"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Full Viewport Loader -->
+    <div id="loader-wrapper" role="status" aria-live="polite">
+      <div class="loader-content">
+        <div class="loader-logo-wrap">
+          <img
+            src="../assets/images/logoStackly.webp"
+            alt="Stackly Legal Consulting Logo"
+            width="160"
+            height="42"
+          />
+        </div>
+        <div class="loader-spinner" aria-hidden="true"></div>
+        <p class="loader-text">Stackly Legal • Loading Employment Practice</p>
+      </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="site-header">
+      <div class="container">
+        <div class="nav-container">
+          <!-- Clickable Brand Logo linking to Homepage -->
+          <a
+            href="../index.html"
+            class="brand-logo-link"
+            aria-label="Stackly Legal Consulting Homepage"
+          >
+            <img
+              src="../assets/images/logoStackly.webp"
+              alt="Stackly Legal Consulting Logo"
+              class="brand-logo-img"
+              width="160"
+              height="42"
+            />
+          </a>
+
+          <!-- Desktop Navigation -->
+          <nav class="nav-menu-desktop" aria-label="Main Navigation">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About Us</a>
+
+            <!-- Dropdown for Practice Areas (Active) -->
+            <div class="nav-item-dropdown">
+              <a
+                href="services.html"
+                class="nav-link dropdown-toggle active"
+                aria-haspopup="true"
+              >
+                Practice Areas <span class="dropdown-arrow">▼</span>
+              </a>
+              <div class="dropdown-menu">
+                <a
+                  href="practice-corporate-governance.html"
+                  class="dropdown-link"
+                  >Corporate Governance & Compliance</a
+                >
+                <a href="practice-dispute-resolution.html" class="dropdown-link"
+                  >High-Stakes Dispute Resolution</a
+                >
+                <a
+                  href="practice-mergers-acquisitions.html"
+                  class="dropdown-link"
+                  >Mergers & Acquisitions Advisory</a
+                >
+                <a
+                  href="practice-intellectual-property.html"
+                  class="dropdown-link"
+                  >Intellectual Property & Patents</a
+                >
+                <a
+                  href="practice-executive-employment.html"
+                  class="dropdown-link active"
+                  >Executive Employment & Labour</a
+                >
+              </div>
+            </div>
+
+            <a href="cases.html" class="nav-link">Landmark Cases</a>
+            <a href="pricing.html" class="nav-link">Fee Structure</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Desktop Action Buttons -->
+          <div class="nav-actions-desktop">
+            <a href="sign-in.html" class="btn btn-ghost btn-sm">Sign In</a>
+            <a href="sign-up.html" class="btn btn-primary btn-sm"
+              >Retain Counsel</a
+            >
+          </div>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Drawer Overlay -->
+        <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="brand-logo-link">
+          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="140" height="38">
+        </a>
+        <button type="button" class="mobile-nav-close-btn" aria-label="Close Navigation Menu">&times;</button>
+      </div>
+      <div class="mobile-menu-list">
+        <a href="../index.html" class="mobile-link">Home</a>
+        <a href="about.html" class="mobile-link">About Us</a>
+
+        <!-- Interactive Practice Areas Accordion Dropdown -->
+        <div>
+          <button
+            id="mobilePracticeToggle"
+            class="mobile-dropdown-btn"
+            aria-expanded="true"
+          >
+            <span>Practice Areas</span>
+            <span class="chevron">▾</span>
+          </button>
+          <div id="mobilePracticeList" class="mobile-dropdown-links open">
+            <a
+              href="practice-corporate-governance.html"
+              class="mobile-dropdown-link"
+              >• Corporate Governance</a
+            >
+            <a
+              href="practice-dispute-resolution.html"
+              class="mobile-dropdown-link"
+              >• Dispute Resolution</a
+            >
+            <a
+              href="practice-mergers-acquisitions.html"
+              class="mobile-dropdown-link"
+              >• Mergers & Acquisitions</a
+            >
+            <a
+              href="practice-intellectual-property.html"
+              class="mobile-dropdown-link"
+              >• Intellectual Property</a
+            >
+            <a
+              href="practice-executive-employment.html"
+              class="mobile-dropdown-link active"
+              >• Executive Labour Law</a
+            >
+          </div>
+        </div>
+
+        <a href="cases.html" class="mobile-link">Landmark Cases</a>
+        <a href="pricing.html" class="mobile-link">Fee Structure</a>
+        <a href="contact.html" class="mobile-link">Contact</a>
+      </div>
+
+      <!-- Visible Sign In Button on Mobile -->
+      <div class="mobile-actions">
+        <a href="sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
+        <a href="sign-up.html" class="btn btn-primary">Retain Counsel</a>
+      </div>
+    </div>
+
+    <main>
+      <!-- SECTION 1: HERO (Animated Background & Breadcrumb) -->
+      <section class="subpage-hero" aria-label="Executive Employment Hero">
+        <!-- Animated Background Layer -->
+        <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
+        <!-- Interactive Constellation & Spotlight -->
+        <canvas class="hero-interactive-canvas" aria-hidden="true"></canvas>
+        <div class="hero-interactive-spotlight" aria-hidden="true"></div>
+
+        <div class="container">
+          <div class="subpage-hero-grid">
+            <div data-aos="fade-up">
+              <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+                <a href="../index.html">Home</a>
+                <span class="breadcrumb-sep">/</span>
+                <a href="services.html">Practice Areas</a>
+                <span class="breadcrumb-sep">/</span>
+                <span class="breadcrumb-current">Executive Employment</span>
+              </nav>
+
+              <h1 class="subpage-hero-title">
+                Executive Employment & <br />
+                <span class="gold-highlight">Labour Law Advisory</span>
+              </h1>
+
+              <p class="subpage-hero-desc">
+                Drafting enforceable C-suite employment covenants, golden
+                parachutes, non-compete agreements, and orchestrating
+                multijurisdictional workforce restructuring audits.
+              </p>
+
+              <div class="hero-cta-group">
+                <a href="404.html" class="btn btn-primary btn-lg"
+                  >Retain Employment Counsel</a
+                >
+                <a href="404.html" class="btn btn-ghost btn-lg"
+                  >Review Labour Precedents</a
+                >
+              </div>
+            </div>
+
+            <div class="subpage-hero-badge-box" data-aos="fade-left">
+              <h3 style="color: #dfb15b; margin-bottom: 0.75rem">
+                Employment Benchmarks
+              </h3>
+              <div class="hero-stats-row" style="margin-top: 1rem">
+                <div>
+                  <strong
+                    style="
+                      color: #ffffff;
+                      font-size: 1.6rem;
+                      font-family: var(--font-heading);
+                      display: block;
+                    "
+                    >350+</strong
+                  >
+                  <span
+                    style="
+                      font-size: 0.8rem;
+                      color: #94a3b8;
+                      text-transform: uppercase;
+                    "
+                    >C-Suite Pacts Drafted</span
+                  >
+                </div>
+                <div>
+                  <strong
+                    style="
+                      color: #ffffff;
+                      font-size: 1.6rem;
+                      font-family: var(--font-heading);
+                      display: block;
+                    "
+                    >100%</strong
+                  >
+                  <span
+                    style="
+                      font-size: 0.8rem;
+                      color: #94a3b8;
+                      text-transform: uppercase;
+                    "
+                    >Non-Compete Defense</span
+                  >
+                </div>
+                <div>
+                  <strong
+                    style="
+                      color: #ffffff;
+                      font-size: 1.6rem;
+                      font-family: var(--font-heading);
+                      display: block;
+                    "
+                    >Zero</strong
+                  >
+                  <span
+                    style="
+                      font-size: 0.8rem;
+                      color: #94a3b8;
+                      text-transform: uppercase;
+                    "
+                    >Workforce Injunctions</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: EXECUTIVE RETENTION & FIDUCIARY INTEGRITY -->
+      <section
+        class="section-padding"
+        style="background: #ffffff"
+        aria-label="Employment Philosophy"
+      >
+        <div class="container">
+          <div class="split-grid-2">
+            <div data-aos="fade-right">
+              <span class="section-tag">Human Capital Shield</span>
+              <h2 class="section-title">
+                Boardroom Confidentiality Protected Through Ironclad Covenants
+              </h2>
+              <p style="margin-bottom: 1.25rem">
+                The relationship between modern corporations and their key
+                leadership requires precision drafting. A single ambiguous
+                clause in an executive severance or non-compete agreement can
+                expose customer databases, algorithmic code, and trade secrets.
+              </p>
+              <p style="margin-bottom: 1.75rem">
+                Stackly acts as corporate counsel to boards and management
+                compensation committees, formulating employment agreements that
+                incentivize peak executive performance while fortifying the
+                company's competitive perimeter against poaching and breach of
+                fiduciary loyalty.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 1rem">
+                <div
+                  style="display: flex; gap: 0.85rem; align-items: flex-start"
+                >
+                  <span style="color: var(--accent-gold); font-weight: 700"
+                    >✓</span
+                  >
+                  <div>
+                    <strong>Enforceable Restrictive Covenants:</strong>
+                    Structuring non-competes that comply strictly with judicial
+                    reasonableness standards.
+                  </div>
+                </div>
+                <div
+                  style="display: flex; gap: 0.85rem; align-items: flex-start"
+                >
+                  <span style="color: var(--accent-gold); font-weight: 700"
+                    >✓</span
+                  >
+                  <div>
+                    <strong>Executive Severance & Separation:</strong>
+                    Negotiating high-value mutual separation deeds with
+                    comprehensive liability waivers.
+                  </div>
+                </div>
+                <div
+                  style="display: flex; gap: 0.85rem; align-items: flex-start"
+                >
+                  <span style="color: var(--accent-gold); font-weight: 700"
+                    >✓</span
+                  >
+                  <div>
+                    <strong>Statutory POSH & Workplace Inquiries:</strong>
+                    Independent external presiding officer representation for
+                    workplace compliance.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div data-aos="fade-left">
+              <div class="boardroom-img-wrap">
+                <img
+                  src="../assets/images/courtroom_scales.webp"
+                  alt="Stackly Labour & Employment Legal Scale"
+                  class="boardroom-img"
+                  width="800"
+                  height="534"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: KEY LABOUR DISCIPLINES -->
+      <section
+        class="section-padding"
+        style="background: var(--bg-alt)"
+        aria-label="Practice Disciplines"
+      >
+        <div class="container">
+          <div class="text-center" data-aos="fade-up">
+            <span class="section-tag">Core Disciplines</span>
+            <h2 class="section-title">
+              Specialized Labour & Executive Modules
+            </h2>
+            <p class="section-subtitle mx-auto">
+              Protecting corporate continuity and institutional human capital
+              across all leadership tiers.
+            </p>
+          </div>
+
+          <div class="card-grid-4" style="margin-top: 3rem">
+            <!-- Card 1 -->
+            <div class="service-card" data-aos="fade-up">
+              <div class="service-icon-box">📜</div>
+              <h3 class="service-card-title">
+                C-Suite Employment & Carve-Outs
+              </h3>
+              <p class="service-card-desc">
+                Formulating founder employment agreements, golden parachutes,
+                equity phantom plans, and change-of-control compensation
+                triggers.
+              </p>
+              <a href="404.html" class="service-link"
+                >Retain Counsel <span>→</span></a
+              >
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card" data-aos="fade-up">
+              <div class="service-icon-box">🛡️</div>
+              <h3 class="service-card-title">
+                Non-Compete & Trade Secret Restrictions
+              </h3>
+              <p class="service-card-desc">
+                Drafting and enforcing post-termination non-solicitation, garden
+                leave clauses, and confidentiality covenants in high-tech
+                markets.
+              </p>
+              <a href="404.html" class="service-link"
+                >Retain Counsel <span>→</span></a
+              >
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card" data-aos="fade-up">
+              <div class="service-icon-box">🏭</div>
+              <h3 class="service-card-title">
+                Workforce Restructuring & Labour Audits
+              </h3>
+              <p class="service-card-desc">
+                Managing collective bargaining negotiations, industrial dispute
+                arbitrations, voluntary retirement schemes (VRS), and
+                retrenchment compliance.
+              </p>
+              <a href="404.html" class="service-link"
+                >Retain Counsel <span>→</span></a
+              >
+            </div>
+
+            <!-- Card 4 -->
+            <div class="service-card" data-aos="fade-up">
+              <div class="service-icon-box">⚖️</div>
+              <h3 class="service-card-title">
+                Workplace Investigations & POSH Inquiries
+              </h3>
+              <p class="service-card-desc">
+                Serving as external legal members on Internal Complaints
+                Committees, ensuring statutory due process, and mitigating
+                vicarious employer liability.
+              </p>
+              <a href="404.html" class="service-link"
+                >Retain Counsel <span>→</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: 4-STAGE EXECUTIVE EMPLOYMENT PROTOCOL -->
+      <section
+        class="section-padding"
+        style="background: #ffffff"
+        aria-label="Employment Protocol"
+      >
+        <div class="container">
+          <div class="text-center" data-aos="fade-up">
+            <span class="section-tag">Governance Protocol</span>
+            <h2 class="section-title">
+              The 4-Stage Executive Employment Lifecycle
+            </h2>
+            <p class="section-subtitle mx-auto">
+              From C-suite onboarding to confidential post-departure
+              enforcement, our lifecycle ensures absolute corporate protection.
+            </p>
+          </div>
+
+          <div class="timeline-wrap" style="margin-top: 3.5rem">
+            <div class="timeline-item" data-aos="fade-right">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step">Phase 01</span>
+              <h3 class="timeline-title">Pre-Hire Agreement Structuring</h3>
+              <p>
+                Drafting bespoke C-level contracts, restrictive covenants, IP
+                assignment deeds, and golden handshake triggers aligned with
+                statutory labour laws.
+              </p>
+            </div>
+
+            <div class="timeline-item right" data-aos="fade-left">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step">Phase 02</span>
+              <h3 class="timeline-title">
+                Continuous Workplace Compliance Audits
+              </h3>
+              <p>
+                Annual inspection of employment handbooks, POSH committees,
+                provident fund registers, and contractor statutory obligations.
+              </p>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-right">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step">Phase 03</span>
+              <h3 class="timeline-title">
+                Boardroom Exit & Separation Protocol
+              </h3>
+              <p>
+                Executing confidential negotiated transitions, drafting
+                comprehensive release-of-claims waivers, and managing garden
+                leave agreements.
+              </p>
+            </div>
+
+            <div class="timeline-item right" data-aos="fade-left">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step">Phase 04</span>
+              <h3 class="timeline-title">
+                Post-Departure Restrictive Enforcement
+              </h3>
+              <p>
+                Immediate court injunctive action if departing leadership
+                breaches non-solicitation, attempts client poaching, or uses
+                proprietary data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: NOTABLE EMPLOYMENT PRECEDENTS -->
+      <section
+        class="section-padding"
+        style="background: var(--bg-alt)"
+        aria-label="Case Precedents"
+      >
+        <div class="container">
+          <div class="text-center" data-aos="fade-up">
+            <span class="section-tag">Case Precedents</span>
+            <h2 class="section-title">Documented Employment Victories</h2>
+            <p class="section-subtitle mx-auto">
+              Realized outcomes defending enterprises in complex executive
+              severance and workforce restructuring.
+            </p>
+          </div>
+
+          <div class="card-grid-3" style="margin-top: 3rem">
+            <div class="service-card" data-aos="fade-up">
+              <span
+                class="badge"
+                style="
+                  background: rgba(197, 155, 39, 0.15);
+                  color: var(--accent-gold);
+                  padding: 0.35rem 0.75rem;
+                  border-radius: var(--radius-full);
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  display: inline-block;
+                  margin-bottom: 1rem;
+                "
+                >High Court Injunction</span
+              >
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem">
+                Enforcing Non-Compete on Ex-CTO
+              </h3>
+              <p style="font-size: 0.9rem; margin-bottom: 1rem">
+                Secured temporary ex-parte injunction restraining departing
+                Chief Technology Officer from joining a direct fintech
+                competitor for 12 months, protecting upcoming product launch.
+              </p>
+              <strong style="color: var(--primary-navy); font-size: 0.85rem"
+                >Result: Injunctive Restraint Upheld</strong
+              >
+            </div>
+
+            <div class="service-card" data-aos="fade-up">
+              <span
+                class="badge"
+                style="
+                  background: rgba(197, 155, 39, 0.15);
+                  color: var(--accent-gold);
+                  padding: 0.35rem 0.75rem;
+                  border-radius: var(--radius-full);
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  display: inline-block;
+                  margin-bottom: 1rem;
+                "
+                >Restructuring Clearance</span
+              >
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem">
+                1,200-Worker Manufacturing Restructuring
+              </h3>
+              <p style="font-size: 0.9rem; margin-bottom: 1rem">
+                Orchestrated consensual phased workforce rationalization for an
+                automotive components plant with zero trade union strikes or
+                pending labour tribunal challenges.
+              </p>
+              <strong style="color: var(--primary-navy); font-size: 0.85rem"
+                >Result: 100% Amicable Resolution</strong
+              >
+            </div>
+
+            <div class="service-card" data-aos="fade-up">
+              <span
+                class="badge"
+                style="
+                  background: rgba(197, 155, 39, 0.15);
+                  color: var(--accent-gold);
+                  padding: 0.35rem 0.75rem;
+                  border-radius: var(--radius-full);
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  display: inline-block;
+                  margin-bottom: 1rem;
+                "
+                >Whistleblower Defense</span
+              >
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem">
+                C-Suite Retaliation Claim Exoneration
+              </h3>
+              <p style="font-size: 0.9rem; margin-bottom: 1rem">
+                Defended enterprise board against unfounded wrongful termination
+                and whistleblower retaliation claims by a dismissed VP,
+                achieving full dismissal before commercial courts.
+              </p>
+              <strong style="color: var(--primary-navy); font-size: 0.85rem"
+                >Result: Dismissed with Prejudice</strong
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: EMPLOYMENT PRACTICE LEADERSHIP -->
+      <section
+        class="section-padding"
+        style="background: #ffffff"
+        aria-label="Practice Leadership"
+      >
+        <div class="container">
+          <div class="split-grid-2">
+            <div data-aos="fade-right">
+              <span class="section-tag">Practice Head</span>
+              <h2 class="section-title">
+                Led by Seasoned Labour & Employment Counsel
+              </h2>
+              <p style="margin-bottom: 1.25rem">
+                Our Labour & Executive Employment division is led by Meera
+                Krishnan, bringing over 16 years of boardroom advisory,
+                executive severance arbitration, and collective bargaining
+                experience.
+              </p>
+              <div
+                style="
+                  background: var(--bg-alt);
+                  padding: 1.5rem;
+                  border-radius: var(--radius-md);
+                  border-left: 4px solid var(--accent-gold);
+                  margin-bottom: 1.5rem;
+                "
+              >
+                <h4 style="color: var(--primary-navy); margin-bottom: 0.25rem">
+                  Meera Krishnan, Head of Practice
+                </h4>
+                <span
+                  style="
+                    font-size: 0.85rem;
+                    color: var(--accent-gold);
+                    font-weight: 600;
+                    display: block;
+                    margin-bottom: 0.5rem;
+                  "
+                  >Head of Corporate Compliance & Executive Labour
+                  Advisory</span
+                >
+                <p style="font-size: 0.9rem">
+                  Author of "The Corporate Employment Shield: Enforcing
+                  Restrictive Covenants in Tech Markets"; advisor to Fortune 500
+                  HR committees.
+                </p>
+              </div>
+              <a href="404.html" class="btn btn-navy"
+                >Schedule Labour Advisory Session</a
+              >
+            </div>
+
+            <div data-aos="fade-left">
+              <div
+                class="attorney-card"
+                style="max-width: 420px; margin: 0 auto"
+              >
+                <div class="attorney-img-wrap practice-lead-wrap" style="height: 420px !important; overflow: hidden !important;">
+                  <img src="../assets/images/attorney_compliance_head.webp" alt="Meera Krishnan - Practice Head" class="attorney-img practice-lead-img" width="400" height="440" style="object-position: center 25% !important; object-fit: cover !important;">
+                </div>
+                <div class="attorney-body text-center">
+                  <h3 class="attorney-name">Meera Krishnan</h3>
+                  <p class="attorney-role">Head of Executive Labour Law</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: CALL TO ACTION BANNER -->
+      <section
+        class="section-padding"
+        style="
+          background: linear-gradient(
+            135deg,
+            var(--primary-navy-dark) 0%,
+            #103654 100%
+          );
+          color: #ffffff;
+        "
+        aria-label="Call to Action"
+      >
+        <div class="container text-center" data-aos="zoom-in">
+          <span class="section-tag light">Confidential Employment Review</span>
+          <h2
+            style="
+              color: #ffffff;
+              font-size: clamp(2rem, 3.8vw, 2.75rem);
+              margin-bottom: 1rem;
+            "
+          >
+            Navigating an Executive Transition or Restructuring?
+          </h2>
+          <p
+            style="
+              max-width: 620px;
+              margin: 0 auto 2.25rem;
+              color: #cbd5e1;
+              font-size: 1.1rem;
+            "
+          >
+            Consult Stackly's executive employment team under strict
+            attorney-client privilege.
+          </p>
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 1.25rem;
+              flex-wrap: wrap;
+            "
+          >
+            <a href="404.html" class="btn btn-primary btn-lg"
+              >Schedule Confidential Briefing</a
+            >
+            <a href="404.html" class="btn btn-ghost btn-lg"
+              >Access Chambers Portal</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- CONSISTENT SITE FOOTER WITH ORIGINAL BRAND SVGs -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Col 1: Brand Info -->
+          <div>
+            <a href="../index.html" aria-label="Stackly Home">
+              <img
+                src="../assets/images/logoStackly.webp"
+                alt="Stackly Legal Consulting Logo"
+                class="footer-logo-img"
+                width="160"
+                height="44"
+              />
+            </a>
+            <p class="footer-bio">
+              Stackly Legal Consulting provides elite corporate governance,
+              cross-border M&A advisory, and resolute commercial trial
+              representation for visionary businesses worldwide.
+            </p>
+            <div class="social-links-row">
+              <a href="404.html" class="social-btn" aria-label="LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="404.html" class="social-btn" aria-label="Twitter">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+                <span>Twitter / 𝕏</span>
+              </a>
+              <a href="404.html" class="social-btn" aria-label="YouTube">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
+                <span>YouTube</span>
+              </a>
+              <a href="404.html" class="social-btn" aria-label="Facebook">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877F2">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+                <span>Facebook</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Quick Links (Direct) -->
+          <div>
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links-list">
+              <li><a href="../index.html" class="footer-link">Home</a></li>
+              <li><a href="about.html" class="footer-link">About Us</a></li>
+              <li>
+                <a href="services.html" class="footer-link">Practice Areas</a>
+              </li>
+              <li>
+                <a href="cases.html" class="footer-link">Landmark Cases</a>
+              </li>
+              <li>
+                <a href="pricing.html" class="footer-link">Fee Structure</a>
+              </li>
+              <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Practice Areas (Redirect 404) -->
+          <div>
+            <h4 class="footer-heading">Practice Areas</h4>
+            <ul class="footer-links-list">
+              <li>
+                <a href="404.html" class="footer-link">Corporate Governance</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">Commercial Litigation</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">M&A Deal Advisory</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">Intellectual Property</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">Labour & Employment</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">International Trade</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Official Contact -->
+          <div>
+            <h4 class="footer-heading">Chambers Address</h4>
+            <div class="footer-contact-info">
+              <div class="contact-info-item">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span
+                  >MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu
+                  636008</span
+                >
+              </div>
+              <div class="contact-info-item">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                <a href="404.html" class="footer-link">+91 9876543210</a>
+              </div>
+              <div class="contact-info-item">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <a href="404.html" class="footer-link">hello@thestackly.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div>© 2026 Stackly Legal Consulting. All rights reserved.</div>
+          <div style="display: flex; gap: 1.5rem">
+            <a href="404.html" class="footer-link">Privacy Policy</a>
+            <a href="404.html" class="footer-link">Terms of Service</a>
+            <a href="404.html" class="footer-link">Statutory Disclaimers</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Back to Top Button -->
+    <button
+      id="backToTopBtn"
+      class="back-to-top-btn"
+      title="Back to Top"
+      aria-label="Back to Top"
+    >
+      ↑
+    </button>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Associate Client Legal Shield Dashboard | Stackly Legal Consulting</title>
+  <meta name="description" content="Secure Client Legal Shield & Retainer Portal for Stackly Legal Consulting enterprise clients. Track matters, compliance, contracts, and counsel.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/webp" href="../assets/images/logoStackly.webp">
+</head>
+<body class="dashboard-body">
+
+  <div class="dashboard-layout">
+    <!-- Redesigned Sleek Sidebar -->
+    <aside class="dash-sidebar" id="dashSidebar" aria-label="Client Portal Navigation">
+      <div class="dash-sidebar-header">
+        <a href="../index.html" class="dash-brand" title="Click to Return to Homepage">
+          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting" class="dash-brand-logo" width="130" height="36">
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar" title="Collapse Sidebar">&times;</button>
+      </div>
+
+      <div class="dash-user-badge">
+        <div class="dash-user-avatar" id="dashUserAvatar" style="background: linear-gradient(135deg, #103654, #d4af37); color: #fff; font-weight: 700; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #d4af37;">VS</div>
+        <div class="dash-user-info">
+          <span class="dash-user-name" id="dashUserName">Vikramaditya S.</span>
+          <span class="dash-user-role" id="dashUserRole" style="color: #d4af37; font-weight: 600; font-size: 0.78rem;">Associate Client</span>
+          <span style="font-size: 0.72rem; color: #a0aec0; display: block;">Apex Technologies Ltd.</span>
+        </div>
+      </div>
+
+      <nav class="dash-nav" aria-label="Client Workspace Tabs">
+        <div class="dash-nav-section-title">PORTAL NAVIGATION</div>
+        <button class="dash-nav-item active" data-tab="overview">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Retainer Overview</span>
+        </button>
+        <button class="dash-nav-item" data-tab="matters">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          <span>Retained Matters</span>
+        </button>
+        <button class="dash-nav-item" data-tab="compliance">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>Statutory Health</span>
+        </button>
+        <button class="dash-nav-item" data-tab="contracts">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Contract Vault</span>
+        </button>
+        <button class="dash-nav-item" data-tab="calendar">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Court & Briefings</span>
+        </button>
+        <button class="dash-nav-item" data-tab="counsel">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span>Assigned Counsel</span>
+        </button>
+        <button class="dash-nav-item" data-tab="billing">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Retainer & Escrow</span>
+        </button>
+        <button class="dash-nav-item" data-tab="settings">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span>Client Privilege Settings</span>
+        </button>
+      </nav>
+
+      <div class="dash-sidebar-footer" style="padding: 1.25rem; border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: auto;">
+        <div style="font-size: 0.75rem; color: #a0aec0; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">ACTIVE RETAINER PLAN</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-weight: 700; color: #d4af37; font-size: 0.85rem;">Supreme Tier Retainer</span>
+          <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 600;">ACTIVE</span>
+        </div>
+        <a href="sign-in.html" class="btn btn-secondary" style="width: 100%; text-align: center; font-size: 0.8rem; padding: 0.5rem; display: block; border-color: rgba(255,255,255,0.2); color: #fff;">Sign Out of Chambers</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="dash-main-area">
+      <header class="dash-topbar">
+        <button type="button" class="dash-menu-toggle" id="sidebarOpenBtn" aria-label="Open Sidebar Menu">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="dash-topbar-title">
+          <h1 style="font-size: 1.2rem; margin: 0; font-family: var(--font-heading); color: var(--primary-navy);">Client Legal Shield Portal</h1>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Privileged Attorney-Client Work Product &bull; Protected under Indian Evidence Act Sec 126</span>
+        </div>
+        <div class="dash-topbar-actions" style="display: flex; gap: 0.75rem; align-items: center;">
+          <div class="role-status-badge" style="background: rgba(16, 185, 129, 0.12); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(16, 185, 129, 0.35);">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 8px #10b981;"></span>
+            <span style="font-weight: 700; color: var(--primary-navy); letter-spacing: 0.02em;">Associate Client Workspace</span>
+          </div>
+          <a href="404.html" class="btn btn-secondary btn-sm" style="font-size: 0.78rem; padding: 0.4rem 0.85rem; border-color: var(--border-light); color: var(--primary-navy);">
+            Priority Support
+          </a>
+        </div>
+      </header>
+
+      <main class="dash-content-padding" id="mainDashboardContent">
+
+        <!-- ==========================================
+             TAB 1: OVERVIEW (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane active" id="tab-overview">
+          <!-- Section 1: Retained Enterprise Shield Banner -->
+          <section class="dash-section" style="background: linear-gradient(135deg, #071724 0%, #103654 100%); color: #fff; border-radius: var(--radius-lg); padding: 1.75rem; margin-bottom: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.3);">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <span style="display: inline-block; padding: 4px 10px; background: rgba(212, 175, 55, 0.2); color: #d4af37; border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem;">ENTERPRISE CLIENT SHIELD ACTIVE</span>
+                <h2 style="font-family: var(--font-heading); color: #fff; font-size: 1.6rem; margin: 0 0 0.5rem 0;">Apex Technologies Ltd. Corporate Legal Protection</h2>
+                <p style="color: #cbd5e0; margin: 0; font-size: 0.9rem; max-width: 650px;">
+                  Stackly Chambers provides continuous 24/7 corporate governance oversight, SIAC cross-border arbitral defense, and strategic commercial advisory for your enterprise entities.
+                </p>
+              </div>
+              <div style="text-align: right; min-width: 200px;">
+                <div style="font-size: 0.8rem; color: #d4af37; text-transform: uppercase;">Corporate Health Index</div>
+                <div style="font-size: 2.2rem; font-weight: 700; color: #fff; font-family: var(--font-heading);">99.4%</div>
+                <div style="font-size: 0.75rem; color: #10b981;">0 Regulatory Show-Cause Notices Outstanding</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Enterprise Protection KPIs -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-kpi-grid">
+              <div class="dash-kpi-card" style="border-left: 4px solid var(--accent-gold);">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Active Retained Matters</span><span class="dash-kpi-badge badge-blue">4 In Motion</span></div>
+                <div class="dash-kpi-value">4 Cases</div>
+                <div class="dash-kpi-footer" style="color: #10b981;">2 in Final Arguments (Supreme Court & SIAC)</div>
+              </div>
+              <div class="dash-kpi-card" style="border-left: 4px solid #10b981;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Statutory Compliance</span><span class="dash-kpi-badge badge-green">100% Up to Date</span></div>
+                <div class="dash-kpi-value">28 Filings</div>
+                <div class="dash-kpi-footer" style="color: #10b981;">ROC, MCA-21 & SEBI LODR Filings Validated</div>
+              </div>
+              <div class="dash-kpi-card" style="border-left: 4px solid #3b82f6;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Retainer Escrow Funds</span><span class="dash-kpi-badge badge-purple">Secured in Trust</span></div>
+                <div class="dash-kpi-value">$485,000</div>
+                <div class="dash-kpi-footer" style="color: var(--text-muted);">Dedicated fiduciary client escrow balance</div>
+              </div>
+              <div class="dash-kpi-card" style="border-left: 4px solid #8b5cf6;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Executed Contracts in Vault</span><span class="dash-kpi-badge badge-gold">Audited</span></div>
+                <div class="dash-kpi-value">38 Deeds</div>
+                <div class="dash-kpi-footer" style="color: #10b981;">0 Unmitigated Indemnity Liabilities</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Client Priority Quick Actions -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Client Corporate Action Hub</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Direct channels to Senior Chambers Advocates</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
+                <div style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;">&#128221;</div>
+                <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Request Legal Opinion</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Commission a formal written opinion on statutory exposure or transaction risk within 24 hours.</p>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Draft Opinion Brief</button>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
+                <div style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;">&#128196;</div>
+                <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Upload Contract for Audit</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Submit supplier MSAs, executive agreements or term sheets for redlining and liability scrubbing.</p>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Upload Agreement</button>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
+                <div style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 0.5rem;">&#9742;</div>
+                <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Emergency Partner Hotline</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Instant telephonic consultation with Managing Partner Rajeshwar Varma for dawn raids or injunctions.</p>
+                <button type="button" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Connect to Hotline</button>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); transition: transform 0.2s;">
+                <div style="color: #8b5cf6; font-size: 1.5rem; margin-bottom: 0.5rem;">&#128200;</div>
+                <h4 style="margin: 0 0 0.4rem 0; font-size: 1rem; color: var(--primary-navy);">Download Audit Certificate</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Download Bar-certified quarterly statutory health statement for your Board of Directors & Audit Committee.</p>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem; width: 100%; text-align: center;">Download Statement (PDF)</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Retained Matters Status Overview Table -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Active Retained Matters Status</h3>
+              <a href="cases.html" class="dash-link" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">View Landmark Precedents &rarr;</a>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Matter Code</th>
+                    <th>Judicial / Arbitral Forum</th>
+                    <th>Subject Description</th>
+                    <th>Lead Chambers Partner</th>
+                    <th>Status Phase</th>
+                    <th>Next Milestone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>APX-SC-2026-09</strong></td>
+                    <td>Supreme Court of India</td>
+                    <td>Constitutional Special Leave Petition (Tax Surcharge Waiver)</td>
+                    <td>Adv. Rajeshwar Varma</td>
+                    <td><span class="dash-badge badge-blue">Rejoinder Filed</span></td>
+                    <td>Oral Arguments (Nov 18, 2026)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>APX-ARB-SIAC-44</strong></td>
+                    <td>SIAC Singapore</td>
+                    <td>Cross-Border Software Licensing Breach & Royalty Enforcement</td>
+                    <td>Adv. Meera Krishnan</td>
+                    <td><span class="dash-badge badge-green">Cross-Exam Stage</span></td>
+                    <td>Final Written Submissions (Nov 26)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>APX-NCLT-981</strong></td>
+                    <td>NCLT Principal Bench Delhi</td>
+                    <td>Corporate Insolvency Resolution & Asset Acquisition Scheme</td>
+                    <td>Adv. Ananya Sen</td>
+                    <td><span class="dash-badge badge-purple">Resolution Voted</span></td>
+                    <td>Sanction Order Hearing (Dec 04)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>APX-CCI-2026-12</strong></td>
+                    <td>Competition Commission (CCI)</td>
+                    <td>M&A Combination Pre-Merger Exemption Clearance Filing</td>
+                    <td>Adv. Rajeshwar Varma</td>
+                    <td><span class="dash-badge badge-gold">Under Review</span></td>
+                    <td>Statutory Clearance Letter (Nov 30)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 5: Real-time Chambers Advisory Feed -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Privileged Executive Legal Advisories</h3>
+              <span class="badge-blue" style="padding: 3px 8px; font-size: 0.75rem; border-radius: 4px;">Direct from Chambers Desk</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+              <div style="background: #fff; padding: 1rem; border-left: 4px solid var(--accent-gold); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">SEBI LODR Regulation 30 Disclosure Alert</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Yesterday at 18:40 IST</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">Chambers has prepared the statutory stock exchange disclosure draft regarding your recent cross-border technology acquisition. Board approval is verified and ready for MCA-21 lodgment.</p>
+              </div>
+              <div style="background: #fff; padding: 1rem; border-left: 4px solid #10b981; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">Digital Personal Data Protection (DPDP) Rule Compliance Audit Complete</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Nov 08, 2026</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">Lead Counsel Ananya Sen has concluded the data principal consent architecture audit for your SaaS platform. The technical architecture is 100% compliant with statutory guidelines.</p>
+              </div>
+              <div style="background: #fff; padding: 1rem; border-left: 4px solid #3b82f6; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">Supreme Court Bench Allocation Confirmation</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Nov 06, 2026</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">SLP (C) 19482/2026 has been allocated to Court 3 (Hon'ble Justice presiding). Senior Advocate briefing is scheduled for Monday evening at Chambers.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 2: MATTERS (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-matters">
+          <!-- Section 1: Retained Matters Header & Filter -->
+          <section class="dash-section" style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <h2 style="font-family: var(--font-heading); color: var(--primary-navy); margin: 0 0 0.3rem 0;">Retained Enterprise Litigation Portfolio</h2>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Comprehensive oversight of high-stakes proceedings across Supreme Court, High Courts, SIAC, and Appellate Tribunals.</p>
+              </div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">All Matters (4)</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Arbitral Tribunals (1)</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Constitutional Benches (1)</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Insolvency / NCLT (2)</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Strategic Roadmap & Milestone Progression -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Litigation Progression Timeline</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Matter APX-SC-2026-09 Stage Tracking</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div style="background: #edf2f7; padding: 1rem; border-radius: var(--radius-md); border-top: 3px solid #10b981;">
+                <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">STAGE 1 &bull; COMPLETED</span>
+                <h4 style="margin: 0.4rem 0 0.2rem 0; font-size: 0.95rem; color: var(--primary-navy);">SLP Notice & Stay</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Interim protection granted against demand notice.</p>
+              </div>
+              <div style="background: #edf2f7; padding: 1rem; border-radius: var(--radius-md); border-top: 3px solid #10b981;">
+                <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">STAGE 2 &bull; COMPLETED</span>
+                <h4 style="margin: 0.4rem 0 0.2rem 0; font-size: 0.95rem; color: var(--primary-navy);">Pleadings Completed</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Counter-affidavit and client rejoinder on record.</p>
+              </div>
+              <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border-top: 3px solid var(--accent-gold); box-shadow: var(--shadow-sm);">
+                <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700;">STAGE 3 &bull; IN PROGRESS</span>
+                <h4 style="margin: 0.4rem 0 0.2rem 0; font-size: 0.95rem; color: var(--primary-navy);">Final Oral Arguments</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Scheduled for hearing before Bench 3 on Nov 18, 2026.</p>
+              </div>
+              <div style="background: #edf2f7; padding: 1rem; border-radius: var(--radius-md); border-top: 3px solid #cbd5e0; opacity: 0.8;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">STAGE 4 &bull; UPCOMING</span>
+                <h4 style="margin: 0.4rem 0 0.2rem 0; font-size: 0.95rem; color: var(--primary-navy);">Reserved Judgment</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Pronouncement of definitive precedent decree.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Comprehensive Matter Records Table -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Detailed Retained Matters Dossier</h3>
+              <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Export Matter Dossier (XLSX)</button>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Case Docket</th>
+                    <th>Judicial Tribunal</th>
+                    <th>Opposing Party</th>
+                    <th>Lead Advocate</th>
+                    <th>Risk Assessment</th>
+                    <th>Chambers Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Apex Tech vs. Department of Revenue</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">SLP (C) 19482/2026</span></td>
+                    <td>Supreme Court of India</td>
+                    <td>Union of India & Central Tax Board</td>
+                    <td>Adv. Rajeshwar Varma</td>
+                    <td><span class="dash-badge badge-green">Favorable (92%)</span></td>
+                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Brief</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Nexus Silicon Inc. vs. Apex Technologies</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">SIAC Case No. 891/2025</span></td>
+                    <td>SIAC Singapore Arbitral Tribunal</td>
+                    <td>Nexus Silicon International Ltd.</td>
+                    <td>Adv. Meera Krishnan</td>
+                    <td><span class="dash-badge badge-blue">Arbitral Defense (88%)</span></td>
+                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Pleadings</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apex Corp Resolution Plan Filing</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">CP(IB) 420/ND/2025</span></td>
+                    <td>NCLT Principal Bench Delhi</td>
+                    <td>Committee of Creditors (Apex Infra)</td>
+                    <td>Adv. Ananya Sen</td>
+                    <td><span class="dash-badge badge-gold">Sanction Pending</span></td>
+                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Order</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apex Cloud Telecom Trademark Injunction</strong><br><span style="font-size: 0.75rem; color: var(--text-muted);">CS(COMM) 312/2026</span></td>
+                    <td>Delhi High Court (Commercial Div)</td>
+                    <td>Apex Global Telecom Ltd.</td>
+                    <td>Adv. Meera Krishnan</td>
+                    <td><span class="dash-badge badge-green">Ex-Parte Stay Won</span></td>
+                    <td><button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">View Injunction</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 4: Privileged Legal Opinions Vault -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Privileged Counsel Opinions & Strategy Notes</h3>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Strictly Privileged under Attorney-Client Privilege</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <span class="badge-blue" style="font-size: 0.7rem; padding: 2px 6px;">OPINION #2026-OP-11</span>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Issued Oct 29, 2026</span>
+                </div>
+                <h4 style="margin: 0 0 0.4rem 0; font-size: 0.95rem; color: var(--primary-navy);">Cross-Border IP Royalty Withholding Tax Defense</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Analysis of Indo-Singapore Double Taxation Avoidance Agreement (DTAA) provisions regarding software license royalties.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
+                  <span style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Authored: Adv. Rajeshwar Varma</span>
+                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">Download PDF (18pg)</a>
+                </div>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <span class="badge-green" style="font-size: 0.7rem; padding: 2px 6px;">OPINION #2026-OP-09</span>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Issued Oct 14, 2026</span>
+                </div>
+                <h4 style="margin: 0 0 0.4rem 0; font-size: 0.95rem; color: var(--primary-navy);">Non-Compete Enforceability for C-Suite Departures</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Advisory on Indian Contract Act Section 27 limitations and garden leave remuneration structuring for departing CTO.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
+                  <span style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Authored: Adv. Meera Krishnan</span>
+                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">Download PDF (12pg)</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: Settled & Decreed Matters Archive -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Decreed & Settled Matters Historical Archive</h3>
+              <span style="font-size: 0.8rem; color: #10b981; font-weight: 600;">100% Favorable Enterprise Resolutions</span>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Historic Case Docket</th>
+                    <th>Resolution Date</th>
+                    <th>Forum</th>
+                    <th>Favorable Outcome Secured</th>
+                    <th>Certified Decree</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Apex Technologies vs. Global Foundry Corp</strong></td>
+                    <td>August 2026</td>
+                    <td>Singapore International Arbitration Centre</td>
+                    <td>$14.2M Arbitral Award in Favor of Apex with full cost recovery</td>
+                    <td><span class="dash-badge badge-green">Enforced in Singapore & India</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Apex Cloud vs. State Sales Tax Directorate</strong></td>
+                    <td>May 2026</td>
+                    <td>High Court of Judicature</td>
+                    <td>Quashing of $4.8M illegal demand notice; precedent decree recorded</td>
+                    <td><span class="dash-badge badge-green">Decree Registered</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 3: COMPLIANCE (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-compliance">
+          <!-- Section 1: Corporate Statutory Health Scorecard -->
+          <section class="dash-section" style="background: linear-gradient(135deg, #103654 0%, #0d283e 100%); color: #fff; padding: 1.75rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid rgba(212,175,55,0.3);">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <span style="color: #d4af37; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">STATUTORY AUDIT RATING &bull; Q3 2026</span>
+                <h2 style="font-family: var(--font-heading); color: #fff; font-size: 1.6rem; margin: 0.25rem 0 0.5rem 0;">100% Statutory Compliance Shield</h2>
+                <p style="color: #cbd5e0; margin: 0; font-size: 0.88rem; max-width: 600px;">
+                  All ROC filings, secretarial certifications, and board governance resolutions for Apex Technologies Ltd. and subsidiaries are up-to-date and compliant with Companies Act 2013 and SEBI regulations.
+                </p>
+              </div>
+              <div style="background: rgba(255,255,255,0.08); padding: 1rem 1.5rem; border-radius: var(--radius-md); border: 1px solid rgba(212,175,55,0.4); text-align: center;">
+                <div style="font-size: 0.8rem; color: #d4af37;">CHAMBERS CERTIFICATION</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #fff;">CLASS A+</div>
+                <div style="font-size: 0.75rem; color: #10b981;">Valid Through Dec 31, 2026</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Statutory Filings Tracker Table -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Mandatory Regulatory Filings & ROC Submissions</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Ministry of Corporate Affairs (MCA-21) Gateway</span>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>E-Form ID</th>
+                    <th>Statutory Purpose</th>
+                    <th>Regulatory Authority</th>
+                    <th>Statutory Deadline</th>
+                    <th>Filing Status</th>
+                    <th>SRN Receipt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>AOC-4 XBRL</strong></td>
+                    <td>Financial Statements Filing FY25-26</td>
+                    <td>Registrar of Companies (ROC)</td>
+                    <td>Nov 30, 2026</td>
+                    <td><span class="dash-badge badge-green">Filed & Approved</span></td>
+                    <td>SRN: T94810294</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MGT-7</strong></td>
+                    <td>Annual Return Submission</td>
+                    <td>Ministry of Corporate Affairs</td>
+                    <td>Dec 31, 2026</td>
+                    <td><span class="dash-badge badge-green">Secretarial Audited</span></td>
+                    <td>SRN: T94819481</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DIR-12</strong></td>
+                    <td>Independent Director Appointment</td>
+                    <td>ROC NCT of Delhi</td>
+                    <td>Nov 15, 2026</td>
+                    <td><span class="dash-badge badge-blue">Ready for DSC Sign</span></td>
+                    <td>Pending Board DSC</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CHG-1</strong></td>
+                    <td>Creation of Asset Charge (Working Capital)</td>
+                    <td>Bank Consortium / ROC</td>
+                    <td>Dec 10, 2026</td>
+                    <td><span class="dash-badge badge-gold">Draft Under Review</span></td>
+                    <td>In Chambers Drafting</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 3: Quarterly Statutory Governance Schedule -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Governance Calendar & Board Compliance Milestones</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Upcoming Q4 2026 Board Obligations</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #3b82f6; box-shadow: var(--shadow-sm);">
+                <div style="font-size: 0.75rem; color: #3b82f6; font-weight: 700;">NOV 24, 2026 &bull; 11:00 AM</div>
+                <h4 style="margin: 0.35rem 0 0.25rem 0; font-size: 0.95rem; color: var(--primary-navy);">Audit Committee Meeting</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Review of related party transactions (RPTs) and quarterly internal audit certifications.</p>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold); box-shadow: var(--shadow-sm);">
+                <div style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700;">DEC 08, 2026 &bull; 02:30 PM</div>
+                <h4 style="margin: 0.35rem 0 0.25rem 0; font-size: 0.95rem; color: var(--primary-navy);">Board of Directors Meeting</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Approval of ESOP 2026 tranche and cross-border IP licensing agreements.</p>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #10b981; box-shadow: var(--shadow-sm);">
+                <div style="font-size: 0.75rem; color: #10b981; font-weight: 700;">DEC 22, 2026 &bull; 10:00 AM</div>
+                <h4 style="margin: 0.35rem 0 0.25rem 0; font-size: 0.95rem; color: var(--primary-navy);">Statutory Secretarial Review</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Verification of statutory registers (MBP-1, MBP-2, MBP-4) under Companies Act 2013.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Proactive Regulatory Risk & Early Warning Radar -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Regulatory Radar & Early Warning Bulletins</h3>
+              <span class="badge-gold" style="font-size: 0.75rem; padding: 3px 8px;">Chambers Risk Intelligence</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.9rem;">Digital Competition Act (Draft Legislation Advisory)</strong>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.25rem 0 0 0;">Potential threshold classifications for Systemically Significant Digital Enterprises (SSDE). Chamber assessment: Apex is currently exempt.</p>
+                </div>
+                <span class="dash-badge badge-green" style="white-space: nowrap;">Zero Direct Liability</span>
+              </div>
+              <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.9rem;">RBI Cross-Border Outward Remittance Guidelines (LRS & ODI)</strong>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.25rem 0 0 0;">Updated reporting requirements on Form FC-GPR for overseas venture financing. Chambers template prepared.</p>
+                </div>
+                <span class="dash-badge badge-blue" style="white-space: nowrap;">Compliance Template Ready</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: Corporate Governance Certificates Vault -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Corporate Governance Attestations & Certificates</h3>
+              <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Download All Certificates (.ZIP)</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
+                <div style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.35rem;">&#128220;</div>
+                <strong style="font-size: 0.85rem; color: var(--primary-navy); display: block;">Certificate of Good Standing</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Verified MCA-21 &bull; Oct 2026</span>
+                <a href="../404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
+              </div>
+              <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
+                <div style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.35rem;">&#128196;</div>
+                <strong style="font-size: 0.85rem; color: var(--primary-navy); display: block;">Secretarial Audit Report (MR-3)</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Bar Council Verified &bull; Sept 2026</span>
+                <a href="../404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
+              </div>
+              <div style="background: #fff; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center;">
+                <div style="color: #3b82f6; font-size: 1.5rem; margin-bottom: 0.35rem;">&#128176;</div>
+                <strong style="font-size: 0.85rem; color: var(--primary-navy); display: block;">FDI Compliance Certificate</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">FEMA Foreign Remittance &bull; Aug 2026</span>
+                <a href="../404.html" class="dash-link" style="font-size: 0.75rem; display: block; margin-top: 0.5rem; color: var(--accent-gold);">Download Certified Copy</a>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 4: CONTRACTS (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-contracts">
+          <!-- Section 1: Executed Commercial Contract Vault Header -->
+          <section class="dash-section" style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <h2 style="font-family: var(--font-heading); color: var(--primary-navy); margin: 0 0 0.3rem 0;">Enterprise Commercial Contract Vault</h2>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Encrypted repository of executed client contracts, MSA deeds, liability redlines, and escrow-custody IP licenses.</p>
+              </div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">All Deeds (38)</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Master Services (14)</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">M&A & Share Purchase (6)</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">IP & Tech Licensing (18)</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Contract Lifecycle & Liability Risk Matrix -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Contract Risk & Expiry Exposure</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Continuous Automated Clause Auditing</span>
+            </div>
+            <div class="dash-kpi-grid">
+              <div class="dash-kpi-card" style="border-top: 3px solid #10b981;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Active Executed Agreements</span></div>
+                <div class="dash-kpi-value" style="color: #10b981;">38 Deeds</div>
+                <div class="dash-kpi-footer">Governing law: England & Wales, Singapore, India</div>
+              </div>
+              <div class="dash-kpi-card" style="border-top: 3px solid var(--accent-gold);">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Upcoming 60-Day Renewals</span></div>
+                <div class="dash-kpi-value" style="color: var(--accent-gold);">3 Contracts</div>
+                <div class="dash-kpi-footer">Requires Chambers review before auto-renew</div>
+              </div>
+              <div class="dash-kpi-card" style="border-top: 3px solid #3b82f6;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Average Indemnity Cap</span></div>
+                <div class="dash-kpi-value" style="color: #3b82f6;">1.5x Fees</div>
+                <div class="dash-kpi-footer">Well within industry risk benchmarks</div>
+              </div>
+              <div class="dash-kpi-card" style="border-top: 3px solid #8b5cf6;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Arbitration Clauses</span></div>
+                <div class="dash-kpi-value" style="color: #8b5cf6;">100% SIAC / LCIA</div>
+                <div class="dash-kpi-footer">Standardized dispute resolution protocol</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Commercial Agreements Repository Table -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Active Commercial Agreements Repository</h3>
+              <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Request Redline Review</button>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Agreement Title</th>
+                    <th>Counterparty</th>
+                    <th>Jurisdiction</th>
+                    <th>Effective Date</th>
+                    <th>Notice Period</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Master Enterprise Cloud Services Agreement</strong></td>
+                    <td>Microsoft Ireland Operations Ltd.</td>
+                    <td>Laws of England & Wales</td>
+                    <td>Jan 15, 2024</td>
+                    <td>90 Days Prior</td>
+                    <td><span class="dash-badge badge-green">In Force</span></td>
+                    <td><a href="../404.html" class="dash-link">View Vault Copy</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cross-Border Source Code Escrow Agreement</strong></td>
+                    <td>Iron Mountain UK & Barclays PLC</td>
+                    <td>Singapore (SIAC Rules)</td>
+                    <td>Mar 01, 2025</td>
+                    <td>60 Days Prior</td>
+                    <td><span class="dash-badge badge-green">In Force</span></td>
+                    <td><a href="../404.html" class="dash-link">View Vault Copy</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Series C Share Purchase & Shareholders Deed</strong></td>
+                    <td>Sequoia Capital India Growth Fund</td>
+                    <td>Republic of India (NCLT)</td>
+                    <td>Nov 20, 2024</td>
+                    <td>Perpetual Covenant</td>
+                    <td><span class="dash-badge badge-purple">Charter Enforced</span></td>
+                    <td><a href="../404.html" class="dash-link">View Vault Copy</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Global Hardware Distribution & IP License</strong></td>
+                    <td>Foxconn Technology International</td>
+                    <td>Singapore International Law</td>
+                    <td>Dec 10, 2023</td>
+                    <td>30 Days (Renewing Dec 26)</td>
+                    <td><span class="dash-badge badge-gold">Renewal Pending</span></td>
+                    <td><a href="../404.html" class="dash-link" style="color: var(--accent-gold); font-weight: 600;">Initiate Review</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 4: Pre-Execution Review Dropzone -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Submit Draft Contract for 24-Hour Chambers Review</h3>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Redlining & Risk Mark-Up Service</span>
+            </div>
+            <div style="background: #fff; padding: 2rem; border-radius: var(--radius-md); border: 2px dashed #cbd5e0; text-align: center;">
+              <div style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 0.75rem;">&#128194;</div>
+              <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: var(--primary-navy);">Drag and drop contract file (.DOCX, .PDF)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 0 1.25rem 0; max-width: 500px; margin-left: auto; margin-right: auto;">
+                Chambers associates will review indemnification clauses, dispute forums, consequential damages caps, and IP assignment warranties within 24 business hours.
+              </p>
+              <div style="display: flex; gap: 0.75rem; justify-content: center;">
+                <button type="button" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;">Browse Local Documents</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;">Import from Google Drive</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: Escrow Custody & IP License Deeds -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Escrow Custody & Intellectual Property Assignment Deeds</h3>
+              <span class="badge-blue" style="font-size: 0.75rem; padding: 3px 8px;">Fiduciary Vault</span>
+            </div>
+            <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">Core AI Patent Application Deed (PCT/IN2025/050182)</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Assigned to Apex Technologies Holdings Ltd. &bull; Custody at Chambers Safe Vault</div>
+                </div>
+                <span class="dash-badge badge-green">Dual Fiduciary Escrow</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">Proprietary Machine Learning Model Weights Escrow Agreement</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Released only upon certified trigger event &bull; Tripartite agreement with Escrow Custodian</div>
+                </div>
+                <span class="dash-badge badge-green">Verified In Custody</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 5: CALENDAR (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-calendar">
+          <!-- Section 1: Proceeding Calendar Header -->
+          <section class="dash-section" style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <h2 style="font-family: var(--font-heading); color: var(--primary-navy); margin: 0 0 0.3rem 0;">Judicial Proceedings & Counsel Sittings</h2>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Schedule of Supreme Court hearings, SIAC arbitration sessions, and executive strategy conferences.</p>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Sync to Outlook / Google</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Export Hearing Causelist</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Imminent Judicial Proceedings & Virtual Court Links -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Upcoming Court Hearings & Observation Links</h3>
+              <span class="badge-blue" style="font-size: 0.75rem; padding: 3px 8px;">Authorized Client Access</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold); box-shadow: var(--shadow-sm); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div>
+                  <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700;">MONDAY, NOV 18, 2026 &bull; 10:30 AM IST</span>
+                  <h4 style="margin: 0.25rem 0 0.25rem 0; font-size: 1rem; color: var(--primary-navy);">Supreme Court of India &bull; Courtroom 3 (Item 22)</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">Apex Technologies Ltd. vs. Union of India & Central Tax Board (Final Oral Arguments)</p>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">Lead Counsel: Senior Adv. Rajeshwar Varma &bull; Junior Brief: Adv. Ananya Sen</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <a href="../404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">Join Virtual Court Link</a>
+                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">View Bench Causelist</a>
+                </div>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #3b82f6; box-shadow: var(--shadow-sm); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div>
+                  <span style="font-size: 0.75rem; color: #3b82f6; font-weight: 700;">THURSDAY, NOV 26, 2026 &bull; 02:00 PM SGT (11:30 AM IST)</span>
+                  <h4 style="margin: 0.25rem 0 0.25rem 0; font-size: 1rem; color: var(--primary-navy);">SIAC Singapore Arbitral Hearing &bull; Hybrid Session</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-body); margin: 0;">Apex Technologies vs. Nexus Silicon (Cross-Examination of Technical Expert Witness)</p>
+                  <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">Lead Counsel: Adv. Meera Krishnan &bull; Virtual Hearing Room Maxwell Chambers</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <a href="../404.html" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">SIAC Maxwell Portal</a>
+                  <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">Download Hearing Bundle</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Pre-Hearing Strategy Conferences -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Pre-Hearing Executive Briefings</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Internal Strategy Alignment Sessions</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+                <div style="font-size: 0.75rem; color: #10b981; font-weight: 700;">NOV 16, 2026 &bull; 05:00 PM IST</div>
+                <h4 style="margin: 0.35rem 0 0.25rem 0; font-size: 0.95rem; color: var(--primary-navy);">Pre-Supreme Court Hearing Strategy Alignment</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Final briefing with Adv. Rajeshwar Varma on rebuttal strategy regarding Section 80-IA deduction applicability.</p>
+                <span class="dash-badge badge-blue">Chambers Conference Room A + Zoom</span>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);">
+                <div style="font-size: 0.75rem; color: #10b981; font-weight: 700;">NOV 23, 2026 &bull; 04:00 PM IST</div>
+                <h4 style="margin: 0.35rem 0 0.25rem 0; font-size: 0.95rem; color: var(--primary-navy);">SIAC Expert Witness Prep Session</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Cross-examination dry run with Adv. Meera Krishnan and Apex Chief Architect.</p>
+                <span class="dash-badge badge-blue">Chambers Virtual Boardroom</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Critical Statutory Deadlines -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Critical Statutory Filing Deadlines</h3>
+              <span class="badge-gold" style="font-size: 0.75rem; padding: 3px 8px;">Zero Delay Mandate</span>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Statutory Instrument</th>
+                    <th>Due Date</th>
+                    <th>Filing Entity</th>
+                    <th>Responsible Lead</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Supreme Court Rejoinder Affidavit Submission</strong></td>
+                    <td>Nov 14, 2026</td>
+                    <td>Supreme Court Registry</td>
+                    <td>Adv. Ananya Sen</td>
+                    <td><span class="dash-badge badge-green">Ready for Lodgment</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Annual ROC XBRL Financial Statement</strong></td>
+                    <td>Nov 30, 2026</td>
+                    <td>MCA-21 ROC Portal</td>
+                    <td>Company Secretary & Chambers</td>
+                    <td><span class="dash-badge badge-green">Certified Complete</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>CCI Merger Notification Response</strong></td>
+                    <td>Dec 05, 2026</td>
+                    <td>Competition Commission of India</td>
+                    <td>Adv. Rajeshwar Varma</td>
+                    <td><span class="dash-badge badge-blue">Draft in Review</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 5: Book Boardroom Consultation Form -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Schedule Executive Strategy Briefing with Senior Partners</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Dedicated Retainer Consultation Allotment</span>
+            </div>
+            <form style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);" onsubmit="event.preventDefault(); alert('Consultation request transmitted to Chambers Clerk. Confirmation will be sent within 2 hours.');">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                  <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Senior Partner Requested</label>
+                  <select style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;">
+                    <option>Adv. Rajeshwar Varma (Dispute Resolution & Supreme Court)</option>
+                    <option>Adv. Meera Krishnan (Corporate Governance & International Arbitration)</option>
+                    <option>Adv. Ananya Sen (Corporate Compliance & Contracts)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Preferred Date</label>
+                  <input type="date" value="2026-11-20" style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;">
+                </div>
+                <div>
+                  <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Mode of Briefing</label>
+                  <select style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;">
+                    <option>In-Person at Stackly Chambers New Delhi</option>
+                    <option>Encrypted Video Conference (Privileged Room)</option>
+                    <option>At Client Corporate Headquarters</option>
+                  </select>
+                </div>
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); margin-bottom: 0.35rem;">Agenda / Subject Matter of Briefing</label>
+                <textarea rows="2" placeholder="Describe the transaction, dispute, or governance matter to be reviewed..." style="width: 100%; padding: 0.5rem; border-radius: var(--radius-sm); border: 1px solid #cbd5e0; font-size: 0.85rem;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1.5rem;">Submit Briefing Request</button>
+            </form>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 6: COUNSEL (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-counsel">
+          <!-- Section 1: Advisory Team Header -->
+          <section class="dash-section" style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <h2 style="font-family: var(--font-heading); color: var(--primary-navy); margin: 0 0 0.3rem 0;">Dedicated Retained Chambers Advocates</h2>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Senior advocates, barristers, and corporate counsel assigned exclusively to your enterprise account.</p>
+              </div>
+              <div>
+                <a href="about.html" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Chambers Full Attorney Roster</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Dedicated Legal Team Profile Cards -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Assigned Lead Legal Team</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Direct Access to Chambers Partners</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+              <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
+                <div style="height: 160px; background: #103654; display: flex; align-items: center; justify-content: center; position: relative;">
+                  <img src="../assets/images/attorney_managing_partner.webp" alt="Adv. Rajeshwar Varma" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                </div>
+                <div style="padding: 1.25rem;">
+                  <span class="dash-badge badge-gold" style="margin-bottom: 0.5rem; display: inline-block;">Managing Partner</span>
+                  <h4 style="margin: 0 0 0.25rem 0; font-size: 1.05rem; color: var(--primary-navy);">Adv. Rajeshwar Varma</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">32+ Years Experience &bull; Supreme Court of India & SIAC Lead Advocate</p>
+                  <div style="font-size: 0.8rem; color: var(--text-body); margin-bottom: 1rem;">
+                    <strong>Direct Chambers Extension:</strong> +91 11 4982 7101<br>
+                    <strong>PGP Email:</strong> r.varma@stacklylegal.com
+                  </div>
+                  <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem;">Call Partner Office</button>
+                </div>
+              </div>
+              <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
+                <div style="height: 160px; background: #103654; display: flex; align-items: center; justify-content: center; position: relative;">
+                  <img src="../assets/images/attorney_compliance_head.webp" alt="Adv. Meera Krishnan" style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%;">
+                </div>
+                <div style="padding: 1.25rem;">
+                  <span class="dash-badge badge-blue" style="margin-bottom: 0.5rem; display: inline-block;">Senior Partner &bull; Governance</span>
+                  <h4 style="margin: 0 0 0.25rem 0; font-size: 1.05rem; color: var(--primary-navy);">Adv. Meera Krishnan</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">24+ Years Experience &bull; Corporate Governance & SIAC International Arbitrator</p>
+                  <div style="font-size: 0.8rem; color: var(--text-body); margin-bottom: 1rem;">
+                    <strong>Direct Chambers Extension:</strong> +91 11 4982 7104<br>
+                    <strong>PGP Email:</strong> m.krishnan@stacklylegal.com
+                  </div>
+                  <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem;">Call Partner Office</button>
+                </div>
+              </div>
+              <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-light); overflow: hidden; box-shadow: var(--shadow-sm);">
+                <div style="height: 160px; background: #103654; display: flex; align-items: center; justify-content: center; position: relative;">
+                  <img src="../assets/images/attorney_senior_counsel.webp" alt="Adv. Ananya Sen" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                </div>
+                <div style="padding: 1.25rem;">
+                  <span class="dash-badge badge-green" style="margin-bottom: 0.5rem; display: inline-block;">Lead Legal Associate</span>
+                  <h4 style="margin: 0 0 0.25rem 0; font-size: 1.05rem; color: var(--primary-navy);">Adv. Ananya Sen</h4>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">11+ Years Experience &bull; Commercial Contracts & Daily Case Management</p>
+                  <div style="font-size: 0.8rem; color: var(--text-body); margin-bottom: 1rem;">
+                    <strong>Direct Chambers Extension:</strong> +91 11 4982 7112<br>
+                    <strong>PGP Email:</strong> a.sen@stacklylegal.com
+                  </div>
+                  <button type="button" class="btn btn-secondary" style="width: 100%; font-size: 0.75rem; padding: 0.4rem;">Message Lead Associate</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: 24/7 Enterprise Emergency Counsel Hotline -->
+          <section class="dash-section" style="background: linear-gradient(135deg, #071724 0%, #103654 100%); color: #fff; border-radius: var(--radius-md); padding: 1.75rem; margin-bottom: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.4);">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <span style="background: rgba(239, 68, 68, 0.2); color: #f87171; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700;">24/7 CRITICAL HOTLINE</span>
+                <h3 style="color: #fff; font-family: var(--font-heading); margin: 0.4rem 0 0.3rem 0; font-size: 1.4rem;">Emergency Injunction & Dawn Raid Hotline</h3>
+                <p style="color: #cbd5e0; margin: 0; font-size: 0.85rem; max-width: 600px;">
+                  For urgent search warrants, unexpected regulatory inspections (CCI/ED/SEBI), or ex-parte injunction threats, our rapid response legal squad mobilizes within 15 minutes.
+                </p>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 1.6rem; font-weight: 700; color: #d4af37; font-family: monospace;">+91 11 4982 9999</div>
+                <span style="font-size: 0.75rem; color: #a0aec0;">Priority Enterprise PIN: 4892-APX</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Chambers Practice Specialization Directory -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Chambers Specialized Practice Desks</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Available under Supreme Enterprise Retainer</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">Cross-Border Mergers</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">Due diligence, CCI clearances, cross-border share purchase structures.</p>
+                <a href="practice-mergers-acquisitions.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">International Arbitration</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">SIAC, LCIA, ICC arbitral representation and enforcement of foreign awards.</p>
+                <a href="practice-dispute-resolution.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">Intellectual Property</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">Patent litigation, trademark defense, trade secret protection.</p>
+                <a href="practice-intellectual-property.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+              </div>
+              <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <h4 style="margin: 0 0 0.3rem 0; font-size: 0.95rem; color: var(--primary-navy);">Executive Employment</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.75rem 0;">C-Suite retention, severance protocols, restrictive covenant enforceability.</p>
+                <a href="practice-executive-employment.html" class="dash-link" style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 600;">Practice Desk &rarr;</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: Specialized Outside Counsel Consultation Form -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Request Cross-Border Co-Counsel Referral</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Access Stackly International Network (UK, US, Singapore, UAE)</span>
+            </div>
+            <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <strong style="color: var(--primary-navy); font-size: 0.95rem;">Need Jurisdictional Counsel in London, New York, or DIFC Dubai?</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.25rem 0 0 0;">Through our reciprocal partner agreements with Magic Circle and White-Shoe firms, we coordinate unified legal defense across multi-national forums.</p>
+              </div>
+              <button type="button" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Initiate International Referral</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 7: BILLING (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-billing">
+          <!-- Section 1: Retainer Account & Trust Accounting Ledger Summary -->
+          <section class="dash-section" style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <span class="badge-green" style="font-size: 0.75rem; padding: 3px 8px;">FIDUCIARY CLIENT TRUST ACCOUNT</span>
+                <h2 style="font-family: var(--font-heading); color: var(--primary-navy); margin: 0.35rem 0 0.3rem 0;">Retainer Spend & Escrow Trust Accounting</h2>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Compliant with Bar Council of India Trust Account Rules and standard GAAP fiduciary audit procedures.</p>
+              </div>
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.4rem 0.9rem;">Replenish Retainer Escrow</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Spend Analytics & Value Realization KPIs -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-kpi-grid">
+              <div class="dash-kpi-card" style="border-left: 4px solid var(--accent-gold);">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Current Retainer Balance</span><span class="dash-kpi-badge badge-green">Secured</span></div>
+                <div class="dash-kpi-value">$485,000</div>
+                <div class="dash-kpi-footer">Maintained in State Bank of India Escrow</div>
+              </div>
+              <div class="dash-kpi-card" style="border-left: 4px solid #10b981;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">YTD Legal Fees Realized</span></div>
+                <div class="dash-kpi-value">$320,400</div>
+                <div class="dash-kpi-footer" style="color: #10b981;">28% Savings vs. Non-Retainer Hourly Rates</div>
+              </div>
+              <div class="dash-kpi-card" style="border-left: 4px solid #3b82f6;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Billed This Month (Oct 2026)</span></div>
+                <div class="dash-kpi-value">$28,500</div>
+                <div class="dash-kpi-footer">Covers Supreme Court briefing & SIAC filings</div>
+              </div>
+              <div class="dash-kpi-card" style="border-left: 4px solid #8b5cf6;">
+                <div class="dash-kpi-header"><span class="dash-kpi-title">Disbursed Court Stamp Fees</span></div>
+                <div class="dash-kpi-value">$8,250</div>
+                <div class="dash-kpi-footer">Itemized receipts verified by Registry</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Itemized Monthly Retainer & Matter Invoices Table -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Itemized Retainer Invoices & Fee Statements</h3>
+              <a href="pricing.html" class="dash-link" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">View Chambers Fee Structure &rarr;</a>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Invoice Docket</th>
+                    <th>Billing Cycle</th>
+                    <th>Scope of Chambers Services</th>
+                    <th>Professional Fees</th>
+                    <th>Court Costs Disbursed</th>
+                    <th>Payment Status</th>
+                    <th>Certified PDF</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>INV-2026-OCT-109</strong></td>
+                    <td>October 2026</td>
+                    <td>Supreme Court SLP Drafting & SIAC Cross-Exam Bundling</td>
+                    <td>$24,000</td>
+                    <td>$4,500</td>
+                    <td><span class="dash-badge badge-green">Paid from Escrow</span></td>
+                    <td><a href="../404.html" class="dash-link">Download Invoice</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>INV-2026-SEP-082</strong></td>
+                    <td>September 2026</td>
+                    <td>NCLT Principal Bench Resolution Plan Filing & Statutory Audit</td>
+                    <td>$22,500</td>
+                    <td>$2,800</td>
+                    <td><span class="dash-badge badge-green">Paid from Escrow</span></td>
+                    <td><a href="../404.html" class="dash-link">Download Invoice</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>INV-2026-AUG-047</strong></td>
+                    <td>August 2026</td>
+                    <td>Cross-Border M&A Due Diligence & Employment Restructuring</td>
+                    <td>$31,000</td>
+                    <td>$1,200</td>
+                    <td><span class="dash-badge badge-green">Paid from Escrow</span></td>
+                    <td><a href="../404.html" class="dash-link">Download Invoice</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 4: Instant Escrow Top-Up Module -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Retainer Escrow Replenishment Module</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Instant Wire / RTGS Bank Authentication</span>
+            </div>
+            <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+              <div>
+                <strong style="color: var(--primary-navy); font-size: 0.95rem; display: block; margin-bottom: 0.35rem;">Fiduciary Escrow Account Coordinates</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 0.5rem 0;">Funds remain in designated Bar Council client trust account until fees are earned.</p>
+                <div style="background: #f7fafc; padding: 0.75rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 0.8rem;">
+                  Beneficiary: Stackly Legal Chambers Trust A/c<br>
+                  Bank: State Bank of India, Supreme Court Branch<br>
+                  IFSC: SBIN0001842 &bull; A/c: 948102948194
+                </div>
+              </div>
+              <div>
+                <strong style="color: var(--primary-navy); font-size: 0.95rem; display: block; margin-bottom: 0.35rem;">Quick Retainer Top-Up Amount</strong>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                  <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">+$50,000</button>
+                  <button type="button" class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">+$100,000</button>
+                  <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.35rem 0.7rem;">+$250,000</button>
+                </div>
+                <button type="button" class="btn btn-primary" style="width: 100%; font-size: 0.8rem; padding: 0.5rem;">Generate Fiduciary Deposit Challan</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: Fiduciary Audit Log & Expense Receipts -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Bar Council Fiduciary Audit Ledger</h3>
+              <span class="badge-green" style="font-size: 0.75rem; padding: 3px 8px;">Quarterly Audit Certified</span>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Ledger Entry Date</th>
+                    <th>Disbursement Description</th>
+                    <th>Statutory Entity / Forum</th>
+                    <th>Voucher #</th>
+                    <th>Disbursed Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Oct 28, 2026</td>
+                    <td>Supreme Court Court-Fee Stamp Lodgment</td>
+                    <td>Supreme Court Registry</td>
+                    <td>VCH-SC-8921</td>
+                    <td>$2,450.00</td>
+                  </tr>
+                  <tr>
+                    <td>Oct 19, 2026</td>
+                    <td>SIAC Arbitrator Room Hearing Deposit</td>
+                    <td>Maxwell Chambers Singapore</td>
+                    <td>VCH-SIAC-301</td>
+                    <td>$3,800.00</td>
+                  </tr>
+                  <tr>
+                    <td>Oct 05, 2026</td>
+                    <td>MCA-21 Form Filing Statutory Duties</td>
+                    <td>Ministry of Corporate Affairs</td>
+                    <td>VCH-MCA-918</td>
+                    <td>$750.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+             TAB 8: SETTINGS (5 SECTIONS)
+        =========================================== -->
+        <div class="dash-tab-pane" id="tab-settings">
+          <!-- Section 1: Enterprise Client Entity Profile -->
+          <section class="dash-section" style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div>
+                <h2 style="font-family: var(--font-heading); color: var(--primary-navy); margin: 0 0 0.3rem 0;">Client Entity Profile & Retained Authority</h2>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Authenticated corporate client credentials and authorized legal representatives.</p>
+              </div>
+              <span class="dash-badge badge-green">Enterprise Verified</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Retained Corporate Entity:</span>
+                <div style="font-weight: 600; color: var(--primary-navy);">Apex Technologies India Private Ltd.</div>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Corporate Identity Number (CIN):</span>
+                <div style="font-weight: 600; color: var(--primary-navy);">U72900DL2018PTC339102</div>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Lead Instructing Officer:</span>
+                <div style="font-weight: 600; color: var(--primary-navy);">Vikramaditya Singhania (VP & General Counsel)</div>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Primary Chambers Office:</span>
+                <div style="font-weight: 600; color: var(--primary-navy);">Barakhamba Road Chambers, New Delhi</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Enterprise Authentication & Device Governance -->
+          <section class="dash-section" style="margin-bottom: 1.5rem; background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Enterprise Authentication & Device Access Controls</h3>
+              <span class="dash-badge badge-green">FIPS 140-2 Encrypted</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-body); margin-bottom: 1.25rem;">
+              Client portal access is protected by hardware-bound security keys (WebAuthn / YubiKey) and mutual TLS client authentication to safeguard privileged litigation materials.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Primary Authentication:</span>
+                <div style="font-weight: 700; color: var(--primary-navy); margin-top: 0.25rem;">Enterprise SSO (Okta / Azure AD)</div>
+                <span style="font-size: 0.75rem; color: #10b981; margin-top: 0.25rem; display: inline-block;">Enforced for all Apex Tech officers</span>
+              </div>
+              <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Hardware 2FA / FIDO2:</span>
+                <div style="font-weight: 700; color: var(--primary-navy); margin-top: 0.25rem;">YubiKey 5C NFC Verified</div>
+                <span style="font-size: 0.75rem; color: #10b981; margin-top: 0.25rem; display: inline-block;">Active Key ID: YB-9481-APX</span>
+              </div>
+              <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Session Inactivity Timeout:</span>
+                <div style="font-weight: 700; color: var(--primary-navy); margin-top: 0.25rem;">15 Minutes Inactivity Lock</div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; display: inline-block;">Compliant with ISO 27001 standard</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Attorney-Client Privilege & NDA Enforceability Certificates -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Attorney-Client Privilege Covenants</h3>
+              <span class="badge-blue" style="font-size: 0.75rem; padding: 3px 8px;">Indian Evidence Act &sect;126</span>
+            </div>
+            <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">Mutual Non-Disclosure & Privilege Undertaking</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Executed between Stackly Chambers & Apex Technologies &bull; Perpetual Binding Effect</div>
+                </div>
+                <a href="../404.html" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Download Executed NDA</a>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.95rem;">End-to-End PGP Encryption Keys</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Fingerprint: 4A8F 90B2 331C 77E4 8920 F019 4410 8921 &bull; 4096-bit RSA</div>
+                </div>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Copy Public Key</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Authorized Corporate Officers & Signatory List -->
+          <section class="dash-section" style="margin-bottom: 1.5rem;">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Authorized Enterprise Instructing Officers</h3>
+              <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">Add Authorized Officer</button>
+            </div>
+            <div class="dash-table-container">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Officer Name</th>
+                    <th>Corporate Designation</th>
+                    <th>Chambers Authorization Scope</th>
+                    <th>Access Level</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Vikramaditya Singhania</strong></td>
+                    <td>General Counsel & VP Risk</td>
+                    <td>Full Authority (Litigation, Settlements & Billing)</td>
+                    <td><span class="dash-badge badge-gold">Master Signatory</span></td>
+                    <td><span class="dash-badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pooja Malhotra</strong></td>
+                    <td>Chief Financial Officer (CFO)</td>
+                    <td>Billing, Escrow Releases & Retainers</td>
+                    <td><span class="dash-badge badge-blue">Financial Signatory</span></td>
+                    <td><span class="dash-badge badge-green">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rohan Deshmukh</strong></td>
+                    <td>Head of Corporate Development</td>
+                    <td>M&A Due Diligence & Commercial Vault</td>
+                    <td><span class="dash-badge badge-purple">M&A Reviewer</span></td>
+                    <td><span class="dash-badge badge-green">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 5: Advisory & Hearing Real-Time Notification Preferences -->
+          <section class="dash-section">
+            <div class="dash-section-header">
+              <h3 class="dash-section-title">Real-Time Hearing & Advisory Alert Channels</h3>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Instant SMS & Encrypted Email Triggers</span>
+            </div>
+            <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-light);">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.9rem;">Supreme Court Bench Causelist Item Alerts</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Receive immediate SMS when your matter is 5 items away from calling before the Bench.</div>
+                </div>
+                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--accent-gold);">
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-light);">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.9rem;">SIAC Arbitral Procedural Orders & Deadlines</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Encrypted email notification whenever tribunal issues procedural orders or directives.</div>
+                </div>
+                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--accent-gold);">
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0;">
+                <div>
+                  <strong style="color: var(--primary-navy); font-size: 0.9rem;">Quarterly Statutory Health & ROC Filing Confirmation</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Automatic email with certified MCA SRN receipt upon successful filing submission.</div>
+                </div>
+                <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--accent-gold);">
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

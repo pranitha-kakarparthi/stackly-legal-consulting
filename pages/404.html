@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="404 Page Not Found - Stackly Legal Consulting: The requested document or page is unavailable.">
+  <title>404 - Document Not Found | Stackly Legal Consulting</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body style="margin: 0; padding: 0; background-color: var(--primary-navy-dark); overflow: hidden;">
+
+  <!-- Full Viewport Loader -->
+  <div id="loader-wrapper" role="status" aria-live="polite">
+    <div class="loader-content">
+      <div class="loader-logo-wrap">
+        <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
+      </div>
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <p class="loader-text">Stackly Legal • Error 404</p>
+    </div>
+  </div>
+
+  <!-- Standalone Fixed 404 Container (No Navbar & No Footer) -->
+  <main class="error-page-standalone">
+    <!-- Animated Background Layer -->
+    <div class="error-bg-anim" aria-hidden="true"></div>
+    <div class="error-ambient-circle" aria-hidden="true"></div>
+
+    <!-- Centered Fixed Branded 404 Card -->
+    <div class="error-card-fixed" data-aos="fade-up">
+      <div style="margin-bottom: 1.75rem;">
+        <a href="../index.html" aria-label="Return to Stackly Home">
+          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" style="height: 48px; width: auto; margin: 0 auto;" width="160" height="48">
+        </a>
+      </div>
+
+      <div class="error-code">404</div>
+      <span class="section-tag light" style="margin-bottom: 1rem;">Judicial Notice • Record Under Seal</span>
+      <h1 class="error-title">Document Not Found / Under Injunction</h1>
+      <p class="error-desc">
+        The legal brief, document, or directory requested cannot be found, has been archived into chambers vaults, or remains protected under court confidentiality orders.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="../index.html" class="btn btn-primary btn-lg">Return to Chambers Home</a>
+        <button onclick="window.history.back()" class="btn btn-ghost btn-lg" style="border-color: rgba(255,255,255,0.4);">← Go Back</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

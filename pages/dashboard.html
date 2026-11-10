@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Legal Associate Dashboard - Stackly Legal Consulting: Research, Brief Drafting, Cause Lists, and Limitation Tracking.">
+  <title>Legal Associate Dashboard | Stackly Legal Consulting</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script>
+    (function() {
+      try {
+        var user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        if (user.role === 'Associate Client') {
+          window.location.replace('dashboard-client.html');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Executive Scroll Progress Indicator -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div id="dashSidebarOverlay" class="dash-sidebar-overlay" aria-hidden="true"></div>
+
+  <div class="dashboard-layout">
+    <!-- Redesigned Fixed & Collapsible Dashboard Sidebar -->
+    <aside class="dash-sidebar" aria-label="Associate Dashboard Sidebar Navigation">
+      <div class="dash-sidebar-header">
+        <a href="../index.html" class="brand-logo-link" title="Click to Return to Homepage">
+          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="130" height="35">
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar" title="Collapse Sidebar">&times;</button>
+      </div>
+
+      <!-- Tab Buttons for Individual Option Content -->
+      <nav class="dash-sidebar-menu">
+        <div class="dash-nav-section-title">Core Operations</div>
+        <button class="dash-nav-item active" data-tab="overview" title="Chambers Overview">
+          <span>📊</span>
+          <span class="dash-nav-text">Operations Overview</span>
+        </button>
+        <button class="dash-nav-item" data-tab="matters" title="Briefs & Motion Filings">
+          <span>⚖️</span>
+          <span class="dash-nav-text">Briefs & Filings</span>
+        </button>
+        <button class="dash-nav-item" data-tab="compliance" title="Statutory Research">
+          <span>🛡️</span>
+          <span class="dash-nav-text">Statutory Inquests</span>
+        </button>
+        <button class="dash-nav-item" data-tab="contracts" title="Discovery & Exhibits">
+          <span>📜</span>
+          <span class="dash-nav-text">Discovery & Exhibits</span>
+        </button>
+
+        <div class="dash-nav-section-title">Hearing & Roster</div>
+        <button class="dash-nav-item" data-tab="calendar" title="Cause List & Calendar">
+          <span>📅</span>
+          <span class="dash-nav-text">Cause List & Hearings</span>
+        </button>
+        <button class="dash-nav-item" data-tab="counsel" title="Senior Advocate Roster">
+          <span>👥</span>
+          <span class="dash-nav-text">Chambers Counsel</span>
+        </button>
+
+        <div class="dash-nav-section-title">Account & Security</div>
+        <button class="dash-nav-item" data-tab="billing" title="Billable Hours">
+          <span>💳</span>
+          <span class="dash-nav-text">Billable Timesheets</span>
+        </button>
+        <button class="dash-nav-item" data-tab="settings" title="Associate Security">
+          <span>⚙️</span>
+          <span class="dash-nav-text">Security & Role</span>
+        </button>
+      </nav>
+
+      <div class="dash-sidebar-footer">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="color: var(--accent-gold); font-weight: 700;">Role: Legal Associate</span>
+          <span style="color: #10b981; font-size: 0.75rem;">● Online</span>
+        </div>
+        <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.4;">
+          Salem Chambers HQ<br>
+          Bar Council ID: TN/4821/2021<br>
+          Privileged PGP Terminal Active
+        </div>
+      </div>
+    </aside>
+
+    <!-- Scrollable Main Dashboard Area -->
+    <div class="dash-main-area">
+      <!-- Topbar Header -->
+      <header class="dash-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button id="sidebarToggleBtn" class="dash-mobile-toggle-btn" aria-label="Toggle Dashboard Menu">
+            ☰ <span>Menu</span>
+          </button>
+          <h2 style="font-size: 1.25rem; color: var(--primary-navy); margin: 0;">Chambers Operations Console</h2>
+          <span id="dashUserRole" style="background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.25rem 0.85rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Legal Associate</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1.25rem;">
+          
+
+          <a href="404.html" class="btn btn-ghost btn-sm" style="color: var(--primary-navy); border-color: var(--border-light);" title="Hearing Alerts">
+            🔔 <span style="background: #ef4444; color: #ffffff; border-radius: 50%; padding: 0.1rem 0.4rem; font-size: 0.7rem;">5</span>
+          </a>
+
+          <!-- Profile Badge -->
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div id="dashUserAvatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-navy); color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; border: 2px solid var(--accent-gold);">
+              AS
+            </div>
+            <div style="line-height: 1.2;">
+              <div id="dashUserName" style="font-weight: 700; font-size: 0.875rem; color: var(--primary-navy);">Aditya Sen</div>
+              <div style="font-size: 0.75rem; color: #10b981;">● Drafting Counsel</div>
+            </div>
+          </div>
+
+          <!-- Sign Out CTA -->
+          <button id="dashSignOutBtn" class="btn btn-secondary btn-sm" style="padding: 0.45rem 1rem;">
+            Sign Out
+          </button>
+        </div>
+      </header>
+
+      <!-- Dashboard Main Body with Tab Panes -->
+      <main class="dash-body">
+        
+        <!-- =========================================================================
+             TAB 1: OPERATIONS OVERVIEW (5 Sections)
+             ========================================================================= -->
+        <div id="tab-overview" class="dash-tab-pane active">
+          <!-- Section 1.1: Welcome & Cause List Notice -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Daily Litigation Briefing</span>
+                <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Welcome, Counsel Aditya Sen</h1>
+                <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Today's Supreme Court & Delhi HC listings are live. 3 Special Leave Petitions require final rejoinder sign-off.</p>
+              </div>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="404.html" class="btn btn-primary btn-sm">📋 Today's Cause List</a>
+                <a href="404.html" class="btn btn-secondary btn-sm">🏛️ E-Filing Portal</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 1.2: Associate Quick Action Drafting Shortcuts -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--primary-navy);">⚡ Associate Legal Operations Shortcuts</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <a href="404.html" class="dash-action-btn" style="text-decoration: none; padding: 1.25rem; background: var(--bg-alt); border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; align-items: center; gap: 0.75rem; color: var(--primary-navy); transition: all 0.2s;">
+                <span style="font-size: 1.5rem;">📄</span>
+                <div>
+                  <strong style="display: block; font-size: 0.9rem;">Draft Pleading</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">SLP, Rejoinder, Caveat</span>
+                </div>
+              </a>
+              <a href="404.html" class="dash-action-btn" style="text-decoration: none; padding: 1.25rem; background: var(--bg-alt); border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; align-items: center; gap: 0.75rem; color: var(--primary-navy); transition: all 0.2s;">
+                <span style="font-size: 1.5rem;">🔍</span>
+                <div>
+                  <strong style="display: block; font-size: 0.9rem;">Precedent Search</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">SCC, AIR, Del HC Citations</span>
+                </div>
+              </a>
+              <a href="404.html" class="dash-action-btn" style="text-decoration: none; padding: 1.25rem; background: var(--bg-alt); border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; align-items: center; gap: 0.75rem; color: var(--primary-navy); transition: all 0.2s;">
+                <span style="font-size: 1.5rem;">⏱️</span>
+                <div>
+                  <strong style="display: block; font-size: 0.9rem;">Log Billable Hours</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Client Time Audit Entry</span>
+                </div>
+              </a>
+              <a href="404.html" class="dash-action-btn" style="text-decoration: none; padding: 1.25rem; background: var(--bg-alt); border-radius: var(--radius-md); border: 1px solid var(--border-light); display: flex; align-items: center; gap: 0.75rem; color: var(--primary-navy); transition: all 0.2s;">
+                <span style="font-size: 1.5rem;">🏛️</span>
+                <div>
+                  <strong style="display: block; font-size: 0.9rem;">Certified Copy Order</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Registry Requisition</span>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- Section 1.3: Legal Associate Operations KPI Grid -->
+          <section class="dash-kpi-grid" style="margin-bottom: 2rem;">
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">⚖️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Active Briefs Assigned</span>
+                <span class="kpi-value">6 Matters</span>
+                <span class="kpi-trend positive">↑ 2 from last docket</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">⏱️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Limitation Deadlines</span>
+                <span class="kpi-value">14 Days Remaining</span>
+                <span class="kpi-trend" style="color: #ef4444;">⚠️ 3 Petitions critical</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">📜</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Statutory Accuracy</span>
+                <span class="kpi-value">99.2%</span>
+                <span class="kpi-trend positive">Peer Review Cleared</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(197, 155, 39, 0.15); color: #b0891f;">⏳</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Monthly Billable Hours</span>
+                <span class="kpi-value">142.5 hrs</span>
+                <span class="kpi-trend positive">Target: 160 hrs (89%)</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 1.4: Live Court Cause List & Hearing Schedule Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <div>
+                <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">🏛️ Active Supreme Court & High Court Cause List</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Assigned Associate Research & Bench Representation</span>
+              </div>
+              <a href="404.html" class="btn btn-ghost btn-sm">Export Daily Roster</a>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Docket / Petition</th>
+                    <th>Judicial Forum</th>
+                    <th>Court Hall / Item</th>
+                    <th>Lead Advocate</th>
+                    <th>Limitation / Posture</th>
+                    <th>Associate Task</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>SLP (C) No. 19482/2026</strong><br><small style="color: var(--text-muted);">Apex Tech vs. Union of India</small></td>
+                    <td>Supreme Court of India (Bench 4)</td>
+                    <td><span class="badge" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">Hall 4 • Item 18</span></td>
+                    <td>Alexander Wright, Esq.</td>
+                    <td><span class="badge badge-urgent">Urgent • Final Hearing</span></td>
+                    <td>Compile Compilation of Precedents</td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Open File</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>ARB.P. 842/2026</strong><br><small style="color: var(--text-muted);">Titan Marine vs. Singapore Fuel</small></td>
+                    <td>SIAC Arbitral Tribunal (Seat Singapore)</td>
+                    <td><span class="badge" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">Virtual Session B</span></td>
+                    <td>Eleanor Vance, Partner</td>
+                    <td><span class="badge badge-ongoing">Cross-Exam Stage</span></td>
+                    <td>Verify Witness Exhibit B-14</td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Open File</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>CS(COMM) 140/2026</strong><br><small style="color: var(--text-muted);">Vance Pharma vs. Generic Chem</small></td>
+                    <td>Delhi High Court (Commercial Bench)</td>
+                    <td><span class="badge" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">Court 12 • Item 04</span></td>
+                    <td>Marcus Sterling, Trial Lead</td>
+                    <td><span class="badge badge-urgent">Interim Injunction</span></td>
+                    <td>File Additional Written Submissions</td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Open File</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>COMP.APP(AT) 88/2026</strong><br><small style="color: var(--text-muted);">Global Energy Concession Matter</small></td>
+                    <td>NCLAT Principal Bench, New Delhi</td>
+                    <td><span class="badge" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">Court 2 • Item 27</span></td>
+                    <td>Meera Krishnan, Practice Head</td>
+                    <td><span class="badge badge-pending">Statutory Compliance</span></td>
+                    <td>Upload MCA Form AOC-4 Filing Proof</td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Open File</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 1.5: Statutory Research & Peer Review Pipeline -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">📑 Legal Research & Pleading Drafting Pipeline</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Track Associate drafting milestones from initial research through Senior Partner chamber sign-off.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <strong style="font-size: 0.9rem; color: var(--primary-navy);">Antitrust CCI Rejoinder</strong>
+                  <span class="badge" style="background: rgba(223, 177, 91, 0.2); color: #b0891f;">In Review</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Analysis of Section 3(4) vertical foreclosure precedents under Competition Act 2002.</p>
+                <div style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Supervising Partner: Alexander Wright</div>
+              </div>
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <strong style="font-size: 0.9rem; color: var(--primary-navy);">Patent Invalidation Affidavit</strong>
+                  <span class="badge badge-urgent">Drafting Stage</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Drafting Section 64 revocation grounds on prior art novelty under Indian Patents Act.</p>
+                <div style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Supervising Partner: Marcus Sterling</div>
+              </div>
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <strong style="font-size: 0.9rem; color: var(--primary-navy);">FEMA Statutory Compounding Memo</strong>
+                  <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">Approved</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">RBI Foreign Exchange Management compounding application approved for filing.</p>
+                <div style="font-size: 0.75rem; color: var(--primary-navy); font-weight: 600;">Supervising Partner: Meera Krishnan</div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 2: BRIEFS & PLEADINGS (5 Sections)
+             ========================================================================= -->
+        <div id="tab-matters" class="dash-tab-pane">
+          <!-- Section 2.1: Pleadings Header & Filter -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Pleadings & Motion Practice</span>
+                <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Active Court Petitions & Briefs</h1>
+                <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Comprehensive repository of petitions, counter-affidavits, and interlocutory applications.</p>
+              </div>
+              <a href="404.html" class="btn btn-primary btn-sm">+ Draft New Pleading</a>
+            </div>
+          </section>
+
+          <!-- Section 2.2: Limitation Act Countdown Alert Matrix -->
+          <section class="dash-card" style="margin-bottom: 2rem; border-left: 4px solid #ef4444;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #b91c1c;">⚠️ Statutory Limitation & E-Filing Deadlines</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Mandatory countdown under Limitation Act, 1963. Missed deadlines require formal condonation petitions.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-md); padding: 1rem;">
+                <strong style="color: #b91c1c; font-size: 0.85rem;">SLP Filing Deadline</strong>
+                <div style="font-size: 1.35rem; font-weight: 700; color: #ef4444; margin: 0.25rem 0;">4 Days Left</div>
+                <small style="color: var(--text-muted);">Article 136 • High Court Certified Order</small>
+              </div>
+              <div style="background: rgba(223, 177, 91, 0.1); border: 1px solid rgba(223, 177, 91, 0.3); border-radius: var(--radius-md); padding: 1rem;">
+                <strong style="color: #b0891f; font-size: 0.85rem;">Caveat Renewal Notice</strong>
+                <div style="font-size: 1.35rem; font-weight: 700; color: #b0891f; margin: 0.25rem 0;">12 Days Left</div>
+                <small style="color: var(--text-muted);">Section 148A CPC • 90-Day Expiration</small>
+              </div>
+              <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-md); padding: 1rem;">
+                <strong style="color: #059669; font-size: 0.85rem;">Rejoinder Submission</strong>
+                <div style="font-size: 1.35rem; font-weight: 700; color: #10b981; margin: 0.25rem 0;">19 Days Left</div>
+                <small style="color: var(--text-muted);">Commercial Division Order VI CPC</small>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2.3: Detailed Pleadings Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">Master Docket of Active Petitions</h3>
+              <span class="badge" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">Showing 6 Active Records</span>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Case Title & No.</th>
+                    <th>Jurisdiction</th>
+                    <th>Pleading Type</th>
+                    <th>Date Filed</th>
+                    <th>Associate Lead</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Apex Corp vs. Director General</strong><br><small>SLP (C) 19482/2026</small></td>
+                    <td>Supreme Court</td>
+                    <td>Special Leave Petition</td>
+                    <td>02 Nov 2026</td>
+                    <td>Aditya Sen</td>
+                    <td><span class="badge badge-ongoing">Listed for Admission</span></td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Brief</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Titan Marine vs. Singapore Fuel</strong><br><small>ARB.P. 842/2026</small></td>
+                    <td>SIAC Arbitral</td>
+                    <td>Statement of Claim</td>
+                    <td>18 Oct 2026</td>
+                    <td>Pooja Sharma</td>
+                    <td><span class="badge badge-ongoing">Evidence Stage</span></td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Brief</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vance Pharma vs. Generic Chem</strong><br><small>CS(COMM) 140/2026</small></td>
+                    <td>Delhi High Court</td>
+                    <td>Injunction Application (O.39)</td>
+                    <td>25 Oct 2026</td>
+                    <td>Aditya Sen</td>
+                    <td><span class="badge badge-urgent">Hearing Tomorrow</span></td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Brief</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 2.4: Cross-Examination Evidence Matrix -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">⚖️ Witness Deposition & Cross-Examination Prep Matrix</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Associate preparation dossiers for trial examination under Indian Evidence Act / SIAC Rules.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <strong style="color: var(--primary-navy); display: block; margin-bottom: 0.25rem;">Chief Financial Officer (Defendant Witness 1)</strong>
+                <span style="font-size: 0.75rem; color: #ef4444; font-weight: 700;">Hostile Evidence Target</span>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Key inconsistencies identified between Q3 audit disclosure and Board minute records. 18 interrogation points compiled.</p>
+              </div>
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <strong style="color: var(--primary-navy); display: block; margin-bottom: 0.25rem;">Independent Forensic Software Auditor</strong>
+                <span style="font-size: 0.75rem; color: #10b981; font-weight: 700;">Chambers Expert Witness</span>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Affidavit in lieu of examination-in-chief finalized. Source code similarity hash verified at 94.6% match.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2.5: Senior Partner Review & Approval Workflow -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🖋️ Senior Partner Pleading Sign-Off Registry</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">All pleadings must receive Senior Advocate attestation before electronic submission to court registries.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px; background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid #10b981;">
+                <strong>Alexander Wright, Esq.</strong><br>
+                <small style="color: var(--text-muted);">Signed off SLP (C) 19482/2026 Rejoinder on 08 Nov 2026</small>
+              </div>
+              <div style="flex: 1; min-width: 250px; background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold);">
+                <strong>Eleanor Vance, Partner</strong><br>
+                <small style="color: var(--text-muted);">Reviewing SIAC Witness Compilation (Due in 4 hours)</small>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 3: STATUTORY RESEARCH & INQUESTS (5 Sections)
+             ========================================================================= -->
+        <div id="tab-compliance" class="dash-tab-pane">
+          <!-- Section 3.1: Inquest Header -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Regulatory & Statutory Inquests</span>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Statutory Compliance Inquest Matrix</h1>
+            <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Comprehensive statutory tracking across SEBI (LODR), Companies Act 2013, Competition Commission, and Enforcement Directorate.</p>
+          </section>
+
+          <!-- Section 3.2: Regulatory Authority Compliance Status Tracker -->
+          <section class="dash-kpi-grid" style="margin-bottom: 2rem;">
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">🏛️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">SEBI LODR Compliance</span>
+                <span class="kpi-value">100% Attested</span>
+                <span class="kpi-trend positive">Regulation 24 & 30</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(197, 155, 39, 0.15); color: #b0891f;">🏢</div>
+              <div class="kpi-info">
+                <span class="kpi-title">MCA Company Law</span>
+                <span class="kpi-value">Flawless (48 Retainers)</span>
+                <span class="kpi-trend positive">Zero ROC Injunctions</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">🌐</div>
+              <div class="kpi-info">
+                <span class="kpi-title">FEMA & Cross-Border</span>
+                <span class="kpi-value">Compounded</span>
+                <span class="kpi-trend positive">RBI Master Direction</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">🛡️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">CCI Antitrust Audit</span>
+                <span class="kpi-value">Under Advisory</span>
+                <span class="kpi-trend" style="color: #ef4444;">Form II Clearance Due</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3.3: Corporate Compliance Audit Log & Risk Index Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">Statutory Inquest & Compliance Risk Index Table</h3>
+              <a href="404.html" class="btn btn-ghost btn-sm">Download Audit Matrix PDF</a>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Statutory Code</th>
+                    <th>Governing Body</th>
+                    <th>Applicable Provision</th>
+                    <th>Risk Rating</th>
+                    <th>Compliance Posture</th>
+                    <th>Associate Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>SEBI-LODR-2026</strong></td>
+                    <td>Securities and Exchange Board</td>
+                    <td>Reg 30 Material Event Disclosure</td>
+                    <td><span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Low Risk</span></td>
+                    <td><span class="badge badge-ongoing">Timely Filing Confirmed</span></td>
+                    <td>BOD resolution submitted within 30 min deadline</td>
+                  </tr>
+                  <tr>
+                    <td><strong>MCA-SEC135-2026</strong></td>
+                    <td>Ministry of Corporate Affairs</td>
+                    <td>Section 135 CSR Spending Audit</td>
+                    <td><span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #059669;">Low Risk</span></td>
+                    <td><span class="badge badge-ongoing">Certified by CS</span></td>
+                    <td>Unspent CSR balance transferred to Prime Minister Fund</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CCI-SEC03-2026</strong></td>
+                    <td>Competition Commission</td>
+                    <td>Section 3(4) Exclusive Tie-In Audit</td>
+                    <td><span class="badge badge-urgent">Moderate Exposure</span></td>
+                    <td><span class="badge badge-pending">Advisory Formulated</span></td>
+                    <td>Clause 14 of master agreement recommended for amendment</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 3.4: Binding Precedents Citation Archive -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">📚 Supreme Court & High Court Binding Precedent Citations</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Curated landmark authorities cited in active chambers pleadings.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <strong style="color: var(--primary-navy);">Tata Consultancy Services v. State of AP (2005) 1 SCC 308</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Landmark authority on custom software code qualifying as goods under commercial sales law. Key precedent for IP cases.</p>
+              </div>
+              <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <strong style="color: var(--primary-navy);">BALCO v. Kaiser Aluminium (2012) 9 SCC 552</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Sovereign standard on Part I exclusion in international commercial arbitrations seated outside India.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3.5: Internal Regulatory Advisories & Notices -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">📢 Chambers Regulatory Early Warning Bulletin</h3>
+            <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold);">
+              <strong style="color: var(--primary-navy);">New Digital Personal Data Protection (DPDP) Enforcement Rules</strong>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">Senior Partner Meera Krishnan has circulated guidance on consent manager obligations. All associate teams advising corporate clients must review data processing agreements by Friday.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 4: DISCOVERY & EXHIBITS (5 Sections)
+             ========================================================================= -->
+        <div id="tab-contracts" class="dash-tab-pane">
+          <!-- Section 4.1: Evidence Header -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Evidentiary Custody</span>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Discovery Vault & Privileged Evidence Repository</h1>
+            <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Military-grade encrypted chain of custody for exhibits, source code repositories, and board minutes.</p>
+          </section>
+
+          <!-- Section 4.2: Cryptographic Hash Integrity Verifier -->
+          <section class="dash-card" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(16, 54, 84, 0.04) 0%, rgba(223, 177, 91, 0.08) 100%);">
+            <h3 style="font-size: 1.1rem; color: var(--primary-navy); margin-bottom: 0.35rem;">🔐 SHA-256 Evidentiary Chain of Custody Verifier</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">All uploaded legal evidence is cryptographically stamped under Section 65B of Indian Evidence Act.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+              <code style="background: rgba(16, 54, 84, 0.1); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.8rem; color: var(--primary-navy); flex-grow: 1;">SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 [VERIFIED SECURE]</code>
+              <a href="404.html" class="btn btn-secondary btn-sm">Generate 65B Certificate</a>
+            </div>
+          </section>
+
+          <!-- Section 4.3: Executed Contracts & Agreements Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">Transactional Contracts & Evidentiary Exhibits</h3>
+              <a href="404.html" class="btn btn-ghost btn-sm">+ Upload Exhibit</a>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Exhibit ID</th>
+                    <th>Document Name</th>
+                    <th>Related Matter</th>
+                    <th>Classification</th>
+                    <th>Hash Stamp</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>EX-A14</strong></td>
+                    <td>Master Share Purchase Agreement</td>
+                    <td>SLP (C) 19482/2026</td>
+                    <td><span class="badge" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">Privileged Confidential</span></td>
+                    <td><code>d8e8fca2...</code></td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Inspect</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>EX-B08</strong></td>
+                    <td>SIAC Escrow Deposit Escrow Deed</td>
+                    <td>ARB.P. 842/2026</td>
+                    <td><span class="badge badge-ongoing">Fiduciary Record</span></td>
+                    <td><code>a74c01b9...</code></td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Inspect</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>EX-C22</strong></td>
+                    <td>Proprietary Source Code Repository Audit</td>
+                    <td>CS(COMM) 140/2026</td>
+                    <td><span class="badge badge-urgent">Strict Trade Secret</span></td>
+                    <td><code>c9941a02...</code></td>
+                    <td><a href="404.html" class="btn btn-ghost btn-sm">Inspect</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 4.4: Privilege Log & Protective Order Tracker -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🛡️ Attorney-Client Privilege Log & Redaction Status</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Tracking documents withheld under advocate-client legal advice privilege (Sections 126 & 129 Evidence Act).</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 260px; background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <strong style="color: var(--primary-navy);">Boardroom Strategy Minutes (14 Sessions)</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.5rem 0;">Withheld under absolute legal advice privilege. Court-directed sealed cover inspection pending.</p>
+                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">Protective Seal In Place</span>
+              </div>
+              <div style="flex: 1; min-width: 260px; background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem;">
+                <strong style="color: var(--primary-navy);">Financial Advisory Fee Estimates</strong>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.5rem 0;">Redacted pricing tiers submitted to opposite counsel pursuant to Delhi HC confidentiality club protocol.</p>
+                <span class="badge" style="background: rgba(223, 177, 91, 0.2); color: #b0891f;">Confidentiality Club Formed</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4.5: Forensic Expert Evidence Archive -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🔬 Expert Witness Deposition Archive</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Affidavits, expert valuations, and statutory deposition transcripts ready for cross-examination.</p>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem;">
+              <strong>Chartered Accountant Valuation Report:</strong> Preserved $140M enterprise asset evaluation ready for submission in Bench 4 tomorrow morning.
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 5: CAUSE LIST & HEARINGS (5 Sections)
+             ========================================================================= -->
+        <div id="tab-calendar" class="dash-tab-pane">
+          <!-- Section 5.1: Calendar Header -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Judicial Calendar</span>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Court Appearance & Cause List Roster</h1>
+            <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Comprehensive cause list tracking across Supreme Court, High Courts, SIAC, and Appellate Tribunals.</p>
+          </section>
+
+          <!-- Section 5.2: Cause List Roster Directory -->
+          <section class="dash-kpi-grid" style="margin-bottom: 2rem;">
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">🏛️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Supreme Court Listings</span>
+                <span class="kpi-value">Item 18 • Bench 4</span>
+                <span class="kpi-trend positive">Passover likely at 11:30 AM</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(197, 155, 39, 0.15); color: #b0891f;">🏛️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Delhi High Court</span>
+                <span class="kpi-value">Item 04 • Court 12</span>
+                <span class="kpi-trend positive">First Board at 10:30 AM</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">🌐</div>
+              <div class="kpi-info">
+                <span class="kpi-title">SIAC Singapore</span>
+                <span class="kpi-value">Tribunal Session B</span>
+                <span class="kpi-trend positive">Virtual Room Live at 2:00 PM</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">⏱️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Limitation Watch</span>
+                <span class="kpi-value">2 Petitions Due</span>
+                <span class="kpi-trend" style="color: #ef4444;">E-Filing verification required</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5.3: Cause List Tracking Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">Live Court Hearing Schedule</h3>
+              <a href="404.html" class="btn btn-ghost btn-sm">Sync with Calendar</a>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Hearing Date & Time</th>
+                    <th>Judicial Forum</th>
+                    <th>Matter / Petition</th>
+                    <th>Presiding Bench</th>
+                    <th>Senior Counsel</th>
+                    <th>Associate Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>11 Nov 2026 • 10:30 AM</strong></td>
+                    <td>Supreme Court of India</td>
+                    <td>SLP (C) 19482/2026</td>
+                    <td>Hon'ble CJI & Bench 4</td>
+                    <td>Alexander Wright, Esq.</td>
+                    <td>Handing over Compilations</td>
+                  </tr>
+                  <tr>
+                    <td><strong>11 Nov 2026 • 11:15 AM</strong></td>
+                    <td>Delhi High Court</td>
+                    <td>CS(COMM) 140/2026</td>
+                    <td>Hon'ble Justice Nariman Bench</td>
+                    <td>Marcus Sterling, Trial Lead</td>
+                    <td>Tender Additional Affidavit</td>
+                  </tr>
+                  <tr>
+                    <td><strong>12 Nov 2026 • 02:00 PM</strong></td>
+                    <td>SIAC Arbitral Seat</td>
+                    <td>ARB.P. 842/2026</td>
+                    <td>Sir Anthony Evans Tribunal</td>
+                    <td>Eleanor Vance, Partner</td>
+                    <td>Virtual Deposition Technical Lead</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 5.4: Virtual VC Hearing Credentials -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">💻 Virtual Hearing Room (Cisco Webex / Vidyo) Credentials</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Direct encrypted registry credentials for associate court appearances.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 280px; background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong>Supreme Court Room 4 (Cisco Webex):</strong><br>
+                <small style="color: var(--text-muted);">Meeting ID: 948 2104 8831 • PIN: 636008</small><br>
+                <a href="404.html" style="color: var(--accent-gold); font-size: 0.8rem; font-weight: 600;">Test Registry Audio/Video Link →</a>
+              </div>
+              <div style="flex: 1; min-width: 280px; background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong>Delhi High Court Court 12 (Vidyo Gateway):</strong><br>
+                <small style="color: var(--text-muted);">Room Code: DHC-COMM-12 • Passcode: 103654</small><br>
+                <a href="404.html" style="color: var(--accent-gold); font-size: 0.8rem; font-weight: 600;">Join High Court Registry Session →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5.5: Post-Hearing Order Dispatch Tracker -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">📋 Post-Hearing Daily Decree & Order Requisition Tracker</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Tracking certified copy delivery and decree compliance within 24 hours of pronouncement.</p>
+            <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem;">
+              <strong>High Court Injunction Order:</strong> Interim injunction granted today. Certified copy application #DHC/CC/8491 filed; delivery expected by 4:00 PM.
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 6: CHAMBERS COUNSEL (5 Sections)
+             ========================================================================= -->
+        <div id="tab-counsel" class="dash-tab-pane">
+          <!-- Section 6.1: Counsel Header -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Chambers Roster</span>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Assigned Senior Advocates & Practice Group Leaders</h1>
+            <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Direct supervisory matrix connecting junior research associates with senior trial advocates.</p>
+          </section>
+
+          <!-- Section 6.2: Practice Group Allocation Matrix -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🏢 Practice Group Allocation & Senior Partner Supervision</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Supervisory leads assigned to ongoing matters across trial and constitutional courts.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+              <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong style="color: var(--primary-navy);">Constitutional Litigation</strong><br>
+                <small style="color: var(--text-muted);">Lead: Alexander Wright, Esq.</small>
+              </div>
+              <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong style="color: var(--primary-navy);">Cross-Border Arbitral</strong><br>
+                <small style="color: var(--text-muted);">Lead: Eleanor Vance, Partner</small>
+              </div>
+              <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong style="color: var(--primary-navy);">Commercial Trial & IP</strong><br>
+                <small style="color: var(--text-muted);">Lead: Marcus Sterling, Trial Lead</small>
+              </div>
+              <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong style="color: var(--primary-navy);">Statutory Compliance</strong><br>
+                <small style="color: var(--text-muted);">Lead: Meera Krishnan, Head</small>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6.3: Senior Counsel Roster Profile Cards -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--primary-navy);">👥 Senior Advocates Roster</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+              <div class="attorney-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden;">
+                <div style="height: 200px; overflow: hidden;">
+                  <img src="../assets/images/attorney_managing_partner.webp" alt="Alexander Wright" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                </div>
+                <div style="padding: 1.25rem;">
+                  <strong style="font-size: 1.05rem; color: var(--primary-navy); display: block;">Alexander Wright, Esq.</strong>
+                  <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase;">Senior Managing Partner</span>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.5rem 0;">Supreme Court Bar Association • 18+ Years Bar Standing.</p>
+                  <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">Chamber Memo</a>
+                </div>
+              </div>
+              <div class="attorney-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden;">
+                <div style="height: 200px; overflow: hidden;">
+                  <img src="../assets/images/attorney_senior_counsel.webp" alt="Eleanor Vance" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                </div>
+                <div style="padding: 1.25rem;">
+                  <strong style="font-size: 1.05rem; color: var(--primary-navy); display: block;">Eleanor Vance, Partner</strong>
+                  <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase;">Head of Cross-Border Arbitral</span>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.5rem 0;">SIAC & LCIA Arbitral Fellow • Cross-Border M&A lead.</p>
+                  <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">Chamber Memo</a>
+                </div>
+              </div>
+              <div class="attorney-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); overflow: hidden;">
+                <div style="height: 200px; overflow: hidden;">
+                  <img src="../assets/images/attorney_compliance_head.webp" alt="Meera Krishnan" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%;">
+                </div>
+                <div style="padding: 1.25rem;">
+                  <strong style="font-size: 1.05rem; color: var(--primary-navy); display: block;">Meera Krishnan</strong>
+                  <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; text-transform: uppercase;">Compliance Practice Head</span>
+                  <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.5rem 0;">Former member NACAS • Boardroom Governance Counsel.</p>
+                  <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">Chamber Memo</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6.4: Junior Associate Research Allocation Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">Junior Associate Case Assignment Roster</h3>
+              <a href="404.html" class="btn btn-ghost btn-sm">+ Reassign Matter</a>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Associate Name</th>
+                    <th>Bar Enrolment</th>
+                    <th>Assigned Senior Partner</th>
+                    <th>Current Matter Focus</th>
+                    <th>Weekly Realization</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Aditya Sen (You)</strong></td>
+                    <td>TN/4821/2021</td>
+                    <td>Alexander Wright, Esq.</td>
+                    <td>Supreme Court SLP Rejoinders</td>
+                    <td><span class="badge badge-ongoing">38.5 hrs logged</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pooja Sharma</strong></td>
+                    <td>D/1942/2022</td>
+                    <td>Eleanor Vance</td>
+                    <td>SIAC Maritime Arbitration Witness Cross</td>
+                    <td><span class="badge badge-ongoing">36.0 hrs logged</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Karan Malhotra</strong></td>
+                    <td>MAH/5820/2023</td>
+                    <td>Marcus Sterling</td>
+                    <td>High Court Commercial Evidence Tagging</td>
+                    <td><span class="badge badge-ongoing">34.5 hrs logged</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 6.5: Emergency Mentioning Dispatch Desk -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🚨 Emergency Injunction & Mentioning Protocol Desk</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Direct protocol for emergency mentioning before Vacation Benches and Chief Justice Courts.</p>
+            <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); border-left: 3px solid #ef4444;">
+              <strong>Emergency Bench Mentioning Hotline:</strong> In case of urgent ex-parte freeze, contact Senior Registrar desk with Caveat search report within 60 minutes.
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 7: BILLABLE TIMESHEETS (5 Sections)
+             ========================================================================= -->
+        <div id="tab-billing" class="dash-tab-pane">
+          <!-- Section 7.1: Billables Header -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Associate Timekeeping</span>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Billable Hours & Timesheet Ledger</h1>
+            <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Fiduciary timekeeping records for cross-border corporate billing and partner realization.</p>
+          </section>
+
+          <!-- Section 7.2: Associate Utilization KPI Cards -->
+          <section class="dash-kpi-grid" style="margin-bottom: 2rem;">
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 54, 84, 0.1); color: var(--primary-navy);">⏱️</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Monthly Billed Hours</span>
+                <span class="kpi-value">142.5 hrs</span>
+                <span class="kpi-trend positive">↑ 12% vs last month</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">💰</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Billable Hourly Rate</span>
+                <span class="kpi-value">₹8,500 / hr</span>
+                <span class="kpi-trend positive">Approved Tier II</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(197, 155, 39, 0.15); color: #b0891f;">📈</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Realization Rate</span>
+                <span class="kpi-value">96.8%</span>
+                <span class="kpi-trend positive">Partner Approved</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon-wrap" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">⏳</div>
+              <div class="kpi-info">
+                <span class="kpi-title">Unbilled Matter Work</span>
+                <span class="kpi-value">6.5 hrs</span>
+                <span class="kpi-trend" style="color: #ef4444;">Pending timesheet entry</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 7.3: Daily Timesheet Entry Table -->
+          <section class="data-table-card" style="margin-bottom: 2rem;">
+            <div class="table-header-bar">
+              <h3 style="font-size: 1.15rem; margin: 0; color: var(--primary-navy);">Recent Associate Timesheet Entries</h3>
+              <a href="404.html" class="btn btn-primary btn-sm">+ Log New Entry</a>
+            </div>
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Client Matter</th>
+                    <th>Activity Description</th>
+                    <th>Hours</th>
+                    <th>Rate</th>
+                    <th>Partner Approval</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>09 Nov 2026</strong></td>
+                    <td>Apex Tech SLP Matter</td>
+                    <td>Legal Research on Art. 136 precedents & SLP draft</td>
+                    <td><strong>6.5 hrs</strong></td>
+                    <td>₹8,500/hr</td>
+                    <td><span class="badge badge-ongoing">Approved (Wright)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>08 Nov 2026</strong></td>
+                    <td>Titan Marine SIAC</td>
+                    <td>Cross-examination preparation of witness B-14</td>
+                    <td><strong>7.0 hrs</strong></td>
+                    <td>₹8,500/hr</td>
+                    <td><span class="badge badge-ongoing">Approved (Vance)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>07 Nov 2026</strong></td>
+                    <td>Vance Pharma HC Trial</td>
+                    <td>Drafting interim injunction rejoinder affidavit</td>
+                    <td><strong>5.5 hrs</strong></td>
+                    <td>₹8,500/hr</td>
+                    <td><span class="badge badge-ongoing">Approved (Sterling)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 7.4: Registry Fee Disbursements & Vouchers -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🏛️ Court Fee Disbursements & Registry Stamp Vouchers</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Tracking out-of-pocket statutory fee disbursements reimbursable by client retainers.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px; background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong>Supreme Court Registry E-Stamps:</strong> ₹18,400 disbursed for SLP 19482/2026 filing. Receipt #SC-ESTAMP-8491.
+              </div>
+              <div style="flex: 1; min-width: 250px; background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md);">
+                <strong>SIAC Virtual Hearing Filing Fee:</strong> SGD $1,250 court clerk disbursement booked against Titan Marine escrow.
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 7.5: Monthly Performance Statement -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">📊 Monthly Realization & Incentive Summary</h3>
+            <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <strong>Current Quarter Milestone Target:</strong> 450 Billable Hours (382 completed). On track for Senior Associate Promotion review.
+              </div>
+              <a href="404.html" class="btn btn-secondary btn-sm">Download Performance PDF</a>
+            </div>
+          </section>
+        </div>
+
+        <!-- =========================================================================
+             TAB 8: SECURITY & ROLE (5 Sections)
+             ========================================================================= -->
+        <div id="tab-settings" class="dash-tab-pane">
+          <!-- Section 8.1: Settings Header -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Chambers Administration</span>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">Associate Security & Role Management</h1>
+            <p style="color: var(--text-muted); font-size: 0.925rem; margin: 0;">Configure digital bar signatures, attorney privilege PGP keys, and switch portal roles.</p>
+          </section>
+
+          <!-- Section 8.2: Associate Session Authentication & Audit -->
+          <section class="dash-card" style="margin-bottom: 2rem; border-left: 4px solid var(--accent-gold);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+              <div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.35rem; color: var(--primary-navy); font-family: var(--font-heading);">Chambers Associate Session & Privilege Cryptographic Verification</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Bar Council compliant digital signature token (DSC Class 3) and cryptographic session audit.</p>
+              </div>
+              <span class="badge-status badge-active">Session Verified</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; background: #f8fafc; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Authenticated Role:</span>
+                <div style="font-weight: 700; color: var(--primary-navy); margin-top: 0.25rem;">Legal Associate</div>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">DSC Token Serial:</span>
+                <div style="font-weight: 700; color: var(--primary-navy); margin-top: 0.25rem; font-family: monospace;">IN-DEL-DSC-9481-2026</div>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Session IP & Location:</span>
+                <div style="font-weight: 700; color: var(--primary-navy); margin-top: 0.25rem;">14.139.60.22 (Chambers LAN)</div>
+              </div>
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Session Expiry:</span>
+                <div style="font-weight: 700; color: #10b981; margin-top: 0.25rem;">Auto-Renews with Activity</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 8.3: Digital Bar Signatures & PGP Keys -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🔐 Bar Council Digital Certificate & DSC Dongle</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Class 3 Digital Signature Certificate (DSC) for Supreme Court and High Court e-filing.</p>
+            <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <strong>DSC Token: ID-Sign 2026 (Class 3 Signing)</strong><br>
+                <small style="color: #10b981;">Valid until: 14 Oct 2028 • Driver Status: Connected</small>
+              </div>
+              <a href="404.html" class="btn btn-secondary btn-sm">Renew Token</a>
+            </div>
+          </section>
+
+          <!-- Section 8.4: Two-Factor Authentication & IP Whitelisting -->
+          <section class="dash-card" style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">🛡️ Hardware 2FA & IP Access Lockdown</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Mandatory attorney-client privilege protection protocols.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1rem;">
+                <strong>Hardware Security Key (FIDO2)</strong><br>
+                <small style="color: #10b981;">● Active (YubiKey 5C NFC)</small>
+              </div>
+              <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1rem;">
+                <strong>Chambers Static IP Whitelist</strong><br>
+                <small style="color: var(--primary-navy);">49.207.184.22 (Salem Chambers LAN)</small>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 8.5: Notification & Cause List Dispatch Preferences -->
+          <section class="dash-card">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--primary-navy);">📲 Cause List & Registry SMS/Email Alerts</h3>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem;">
+              <strong>Active Channels:</strong> SMS to +91 9876543210 and PGP Encrypted email to a.sen@stacklylegal.com for all daily causelist item announcements.
+            </div>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

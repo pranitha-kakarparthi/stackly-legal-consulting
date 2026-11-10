@@ -3,7 +3,7 @@
  * Version 2.1 - Production Ready with BackToTop & Collapsible Sidebar
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   initLoader();
   initStickyHeader();
   initMobileMenu();
@@ -26,7 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initInteractiveHeroWidgets();
   initHeroPedestal();
   initHero3DTilt();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+// Immediate invocation for instantaneous response
+initLoader();
 
 /* ==========================================================================
    1. LOADER INITIALIZATION
@@ -35,18 +44,24 @@ function initLoader() {
   const loader = document.getElementById('loader-wrapper');
   if (!loader) return;
 
+  let hidden = false;
   const hideLoader = () => {
+    if (hidden) return;
+    hidden = true;
     loader.classList.add('loader-hidden');
     setTimeout(() => {
-      if (loader.parentNode) loader.parentNode.removeChild(loader);
-    }, 600);
+      if (loader && loader.parentNode) {
+        loader.parentNode.removeChild(loader);
+      }
+    }, 250);
   };
 
-  if (document.readyState === 'complete') {
-    setTimeout(hideLoader, 300);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    hideLoader();
   } else {
-    window.addEventListener('load', () => setTimeout(hideLoader, 250));
-    setTimeout(hideLoader, 1500); // Fallback timeout
+    document.addEventListener('DOMContentLoaded', hideLoader);
+    window.addEventListener('load', hideLoader);
+    setTimeout(hideLoader, 400);
   }
 }
 
@@ -84,6 +99,12 @@ function initMobileMenu() {
   const overlay = document.querySelector('.mobile-nav-overlay');
   if (!hamburger || !overlay) return;
 
+  const closeMenu = () => {
+    hamburger.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  };
+
   const toggleMenu = () => {
     const isOpen = hamburger.classList.toggle('active');
     overlay.classList.toggle('active');
@@ -92,12 +113,34 @@ function initMobileMenu() {
 
   hamburger.addEventListener('click', toggleMenu);
 
-  // Close when clicking overlay or any direct link inside (except dropdown button)
+  // Close button with 'X' icon inside mobile nav header
+  const closeBtns = overlay.querySelectorAll('.mobile-nav-close-btn');
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMenu();
+    });
+  });
+
+  // Close on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+
+  // Close when clicking overlay backdrop outside links
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closeMenu();
+    }
+  });
+
+  // Close when clicking any direct link inside (except dropdown toggles)
   overlay.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.classList.remove('no-scroll');
+      closeMenu();
     });
   });
 }
@@ -444,7 +487,12 @@ function initFormValidations() {
       localStorage.setItem('currentUser', JSON.stringify(userSession));
       localStorage.setItem('role', roleField.value);
 
-      window.location.href = 'dashboard.html';
+      const isPagesDir = window.location.pathname.includes('/pages/') || window.location.href.includes('/pages/');
+      if (roleField.value === 'Associate Client') {
+        window.location.href = isPagesDir ? 'dashboard-client.html' : 'pages/dashboard-client.html';
+      } else {
+        window.location.href = isPagesDir ? 'dashboard-associate.html' : 'pages/dashboard-associate.html';
+      }
     });
   }
 
@@ -554,76 +602,55 @@ function initFormValidations() {
    11. DASHBOARD PORTAL LOGIC (Fixed Sidebar + Collapse + Tabs + Role Switch)
    ========================================================================== */
 function initDashboard() {
-  const dashContainer = document.querySelector('.dashboard-layout');
+  const dashContainer = document.querySelector('.dashboard-layout, .dash-layout');
   if (!dashContainer) return;
 
-  // Verify authentication or default to Alexander Wright
+  // Default to Legal Associate (Ananya Sen)
   const sessionStr = localStorage.getItem('currentUser');
   if (!sessionStr) {
     const demoUser = {
-      name: 'Alexander Wright',
-      email: 'a.wright@firmchambers.com',
-      role: 'Managing Partner',
+      name: 'Ananya Sen',
+      email: 'a.sen@stacklylegal.com',
+      role: 'Legal Associate',
       loginTimestamp: new Date().toISOString(),
       isLoggedIn: true
     };
     localStorage.setItem('currentUser', JSON.stringify(demoUser));
+    localStorage.setItem('role', 'Legal Associate');
   }
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-  const userRole = currentUser.role || 'Managing Partner';
-  const userName = currentUser.name || 'Counsel';
+  const userRole = currentUser.role || 'Legal Associate';
+  const userName = currentUser.name || (userRole === 'Associate Client' ? 'Vikramaditya S.' : 'Ananya Sen');
 
-  // Update DOM elements in topbar
-  const nameEl = document.getElementById('dashUserName');
-  const roleEl = document.getElementById('dashUserRole');
-  const avatarEl = document.getElementById('dashUserAvatar');
+  // Update DOM elements in topbar/badge
+  const nameEl = document.getElementById('dashUserName') || document.querySelector('.dash-user-name');
+  const roleEl = document.getElementById('dashUserRole') || document.querySelector('.dash-user-role');
+  const avatarEl = document.getElementById('dashUserAvatar') || document.querySelector('.dash-user-avatar');
 
   if (nameEl) nameEl.textContent = userName;
   if (roleEl) roleEl.textContent = userRole;
-  if (avatarEl) {
+  if (avatarEl && !avatarEl.querySelector('img')) {
     const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-    avatarEl.textContent = initials || 'SC';
+    avatarEl.textContent = initials || (userRole === 'Associate Client' ? 'VS' : 'AS');
   }
 
-  // Dynamic role-based statistics adaptation
-  const roleKpis = {
-    'Managing Partner': { kpi1: '48', kpi2: '99.4%', kpi3: '164 hrs', kpi4: '$1.42M' },
-    'Corporate Counsel': { kpi1: '14', kpi2: '98.8%', kpi3: '86 hrs', kpi4: '$450K' },
-    'Enterprise Client': { kpi1: '6', kpi2: '100%', kpi3: '22 hrs', kpi4: '$180K' },
-    'Legal Associate': { kpi1: '28', kpi2: '97.5%', kpi3: '142 hrs', kpi4: '$290K' }
-  };
-
-  const updateKpiDisplay = (role) => {
-    const currentKpi = roleKpis[role] || roleKpis['Managing Partner'];
-    const kpi1El = document.getElementById('kpiVal1');
-    const kpi2El = document.getElementById('kpiVal2');
-    const kpi3El = document.getElementById('kpiVal3');
-    const kpi4El = document.getElementById('kpiVal4');
-
-    if (kpi1El) kpi1El.textContent = currentKpi.kpi1;
-    if (kpi2El) kpi2El.textContent = currentKpi.kpi2;
-    if (kpi3El) kpi3El.textContent = currentKpi.kpi3;
-    if (kpi4El) kpi4El.textContent = currentKpi.kpi4;
-  };
-
-  updateKpiDisplay(userRole);
-
-  // --- TAB SWITCHING LOGIC (All 8 Subsections) ---
-  const navItems = document.querySelectorAll('.dash-nav-item[data-tab]');
-  const tabPanes = document.querySelectorAll('.dash-tab-pane');
-  const sidebar = document.querySelector('.dash-sidebar');
+  // --- SIDEBAR & DOM ELEMENTS ---
+  const sidebar = document.getElementById('dashSidebar') || document.querySelector('.dash-sidebar');
+  const mainArea = document.querySelector('.dash-main-area, .dash-main-wrap');
+  const sidebarCloseBtn = document.getElementById('sidebarCloseBtn') || document.querySelector('.sidebar-close-btn');
+  const sidebarOpenBtn = document.getElementById('sidebarOpenBtn') || document.getElementById('sidebarToggleBtn') || document.querySelector('.dash-menu-toggle, .dash-mobile-toggle-btn');
   const sidebarOverlay = document.getElementById('dashSidebarOverlay');
-  const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
-  const mobileToggleBtn = document.getElementById('sidebarToggleBtn');
-  const collapseBtn = document.getElementById('sidebarCollapseBtn');
-  const mainArea = document.querySelector('.dash-main-area');
 
-  const closeMobileSidebar = () => {
+  const closeSidebarMobile = () => {
     if (sidebar) sidebar.classList.remove('open');
     if (sidebarOverlay) sidebarOverlay.classList.remove('active');
     document.body.classList.remove('no-scroll');
   };
+
+  // --- TAB SWITCHING LOGIC (All 8 Subsections) ---
+  const navItems = document.querySelectorAll('.dash-nav-item[data-tab]');
+  const tabPanes = document.querySelectorAll('.dash-tab-pane');
 
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -631,11 +658,9 @@ function initDashboard() {
       const tabKey = item.getAttribute('data-tab');
       if (!tabKey) return;
 
-      // Update nav active status
       navItems.forEach(n => n.classList.remove('active'));
       item.classList.add('active');
 
-      // Update tab pane active status
       tabPanes.forEach(pane => {
         if (pane.id === `tab-${tabKey}`) {
           pane.classList.add('active');
@@ -644,71 +669,77 @@ function initDashboard() {
         }
       });
 
-      // Scroll view to top smoothly
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Close mobile drawer if open
       if (window.innerWidth <= 991) {
-        closeMobileSidebar();
+        closeSidebarMobile();
       }
     });
   });
 
-  // --- SIDEBAR COLLAPSE & MOBILE DRAWER LOGIC ---
-  const isCollapsed = localStorage.getItem('dashSidebarCollapsed') === 'true';
-  if (isCollapsed && sidebar && mainArea && window.innerWidth > 991) {
+  // Ensure an active tab is displayed on load
+  const activePane = document.querySelector('.dash-tab-pane.active');
+  if (!activePane && tabPanes.length > 0) {
+    tabPanes[0].classList.add('active');
+    const firstTabKey = tabPanes[0].id.replace('tab-', '');
+    const matchingNav = document.querySelector(`.dash-nav-item[data-tab="${firstTabKey}"]`);
+    if (matchingNav) {
+      navItems.forEach(n => n.classList.remove('active'));
+      matchingNav.classList.add('active');
+    }
+  }
+
+  // --- SIDEBAR COLLAPSE & MOBILE DRAWER LOGIC (WITH 'X' ICON) ---
+
+  // 'X' button collapses or closes sidebar
+  if (sidebarCloseBtn) {
+    sidebarCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (window.innerWidth <= 991) {
+        closeSidebarMobile();
+      } else {
+        if (sidebar && mainArea) {
+          const isCollapsed = sidebar.classList.toggle('collapsed');
+          mainArea.classList.toggle('sidebar-collapsed', isCollapsed);
+          localStorage.setItem('dashSidebarCollapsed', isCollapsed);
+        }
+      }
+    });
+  }
+
+  // Open sidebar on mobile
+  if (sidebarOpenBtn && sidebar) {
+    sidebarOpenBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (window.innerWidth <= 991) {
+        sidebar.classList.add('open');
+        if (sidebarOverlay) sidebarOverlay.classList.add('active');
+        document.body.classList.add('no-scroll');
+      } else {
+        sidebar.classList.remove('collapsed');
+        if (mainArea) mainArea.classList.remove('sidebar-collapsed');
+        localStorage.setItem('dashSidebarCollapsed', 'false');
+      }
+    });
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeSidebarMobile);
+  }
+
+  // Restore collapsed state on desktop
+  const wasCollapsed = localStorage.getItem('dashSidebarCollapsed') === 'true';
+  if (wasCollapsed && window.innerWidth > 991 && sidebar && mainArea) {
     sidebar.classList.add('collapsed');
     mainArea.classList.add('sidebar-collapsed');
   }
 
-  if (collapseBtn && sidebar && mainArea) {
-    collapseBtn.addEventListener('click', () => {
-      const nowCollapsed = sidebar.classList.toggle('collapsed');
-      mainArea.classList.toggle('sidebar-collapsed', nowCollapsed);
-      localStorage.setItem('dashSidebarCollapsed', nowCollapsed);
-    });
-  }
-
-  if (mobileToggleBtn && sidebar) {
-    mobileToggleBtn.addEventListener('click', () => {
-      const isOpen = sidebar.classList.toggle('open');
-      if (sidebarOverlay) sidebarOverlay.classList.toggle('active', isOpen);
-      document.body.classList.toggle('no-scroll', isOpen);
-    });
-  }
-
-  if (sidebarCloseBtn) {
-    sidebarCloseBtn.addEventListener('click', closeMobileSidebar);
-  }
-
-  if (sidebarOverlay) {
-    sidebarOverlay.addEventListener('click', closeMobileSidebar);
-  }
-
-  // --- MOCK ROLE SWITCHER IN TAB 8 (SETTINGS) ---
-  const mockRoleSelect = document.getElementById('mockRoleSelect');
-  if (mockRoleSelect) {
-    mockRoleSelect.value = userRole;
-    mockRoleSelect.addEventListener('change', () => {
-      const selectedRole = mockRoleSelect.value;
-      const userObj = JSON.parse(localStorage.getItem('currentUser') || '{}');
-      userObj.role = selectedRole;
-      localStorage.setItem('currentUser', JSON.stringify(userObj));
-      localStorage.setItem('role', selectedRole);
-
-      if (roleEl) roleEl.textContent = selectedRole;
-      updateKpiDisplay(selectedRole);
-    });
-  }
-
-  // --- SIGN OUT HANDLER ---
-  const signOutBtn = document.getElementById('dashSignOutBtn');
-  if (signOutBtn) {
-    signOutBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+  // Sign out button
+  const signOutBtn = document.getElementById('dashSignOutBtn') || document.querySelector('.dash-sidebar-footer .btn');
+  if (signOutBtn && signOutBtn.getAttribute('href') && signOutBtn.getAttribute('href').includes('sign-in')) {
+    signOutBtn.addEventListener('click', () => {
       localStorage.removeItem('currentUser');
       localStorage.removeItem('role');
-      window.location.href = 'sign-in.html';
     });
   }
 

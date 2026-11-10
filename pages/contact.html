@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
     <!-- Executive Scroll Progress Indicator -->
@@ -31,7 +31,7 @@
       <div class="loader-content">
         <div class="loader-logo-wrap">
           <img
-            src="images/logoStackly.webp"
+            src="../assets/images/logoStackly.webp"
             alt="Stackly Legal Consulting Logo"
             width="160"
             height="42"
@@ -47,12 +47,12 @@
       <div class="container">
         <div class="nav-container">
           <a
-            href="index.html"
+            href="../index.html"
             class="brand-logo-link"
             aria-label="Stackly Home"
           >
             <img
-              src="images/logoStackly.webp"
+              src="../assets/images/logoStackly.webp"
               alt="Stackly Legal Consulting Logo"
               class="brand-logo-img"
               width="150"
@@ -62,7 +62,7 @@
 
           <!-- Desktop Menu -->
           <nav class="nav-menu-desktop" aria-label="Main Navigation">
-            <a href="index.html" class="nav-link">Home</a>
+            <a href="../index.html" class="nav-link">Home</a>
             <a href="about.html" class="nav-link">About Us</a>
             <div class="nav-item-dropdown">
               <a
@@ -122,9 +122,15 @@
     </header>
 
     <!-- Mobile Menu Drawer Overlay with Dropdown -->
-    <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
+        <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
+      <div class="mobile-nav-header">
+        <a href="../index.html" class="brand-logo-link">
+          <img src="../assets/images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="140" height="38">
+        </a>
+        <button type="button" class="mobile-nav-close-btn" aria-label="Close Navigation Menu">&times;</button>
+      </div>
       <div class="mobile-menu-list">
-        <a href="index.html" class="mobile-link">Home</a>
+        <a href="../index.html" class="mobile-link">Home</a>
         <a href="about.html" class="mobile-link">About Us</a>
 
         <!-- Interactive Practice Areas Accordion Dropdown -->
@@ -189,7 +195,7 @@
           <div class="subpage-hero-grid">
             <div data-aos="fade-up">
               <nav class="breadcrumbs" aria-label="Breadcrumb">
-                <a href="index.html">Home</a>
+                <a href="../index.html">Home</a>
                 <span class="sep">/</span>
                 <span class="current">Privileged Retainer Intake</span>
               </nav>
@@ -827,9 +833,9 @@
         <div class="footer-grid">
           <!-- Col 1: Brand Info -->
           <div>
-            <a href="index.html" aria-label="Stackly Home">
+            <a href="../index.html" aria-label="Stackly Home">
               <img
-                src="images/logoStackly.webp"
+                src="../assets/images/logoStackly.webp"
                 alt="Stackly Legal Consulting Logo"
                 class="footer-logo-img"
                 width="160"
@@ -886,7 +892,7 @@
           <div>
             <h4 class="footer-heading">Quick Links</h4>
             <ul class="footer-links-list">
-              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="../index.html" class="footer-link">Home</a></li>
               <li><a href="about.html" class="footer-link">About Us</a></li>
               <li>
                 <a href="services.html" class="footer-link">Practice Areas</a>
@@ -1016,6 +1022,6 @@
       ↑
     </button>
 
-    <script src="js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
   </body>
 </html>
