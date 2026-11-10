@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroCarousel();
   initScrollProgress();
   initHeroParallax();
+  initHeroCanvas();
+  initHeroSpotlight();
+  initDynamicHeadline();
+  initInteractiveHeroWidgets();
+  initHeroPedestal();
+  initHero3DTilt();
 });
 
 /* ==========================================================================
@@ -901,5 +907,472 @@ function initHeroParallax() {
         rafId = requestAnimationFrame(updateCardTransform);
       }
     });
+  });
+}
+
+/* ==========================================================================
+   15. INTERACTIVE HERO CANVAS (Drifting Judicial Constellation Network)
+   ========================================================================== */
+function initHeroCanvas() {
+  const canvases = document.querySelectorAll('.hero-interactive-canvas');
+  if (!canvases.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  canvases.forEach(canvas => {
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let mouse = { x: null, y: null, maxDist: 140 };
+    let isVisible = true;
+    let rafId = null;
+
+    const resize = () => {
+      width = canvas.width = parent.offsetWidth;
+      height = canvas.height = parent.offsetHeight;
+      initParticles();
+    };
+
+    const initParticles = () => {
+      particles = [];
+      const count = Math.min(Math.floor((width * height) / 18000), 50);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: Math.random() * 2 + 1.2,
+          color: i % 3 === 0 ? 'rgba(223, 177, 91, ' : 'rgba(74, 144, 226, ',
+          alpha: Math.random() * 0.5 + 0.3
+        });
+      }
+    };
+
+    const draw = () => {
+      if (!isVisible) return;
+
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+
+        p1.x += p1.vx;
+        p1.y += p1.vy;
+
+        if (p1.x < 0 || p1.x > width) p1.vx *= -1;
+        if (p1.y < 0 || p1.y > height) p1.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p1.color + p1.alpha + ')';
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            const lineAlpha = (1 - dist / 110) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(223, 177, 91, ${lineAlpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const mdx = p1.x - mouse.x;
+          const mdy = p1.y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+          if (mdist < mouse.maxDist) {
+            const mAlpha = (1 - mdist / mouse.maxDist) * 0.35;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(223, 177, 91, ${mAlpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      rafId = requestAnimationFrame(draw);
+    };
+
+    parent.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    parent.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !rafId) {
+          rafId = requestAnimationFrame(draw);
+        } else if (!isVisible && rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      });
+    }, { threshold: 0.05 });
+
+    observer.observe(parent);
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+    rafId = requestAnimationFrame(draw);
+  });
+}
+
+/* ==========================================================================
+   16. HERO SPOTLIGHT CURSOR TRACKING
+   ========================================================================== */
+function initHeroSpotlight() {
+  const heroes = document.querySelectorAll('.hero-home, .subpage-hero');
+  if (!heroes.length) return;
+
+  heroes.forEach(hero => {
+    let ticking = false;
+    hero.addEventListener('mousemove', (e) => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rect = hero.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty('--mouse-x', `${x.toFixed(1)}%`);
+          hero.style.setProperty('--mouse-y', `${y.toFixed(1)}%`);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  });
+}
+
+/* ==========================================================================
+   17. DYNAMIC HEADLINE PHRASE MORPH
+   ========================================================================== */
+function initDynamicHeadline() {
+  const el = document.querySelector('.dynamic-phrase');
+  if (!el) return;
+
+  const words = JSON.parse(el.getAttribute('data-words') || '["Solutions", "Precedents", "Governance", "Advocacy"]');
+  if (!words.length) return;
+
+  let index = 0;
+  setInterval(() => {
+    index = (index + 1) % words.length;
+    el.classList.add('phrase-fade-out');
+    setTimeout(() => {
+      el.textContent = words[index];
+      el.classList.remove('phrase-fade-out');
+      el.classList.add('phrase-fade-in');
+      setTimeout(() => el.classList.remove('phrase-fade-in'), 350);
+    }, 300);
+  }, 3500);
+}
+
+/* ==========================================================================
+   18. INTERACTIVE HERO WIDGETS (Services Radar, Case Tabs, Pricing Calc, Clock)
+   ========================================================================== */
+function initInteractiveHeroWidgets() {
+  // A. Services Practice Intelligence Radar
+  const practicePills = document.querySelectorAll('.hero-tag-pills [data-practice]');
+  const practiceDisplay = document.getElementById('practiceLiveMetric');
+  if (practicePills.length && practiceDisplay) {
+    const practiceData = {
+      governance: {
+        title: 'Corporate Governance & Compliance',
+        m1: '$4.8B+ Board Assets Shielded',
+        m2: '100% MCA & SEBI Clearance',
+        tag: 'Zero Regulatory Sanctions Record'
+      },
+      litigation: {
+        title: 'Commercial Litigation & SIAC Arbitration',
+        m1: '140+ Trial Verdicts Won',
+        m2: '$1.2B+ Injunctions Enforced',
+        tag: '99.4% Arbitration Win Rate'
+      },
+      ma: {
+        title: 'Cross-Border M&A Structuring',
+        m1: '84 Major SPAs Executed',
+        m2: '$320M Antitrust Approvals',
+        tag: 'Zero Escrow Agreement Breaches'
+      },
+      ip: {
+        title: 'IP Patents & Algorithm Defense',
+        m1: '3,200+ Trademarks & Patents',
+        m2: '$140M Algorithm IP Freeze',
+        tag: '100% Trade Secret Protection'
+      },
+      labour: {
+        title: 'Executive Labour & Fiduciary Covenants',
+        m1: '500+ Golden Parachutes Drafted',
+        m2: 'Zero Fiduciary Breach Liabilities',
+        tag: 'Rapid Union Arbitration Clearance'
+      }
+    };
+
+    practicePills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        practicePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const key = pill.getAttribute('data-practice');
+        const data = practiceData[key];
+        if (!data) return;
+
+        practiceDisplay.classList.add('fade-out');
+        setTimeout(() => {
+          practiceDisplay.innerHTML = `
+            <div style="font-size: 0.725rem; color: #dfb15b; font-weight: 700; text-transform: uppercase;">Active Practice Intelligence</div>
+            <strong style="color: #ffffff; font-size: 1.05rem; display: block; margin: 0.2rem 0 0.5rem;">${data.title}</strong>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.35rem;">
+              <span style="color: #cbd5e1;">Asset Scope:</span>
+              <strong style="color: #10b981;">${data.m1}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.35rem;">
+              <span style="color: #cbd5e1;">Statutory Index:</span>
+              <strong style="color: #dfb15b;">${data.m2}</strong>
+            </div>
+            <div style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: 0.35rem;">${data.tag}</div>
+          `;
+          practiceDisplay.classList.remove('fade-out');
+        }, 200);
+      });
+    });
+  }
+
+  // B. Cases Precedent Spotlight Switcher
+  const docketTabs = document.querySelectorAll('.hero-hud-tab-btn[data-docket]');
+  const docketDisplay = document.getElementById('docketLiveContent');
+  if (docketTabs.length && docketDisplay) {
+    const docketData = [
+      {
+        id: '#HC-2026-991',
+        title: 'Ex-Parte Algorithmic Source Code Freeze',
+        desc: 'Secured emergency High Court injunction restraining ex-promoters from liquidating $140M in proprietary algorithmic IP within 6 hours.',
+        forum: 'High Court & Supreme Court',
+        relief: '100% Asset Preservation'
+      },
+      {
+        id: '#ARB-2026-312',
+        title: 'Maritime Charter Repudiation ($35M)',
+        desc: 'SIAC Singapore arbitration securing 100% enforcement victory against state-owned contractor for sovereign shipping violation.',
+        forum: 'SIAC Singapore Tribunal',
+        relief: '$35M Award Enforced'
+      },
+      {
+        id: '#CCI-2026-049',
+        title: 'Antitrust Review on $320M Cross-Border Merger',
+        desc: 'Antitrust clearance and merger combination approval from Competition Commission across 3 sovereign jurisdictions.',
+        forum: 'Competition Commission & NCLAT',
+        relief: 'Unanimous Clearance'
+      }
+    ];
+
+    docketTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        docketTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const idx = parseInt(tab.getAttribute('data-docket'), 10) || 0;
+        const d = docketData[idx];
+        if (!d) return;
+
+        docketDisplay.classList.add('fade-out');
+        setTimeout(() => {
+          docketDisplay.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+              <span class="badge-status badge-active">Docket ${d.id}</span>
+              <span class="badge-status badge-resolved">Relief Granted</span>
+            </div>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: #ffffff;">${d.title}</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1rem;">${d.desc}</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.75rem 1rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(223, 177, 91, 0.25);">
+              <div>
+                <span style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Forum</span>
+                <strong style="display: block; font-size: 0.825rem; color: #dfb15b;">${d.forum}</strong>
+              </div>
+              <div>
+                <span style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Relief</span>
+                <strong style="display: block; font-size: 0.825rem; color: #10b981;">${d.relief}</strong>
+              </div>
+            </div>
+          `;
+          docketDisplay.classList.remove('fade-out');
+        }, 200);
+      });
+    });
+  }
+
+  // C. Pricing Retainer Calculator
+  const calcTabs = document.querySelectorAll('.hero-hud-tab-btn[data-tier]');
+  const calcDisplay = document.getElementById('calcTierDisplay');
+  if (calcTabs.length && calcDisplay) {
+    const tierData = {
+      emerging: {
+        name: 'Emerging Enterprise Plan',
+        price: '$4,500 / month',
+        hours: '25 Rollover Advisory Hours',
+        savings: '38% ($32,000/yr vs BigLaw Hourly)',
+        partner: 'Managing Partner Supervision'
+      },
+      growth: {
+        name: 'Corporate Growth Retainer',
+        price: '$9,500 / month',
+        hours: '60 Rollover Advisory Hours',
+        savings: '42% ($78,000/yr vs BigLaw Hourly)',
+        partner: 'Priority Emergency TRO Relief'
+      },
+      enterprise: {
+        name: 'Institutional Dedicated Counsel',
+        price: 'Custom Sovereign Fee',
+        hours: 'Unlimited General Counsel Access',
+        savings: '50%+ Capped Enterprise Ceiling',
+        partner: '24/7 Dedicated Senior Bench'
+      }
+    };
+
+    calcTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        calcTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const k = tab.getAttribute('data-tier');
+        const t = tierData[k];
+        if (!t) return;
+
+        calcDisplay.classList.add('fade-out');
+        setTimeout(() => {
+          calcDisplay.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.85rem;">
+              <strong style="color: #ffffff; font-size: 1.1rem;">${t.name}</strong>
+              <span style="color: #dfb15b; font-weight: 700; font-size: 1.15rem;">${t.price}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0.75rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-sm); font-size: 0.825rem;">
+                <span style="color: #cbd5e1;">Counsel Allocation:</span>
+                <strong style="color: #ffffff;">${t.hours}</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0.75rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-sm); font-size: 0.825rem;">
+                <span style="color: #cbd5e1;">Annual Savings:</span>
+                <strong style="color: #10b981;">${t.savings}</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0.75rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-sm); font-size: 0.825rem;">
+                <span style="color: #cbd5e1;">Partner Guarantee:</span>
+                <strong style="color: #dfb15b;">${t.partner}</strong>
+              </div>
+            </div>
+          `;
+          calcDisplay.classList.remove('fade-out');
+        }, 200);
+      });
+    });
+  }
+
+  // D. Contact Chambers Live Digital Clock
+  const clockEl = document.getElementById('chambersLiveClock');
+  if (clockEl) {
+    const updateClock = () => {
+      const now = new Date();
+      // Calculate IST (UTC + 5:30)
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const istTime = new Date(utc + (3600000 * 5.5));
+      const hours = String(istTime.getHours()).padStart(2, '0');
+      const mins = String(istTime.getMinutes()).padStart(2, '0');
+      const secs = String(istTime.getSeconds()).padStart(2, '0');
+      clockEl.textContent = `${hours}:${mins}:${secs} IST`;
+    };
+    updateClock();
+    setInterval(updateClock, 1000);
+  }
+}
+
+/* ==========================================================================
+   19. HOMEPAGE HERO PEDESTAL SWITCHER & 3D TILT EFFECT
+   ========================================================================== */
+function initHeroPedestal() {
+  const buttons = document.querySelectorAll('.pedestal-mode-btn');
+  const textEl = document.getElementById('heroPedestalText');
+  const banner = document.getElementById('heroPedestalStatus');
+  if (!buttons.length || !textEl || !banner) return;
+
+  const data = {
+    sc: 'Supreme Court of India: Direct SLP & Constitutional Mandamus Bench',
+    hc: 'Delhi High Court: Emergency Ex-Parte Injunctions & Algorithmic Commercial Freeze',
+    siac: 'SIAC Singapore Arbitral Seat: Cross-Border Arbitration with 99.4% Enforcement'
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const key = btn.getAttribute('data-jurisdiction');
+      const text = data[key];
+      if (!text) return;
+
+      banner.classList.add('fade-out');
+      setTimeout(() => {
+        textEl.textContent = text;
+        banner.classList.remove('fade-out');
+      }, 200);
+    });
+  });
+}
+
+function initHero3DTilt() {
+  const card = document.getElementById('heroShowcaseCard');
+  const wrap = document.querySelector('.hero-visual-wrap');
+  if (!card || !wrap) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 992) {
+    return;
+  }
+
+  let ticking = false;
+
+  wrap.addEventListener('mousemove', (e) => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        // Subtle 3D tilt max 8 degrees
+        const rotY = (x * 12).toFixed(2);
+        const rotX = (-y * 12).toFixed(2);
+
+        card.style.transform = `perspective(1000px) rotateY(${rotY}deg) rotateX(${rotX}deg) scale3d(1.02, 1.02, 1.02)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  wrap.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)';
   });
 }

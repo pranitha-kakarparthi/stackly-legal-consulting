@@ -1,468 +1,938 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Landmark Cases & Trial Victories - Stackly Legal Consulting: Multi-million dollar commercial arbitration triumphs and antitrust dismissals.">
-  <title>Landmark Cases & Track Record | Stackly Legal Consulting</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Landmark Cases & Trial Victories - Stackly Legal Consulting: Multi-million dollar commercial arbitration triumphs and antitrust dismissals."
+    />
+    <title>Landmark Cases & Track Record | Stackly Legal Consulting</title>
 
-  <!-- Executive Scroll Progress Indicator -->
-  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Full Viewport Loader -->
-  <div id="loader-wrapper" role="status" aria-live="polite">
-    <div class="loader-content">
-      <div class="loader-logo-wrap">
-        <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" width="160" height="42">
-      </div>
-      <div class="loader-spinner" aria-hidden="true"></div>
-      <p class="loader-text">Stackly Legal • Landmark Cases</p>
-    </div>
-  </div>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Executive Scroll Progress Indicator -->
+    <div
+      id="scrollProgressBar"
+      class="scroll-progress-bar"
+      aria-hidden="true"
+    ></div>
 
-  <!-- Sticky Header & Navigation -->
-  <header class="site-header">
-    <div class="container">
-      <div class="nav-container">
-        <a href="index.html" class="brand-logo-link" aria-label="Stackly Home">
-          <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="brand-logo-img" width="150" height="40">
-        </a>
-
-        <!-- Desktop Menu -->
-        <nav class="nav-menu-desktop" aria-label="Main Navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="about.html" class="nav-link">About Us</a>
-          <div class="nav-item-dropdown">
-            <a href="services.html" class="nav-link dropdown-toggle" aria-haspopup="true">
-              Practice Areas <span class="dropdown-arrow"></span>
-            </a>
-            <div class="dropdown-menu">
-              <a href="practice-corporate-governance.html" class="dropdown-link">Corporate Governance & Compliance</a>
-              <a href="practice-dispute-resolution.html" class="dropdown-link">High-Stakes Dispute Resolution</a>
-              <a href="practice-mergers-acquisitions.html" class="dropdown-link">Mergers & Acquisitions Advisory</a>
-              <a href="practice-intellectual-property.html" class="dropdown-link">Intellectual Property & Patents</a>
-              <a href="practice-executive-employment.html" class="dropdown-link">Executive Employment & Labour</a>
-            </div>
-          </div>
-          <a href="cases.html" class="nav-link active">Landmark Cases</a>
-          <a href="pricing.html" class="nav-link">Fee Structure</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-
-        <!-- Desktop Action Buttons -->
-        <div class="nav-actions-desktop">
-          <a href="sign-in.html" class="btn btn-ghost btn-sm">Sign In</a>
-          <a href="sign-up.html" class="btn btn-primary btn-sm">Retain Counsel</a>
+    <!-- Full Viewport Loader -->
+    <div id="loader-wrapper" role="status" aria-live="polite">
+      <div class="loader-content">
+        <div class="loader-logo-wrap">
+          <img
+            src="images/logoStackly.webp"
+            alt="Stackly Legal Consulting Logo"
+            width="160"
+            height="42"
+          />
         </div>
-
-        <!-- Mobile Hamburger Toggle -->
-        <button class="hamburger-btn" aria-label="Toggle navigation menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
+        <div class="loader-spinner" aria-hidden="true"></div>
+        <p class="loader-text">Stackly Legal • Landmark Cases</p>
       </div>
     </div>
-  </header>
 
-  <!-- Mobile Menu Drawer Overlay with Dropdown -->
-  <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
-    <div class="mobile-menu-list">
-      <a href="index.html" class="mobile-link">Home</a>
-      <a href="about.html" class="mobile-link">About Us</a>
-      
-      <!-- Interactive Practice Areas Accordion Dropdown -->
-      <div>
-        <button id="mobilePracticeToggle" class="mobile-dropdown-btn" aria-expanded="false">
-          <span>Practice Areas</span>
-          <span class="chevron">▾</span>
-        </button>
-        <div id="mobilePracticeList" class="mobile-dropdown-links">
-          <a href="practice-corporate-governance.html" class="mobile-dropdown-link">• Corporate Governance</a>
-          <a href="practice-dispute-resolution.html" class="mobile-dropdown-link">• Dispute Resolution</a>
-          <a href="practice-mergers-acquisitions.html" class="mobile-dropdown-link">• Mergers & Acquisitions</a>
-          <a href="practice-intellectual-property.html" class="mobile-dropdown-link">• Intellectual Property</a>
-          <a href="practice-executive-employment.html" class="mobile-dropdown-link">• Executive Labour Law</a>
-        </div>
-      </div>
-
-      <a href="cases.html" class="mobile-link active">Landmark Cases</a>
-      <a href="pricing.html" class="mobile-link">Fee Structure</a>
-      <a href="contact.html" class="mobile-link">Contact</a>
-    </div>
-
-    <!-- Visible Sign In Button on Mobile -->
-    <div class="mobile-actions">
-      <a href="sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
-      <a href="sign-up.html" class="btn btn-primary">Retain Counsel</a>
-    </div>
-  </div>
-
-  <main>
-    <!-- SECTION 1: CASES HERO WITH ANIMATED BACKGROUND & LANDMARK DOSSIER SPOTLIGHT -->
-    <section class="subpage-hero" aria-label="Landmark Precedents Hero">
-      <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
+    <!-- Sticky Header & Navigation -->
+    <header class="site-header">
       <div class="container">
-        <div class="subpage-hero-grid">
-          <div data-aos="fade-up">
-            <nav class="breadcrumbs" aria-label="Breadcrumb">
-              <a href="index.html">Home</a>
-              <span class="sep">/</span>
-              <span class="current">Judicial Precedents</span>
-            </nav>
-            <div class="hero-badge-pill" style="margin-bottom: 1rem;">
-              <span class="beacon-dot"></span>
-              <span>Supreme Court & International Arbitral Seats</span>
-            </div>
-            <h1 class="subpage-hero-title">
-              Definitive Precedents & Decisive <span class="gold-highlight">Courtroom Victories</span>
-            </h1>
-            <p class="subpage-hero-desc">
-              When enterprise survival, trade secret sovereignty, and hundreds of millions in shareholder value are at stake, visionary leaders retain Stackly's high-stakes trial counsel.
-            </p>
-            <div class="hero-cta-group" style="margin-bottom: 1.5rem;">
-              <a href="#cases-grid" class="btn btn-primary btn-lg">Explore Case Precedents</a>
-              <a href="contact.html" class="btn btn-ghost btn-lg">Retain Trial Counsel</a>
-            </div>
-            <div class="trust-check-strip">
-              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>$1.2B+</strong> Claims Defended</div>
-              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>140+</strong> Appellate Victories</div>
-              <div class="trust-check-item"><span class="gold-check">✓</span> <strong>100%</strong> SIAC Enforcement</div>
-            </div>
-          </div>
-
-          <!-- Hero Right: High-Stakes Precedent Spotlight Dossier Card -->
-          <div class="subpage-visual-wrap" data-aos="fade-left">
-            <div class="subpage-halo" aria-hidden="true"></div>
-
-            <div class="precedent-spotlight-card">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-                <span class="badge-status badge-active">Docket #HC-2026-991</span>
-                <span class="badge-status badge-resolved">Mandamus Granted</span>
-              </div>
-              <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem; color: #ffffff;">Ex-Parte Algorithmic Source Code Freeze</h3>
-              <p style="font-size: 0.875rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1.25rem;">
-                Secured emergency High Court injunction restraining ex-promoters from liquidating $140M in proprietary algorithmic IP within 6 hours of filing.
-              </p>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1rem; background: rgba(16, 54, 84, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(223, 177, 91, 0.25); margin-bottom: 1.25rem;">
-                <div>
-                  <span style="font-size: 0.725rem; color: #94a3b8; text-transform: uppercase;">Judicial Forum</span>
-                  <strong style="display: block; font-size: 0.85rem; color: #dfb15b;">High Court & Supreme Court</strong>
-                </div>
-                <div>
-                  <span style="font-size: 0.725rem; color: #94a3b8; text-transform: uppercase;">Relief Status</span>
-                  <strong style="display: block; font-size: 0.85rem; color: #10b981;">100% Preservation</strong>
-                </div>
-              </div>
-              <a href="cases.html#cases-grid" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">View Full Case Precedent →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: FEATURED PRECEDENT CARDS -->
-    <section class="section-padding" style="background: #ffffff;" aria-label="Case Docket">
-      <div class="container">
-        <div class="text-center" data-aos="fade-up">
-          <span class="section-tag">Case Docket</span>
-          <h2 class="section-title">Selected Commercial Case Outcomes</h2>
-          <p class="section-subtitle mx-auto">Explore high-profile victories across antitrust tribunals, commercial arbitrations, and regulatory inquiries.</p>
-        </div>
-
-        <div class="card-grid-3">
-          <!-- Case 1 -->
-          <div class="service-card" data-aos="fade-up">
-            <div>
-              <span class="section-tag" style="margin-bottom: 0.75rem;">Antitrust & Competition</span>
-              <h3 class="service-card-title">$480M Hostile Merger Monopoly Defense</h3>
-              <p class="service-card-desc">
-                Represented telecommunications infrastructure consortium facing predatory monopoly claims. Secured complete dismissal before the appellate competition authority without punitive remedies.
-              </p>
-            </div>
-            <a href="404.html" class="service-link">View Case Summary <span>→</span></a>
-          </div>
-
-          <!-- Case 2 -->
-          <div class="service-card" data-aos="fade-up">
-            <div>
-              <span class="section-tag" style="margin-bottom: 0.75rem;">International Arbitration</span>
-              <h3 class="service-card-title">SIAC Cross-Border Energy Concession Dispute</h3>
-              <p class="service-card-desc">
-                Defended renewable energy operator against sovereign counterparty breach of contract claims. Awarded $72M in counterclaims plus 100% legal costs recovery.
-              </p>
-            </div>
-            <a href="404.html" class="service-link">View Case Summary <span>→</span></a>
-          </div>
-
-          <!-- Case 3 -->
-          <div class="service-card" data-aos="fade-up">
-            <div>
-              <span class="section-tag" style="margin-bottom: 0.75rem;">Intellectual Property</span>
-              <h3 class="service-card-title">Proprietary AI Algorithm Trade Secret Trial</h3>
-              <p class="service-card-desc">
-                Obtained ex-parte nationwide emergency injunction restraining ex-executives from deploying stolen biometric software algorithms, followed by full patent restoration.
-              </p>
-            </div>
-            <a href="404.html" class="service-link">View Case Summary <span>→</span></a>
-          </div>
-
-          <!-- Case 4 -->
-          <div class="service-card" data-aos="fade-up">
-            <div>
-              <span class="section-tag" style="margin-bottom: 0.75rem;">Securities & Board Governance</span>
-              <h3 class="service-card-title">Shareholder Derivative Action Dismissal</h3>
-              <p class="service-card-desc">
-                Vindicated Fortune 500 board of directors in a complex derivative lawsuit alleging breach of duty of care during a pivotal $1.2B recapitalization event.
-              </p>
-            </div>
-            <a href="404.html" class="service-link">View Case Summary <span>→</span></a>
-          </div>
-
-          <!-- Case 5 -->
-          <div class="service-card" data-aos="fade-up">
-            <div>
-              <span class="section-tag" style="margin-bottom: 0.75rem;">Tax & Transfer Pricing</span>
-              <h3 class="service-card-title">Multinational Customs & Tariff Resolution</h3>
-              <p class="service-card-desc">
-                Successfully reversed an arbitrary $45M tax assessment on imported semiconductor components via writ petition before the High Court.
-              </p>
-            </div>
-            <a href="404.html" class="service-link">View Case Summary <span>→</span></a>
-          </div>
-
-          <!-- Case 6 -->
-          <div class="service-card" data-aos="fade-up">
-            <div>
-              <span class="section-tag" style="margin-bottom: 0.75rem;">White-Collar Defense</span>
-              <h3 class="service-card-title">Statutory Anti-Money Laundering Inquiry</h3>
-              <p class="service-card-desc">
-                Negotiated complete exoneration for financial brokerage firm undergoing multi-agency statutory audit, validating compliance architecture.
-              </p>
-            </div>
-            <a href="404.html" class="service-link">View Case Summary <span>→</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: IN-DEPTH CASE BREAKDOWN -->
-    <section class="section-padding" style="background: var(--bg-alt);" aria-label="Deep Dive Case Study">
-      <div class="container">
-        <div class="hero-home-grid" style="grid-template-columns: 1.1fr 0.9fr; align-items: center;">
-          <div data-aos="fade-right">
-            <span class="section-tag">Landmark Case Study</span>
-            <h2 class="section-title">The Apex Cross-Border Trade Sanctions Triumph</h2>
-            <p style="margin-bottom: 1.25rem;">
-              When our client, a leading global freight aggregator, was inadvertently flagged under newly enacted cross-border export regulations, three container vessels were seized at international ports.
-            </p>
-            <p style="margin-bottom: 1.5rem;">
-              Stackly mobilized an emergency dual-bench litigation squad within 4 hours. By liaising simultaneously with maritime tribunals, trade ministries, and port authorities, we demonstrated statutory exemption under humanitarian transshipment clauses.
-            </p>
-            <div style="background: #ffffff; padding: 1.5rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold); margin-bottom: 2rem;">
-              <strong>Outcome:</strong> Complete vessel release within 36 hours with zero statutory fines and unblemished customs classification.
-            </div>
-            <a href="contact.html" class="btn btn-navy">Schedule Case Consultation</a>
-          </div>
-
-          <div data-aos="fade-left">
-            <img src="images/corporate_boardroom.webp" alt="Stackly Case Strategy Session" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); width: 100%; max-height: 400px; object-fit: cover; object-position: center;" width="500" height="400">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: CLIENT VERIFICATION STATEMENT (Face Positioning) -->
-    <section class="section-padding" style="background: #ffffff;" aria-label="Verified Case Testimonials">
-      <div class="container">
-        <div class="text-center" data-aos="fade-up">
-          <span class="section-tag">Client Testimonial</span>
-          <h2 class="section-title">Corporate Leaders on Our Courtroom Impact</h2>
-          <p class="section-subtitle mx-auto">First-hand accounts from chief executives who placed their enterprise in our hands.</p>
-        </div>
-
-        <div class="card-grid-2">
-          <div class="testimonial-card" data-aos="fade-up">
-            <div class="stars-rating">★★★★★</div>
-            <blockquote class="testimonial-quote">
-              "When our shareholders faced an aggressive squeeze-out motion by minority dissidents, Alexander Wright's forensic mastery of statutory procedure turned the entire proceeding around in one hearing."
-            </blockquote>
-            <div class="testimonial-client">
-              <img src="images/client_testimonial_2.webp" alt="Elena Rostova, Managing Director" class="client-avatar" width="52" height="52">
-              <div>
-                <div class="client-name">Elena Rostova</div>
-                <div class="client-corp">Managing Director, Horizon Ventures</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card" data-aos="fade-up">
-            <div class="stars-rating">★★★★★</div>
-            <blockquote class="testimonial-quote">
-              "Stackly's trial brief was described by the presiding bench as a model of procedural precision. They do not merely litigate; they dismantle the opposition's claims piece by piece."
-            </blockquote>
-            <div class="testimonial-client">
-              <img src="images/client_testimonial_3.webp" alt="Vikramaditya Sengupta, Group Legal Director" class="client-avatar" width="52" height="52">
-              <div>
-                <div class="client-name">Vikramaditya Sengupta</div>
-                <div class="client-corp">Group Legal Director, Bharat Infrastructure</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: LITIGATION PROTOCOL FAQ -->
-    <section class="section-padding" style="background: var(--bg-main);" aria-label="Litigation Protocols">
-      <div class="container">
-        <div class="text-center" data-aos="fade-up">
-          <span class="section-tag">Procedural Clarity</span>
-          <h2 class="section-title">Litigation Engagement Protocols</h2>
-          <p class="section-subtitle mx-auto">Understanding how we assess case viability, jurisdiction strategy, and trial budget forecasts.</p>
-        </div>
-
-        <div class="accordion" data-aos="fade-up">
-          <div class="accordion-item active">
-            <button class="accordion-header" aria-expanded="true">
-              <span>Do you perform preliminary merits reviews before accepting litigation briefs?</span>
-              <span class="accordion-icon">+</span>
-            </button>
-            <div class="accordion-content" style="max-height: 200px;">
-              <p>Yes. Every incoming dispute undergoes an internal partner merit review to deliver a blunt assessment of legal strengths, weaknesses, and expected probability of recovery.</p>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header" aria-expanded="false">
-              <span>What is your policy regarding out-of-court commercial settlements?</span>
-              <span class="accordion-icon">+</span>
-            </button>
-            <div class="accordion-content">
-              <p>While prepared for aggressive courtroom trial, we actively explore structured mediation or commercial settlements when it preserves client capital and reputation.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 6: HIGH-STAKES RETAINER CTA -->
-    <section class="section-padding" style="background: linear-gradient(135deg, #103654 0%, #16466c 50%, #0d2538 100%); color: #ffffff;" aria-label="Cases CTA">
-      <div class="container text-center" data-aos="fade-up">
-        <span class="section-tag light">Trial Division</span>
-        <h2 style="color: #ffffff; margin-bottom: 1.25rem;">Facing Impending Litigation or Commercial Dispute?</h2>
-        <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.15rem;">
-          Mobilize Stackly's experienced advocates today to safeguard your board and corporate interests.
-        </p>
-        <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
-          <a href="contact.html" class="btn btn-primary btn-lg">Engage Trial Advocates</a>
-          <a href="404.html" class="btn btn-ghost btn-lg">Request Case Briefing Dossier</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- CONSISTENT SITE FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Col 1: Brand Info -->
-        <div>
-          <a href="index.html" aria-label="Stackly Home">
-            <img src="images/logoStackly.webp" alt="Stackly Legal Consulting Logo" class="footer-logo-img" width="160" height="44">
+        <div class="nav-container">
+          <a
+            href="index.html"
+            class="brand-logo-link"
+            aria-label="Stackly Home"
+          >
+            <img
+              src="images/logoStackly.webp"
+              alt="Stackly Legal Consulting Logo"
+              class="brand-logo-img"
+              width="150"
+              height="40"
+            />
           </a>
-          <p class="footer-bio">
-            Stackly Legal Consulting provides elite corporate governance, cross-border M&A advisory, and resolute commercial trial representation for visionary businesses worldwide.
-          </p>
-          <div class="social-links-row">
-            <a href="404.html" class="social-btn" aria-label="LinkedIn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              <span>LinkedIn</span>
-            </a>
-            <a href="404.html" class="social-btn" aria-label="Twitter">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              <span>Twitter / 𝕏</span>
-            </a>
-            <a href="404.html" class="social-btn" aria-label="YouTube">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              <span>YouTube</span>
-            </a>
-            <a href="404.html" class="social-btn" aria-label="Facebook">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              <span>Facebook</span>
-            </a>
+
+          <!-- Desktop Menu -->
+          <nav class="nav-menu-desktop" aria-label="Main Navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About Us</a>
+            <div class="nav-item-dropdown">
+              <a
+                href="services.html"
+                class="nav-link dropdown-toggle"
+                aria-haspopup="true"
+              >
+                Practice Areas <span class="dropdown-arrow"></span>
+              </a>
+              <div class="dropdown-menu">
+                <a
+                  href="practice-corporate-governance.html"
+                  class="dropdown-link"
+                  >Corporate Governance & Compliance</a
+                >
+                <a href="practice-dispute-resolution.html" class="dropdown-link"
+                  >High-Stakes Dispute Resolution</a
+                >
+                <a
+                  href="practice-mergers-acquisitions.html"
+                  class="dropdown-link"
+                  >Mergers & Acquisitions Advisory</a
+                >
+                <a
+                  href="practice-intellectual-property.html"
+                  class="dropdown-link"
+                  >Intellectual Property & Patents</a
+                >
+                <a
+                  href="practice-executive-employment.html"
+                  class="dropdown-link"
+                  >Executive Employment & Labour</a
+                >
+              </div>
+            </div>
+            <a href="cases.html" class="nav-link active">Landmark Cases</a>
+            <a href="pricing.html" class="nav-link">Fee Structure</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Desktop Action Buttons -->
+          <div class="nav-actions-desktop">
+            <a href="sign-in.html" class="btn btn-ghost btn-sm">Sign In</a>
+            <a href="sign-up.html" class="btn btn-primary btn-sm"
+              >Retain Counsel</a
+            >
           </div>
-        </div>
 
-        <!-- Col 2: Quick Links (Direct) -->
-        <div>
-          <h4 class="footer-heading">Quick Links</h4>
-          <ul class="footer-links-list">
-            <li><a href="index.html" class="footer-link">Home</a></li>
-            <li><a href="about.html" class="footer-link">About Us</a></li>
-            <li><a href="services.html" class="footer-link">Practice Areas</a></li>
-            <li><a href="cases.html" class="footer-link">Landmark Cases</a></li>
-            <li><a href="pricing.html" class="footer-link">Fee Structure</a></li>
-            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Practice Areas (Redirect 404) -->
-        <div>
-          <h4 class="footer-heading">Practice Areas</h4>
-          <ul class="footer-links-list">
-            <li><a href="404.html" class="footer-link">Corporate Governance</a></li>
-            <li><a href="404.html" class="footer-link">Commercial Litigation</a></li>
-            <li><a href="404.html" class="footer-link">M&A Deal Advisory</a></li>
-            <li><a href="404.html" class="footer-link">Intellectual Property</a></li>
-            <li><a href="404.html" class="footer-link">Labour & Employment</a></li>
-            <li><a href="404.html" class="footer-link">International Trade</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Official Contact -->
-        <div>
-          <h4 class="footer-heading">Chambers Address</h4>
-          <div class="footer-contact-info">
-            <div class="contact-info-item">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <span>MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu 636008</span>
-            </div>
-            <div class="contact-info-item">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              <a href="404.html" class="footer-link">+91 9876543210</a>
-            </div>
-            <div class="contact-info-item">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <a href="404.html" class="footer-link">hello@thestackly.com</a>
-            </div>
-          </div>
+          <!-- Mobile Hamburger Toggle -->
+          <button class="hamburger-btn" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
         </div>
       </div>
+    </header>
 
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <div>© 2026 Stackly Legal Consulting. All rights reserved.</div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="404.html" class="footer-link">Privacy Policy</a>
-          <a href="404.html" class="footer-link">Terms of Service</a>
-          <a href="404.html" class="footer-link">Statutory Disclaimers</a>
+    <!-- Mobile Menu Drawer Overlay with Dropdown -->
+    <div class="mobile-nav-overlay" aria-label="Mobile Navigation">
+      <div class="mobile-menu-list">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="about.html" class="mobile-link">About Us</a>
+
+        <!-- Interactive Practice Areas Accordion Dropdown -->
+        <div>
+          <button
+            id="mobilePracticeToggle"
+            class="mobile-dropdown-btn"
+            aria-expanded="false"
+          >
+            <span>Practice Areas</span>
+            <span class="chevron">▾</span>
+          </button>
+          <div id="mobilePracticeList" class="mobile-dropdown-links">
+            <a
+              href="practice-corporate-governance.html"
+              class="mobile-dropdown-link"
+              >• Corporate Governance</a
+            >
+            <a
+              href="practice-dispute-resolution.html"
+              class="mobile-dropdown-link"
+              >• Dispute Resolution</a
+            >
+            <a
+              href="practice-mergers-acquisitions.html"
+              class="mobile-dropdown-link"
+              >• Mergers & Acquisitions</a
+            >
+            <a
+              href="practice-intellectual-property.html"
+              class="mobile-dropdown-link"
+              >• Intellectual Property</a
+            >
+            <a
+              href="practice-executive-employment.html"
+              class="mobile-dropdown-link"
+              >• Executive Labour Law</a
+            >
+          </div>
         </div>
+
+        <a href="cases.html" class="mobile-link active">Landmark Cases</a>
+        <a href="pricing.html" class="mobile-link">Fee Structure</a>
+        <a href="contact.html" class="mobile-link">Contact</a>
+      </div>
+
+      <!-- Visible Sign In Button on Mobile -->
+      <div class="mobile-actions">
+        <a href="sign-in.html" class="btn btn-secondary">Sign In to Chambers</a>
+        <a href="sign-up.html" class="btn btn-primary">Retain Counsel</a>
       </div>
     </div>
-  </footer>
 
-  <!-- Back to Top Button -->
-  <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top" title="Back to top">↑</button>
+    <main>
+      <!-- SECTION 1: CASES HERO WITH ANIMATED BACKGROUND & LANDMARK DOSSIER SPOTLIGHT -->
+      <section class="subpage-hero" aria-label="Landmark Precedents Hero">
+        <div class="subpage-hero-bg-anim" aria-hidden="true"></div>
+        <!-- Interactive Constellation & Spotlight -->
+        <canvas class="hero-interactive-canvas" aria-hidden="true"></canvas>
+        <div class="hero-interactive-spotlight" aria-hidden="true"></div>
+        <div class="container">
+          <div class="subpage-hero-grid">
+            <div data-aos="fade-up">
+              <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="sep">/</span>
+                <span class="current">Judicial Precedents</span>
+              </nav>
+              <div class="hero-badge-pill" style="margin-bottom: 1rem">
+                <span class="beacon-dot"></span>
+                <span>Supreme Court & International Arbitral Seats</span>
+              </div>
+              <h1 class="subpage-hero-title">
+                Definitive Precedents & Decisive
+                <span class="gold-highlight">Courtroom Victories</span>
+              </h1>
+              <p class="subpage-hero-desc">
+                When enterprise survival, trade secret sovereignty, and hundreds
+                of millions in shareholder value are at stake, visionary leaders
+                retain Stackly's high-stakes trial counsel.
+              </p>
+              <div class="hero-cta-group" style="margin-bottom: 1.5rem">
+                <a href="404.html" class="btn btn-primary btn-lg"
+                  >Explore Case Precedents</a
+                >
+                <a href="404.html" class="btn btn-ghost btn-lg"
+                  >Retain Trial Counsel</a
+                >
+              </div>
+              <div class="trust-check-strip">
+                <div class="trust-check-item">
+                  <span class="gold-check">✓</span>
+                  <strong>$1.2B+</strong> Claims Defended
+                </div>
+                <div class="trust-check-item">
+                  <span class="gold-check">✓</span>
+                  <strong>140+</strong> Appellate Victories
+                </div>
+                <div class="trust-check-item">
+                  <span class="gold-check">✓</span> <strong>100%</strong> SIAC
+                  Enforcement
+                </div>
+              </div>
+            </div>
 
-  <script src="js/main.js"></script>
-</body>
+            <!-- Hero Right: High-Stakes Precedent Spotlight Dossier Card -->
+            <div class="subpage-visual-wrap" data-aos="fade-left">
+              <div class="subpage-halo" aria-hidden="true"></div>
+
+              <div class="precedent-spotlight-card">
+                <div class="hero-hud-tabs" role="tablist">
+                  <button
+                    type="button"
+                    class="hero-hud-tab-btn active"
+                    data-docket="0"
+                  >
+                    #HC-2026-991
+                  </button>
+                  <button
+                    type="button"
+                    class="hero-hud-tab-btn"
+                    data-docket="1"
+                  >
+                    #ARB-2026-312
+                  </button>
+                  <button
+                    type="button"
+                    class="hero-hud-tab-btn"
+                    data-docket="2"
+                  >
+                    #CCI-2026-049
+                  </button>
+                </div>
+                <div id="docketLiveContent" class="hero-hud-content">
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      margin-bottom: 0.85rem;
+                    "
+                  >
+                    <span class="badge-status badge-active"
+                      >Docket #HC-2026-991</span
+                    >
+                    <span class="badge-status badge-resolved"
+                      >Mandamus Granted</span
+                    >
+                  </div>
+                  <h3
+                    style="
+                      font-size: 1.15rem;
+                      margin-bottom: 0.5rem;
+                      color: #ffffff;
+                    "
+                  >
+                    Ex-Parte Algorithmic Source Code Freeze
+                  </h3>
+                  <p
+                    style="
+                      font-size: 0.85rem;
+                      color: #cbd5e1;
+                      line-height: 1.5;
+                      margin-bottom: 1rem;
+                    "
+                  >
+                    Secured emergency High Court injunction restraining
+                    ex-promoters from liquidating $140M in proprietary
+                    algorithmic IP within 6 hours of filing.
+                  </p>
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: 1fr 1fr;
+                      gap: 0.75rem;
+                      padding: 0.75rem 1rem;
+                      background: rgba(16, 54, 84, 0.6);
+                      border-radius: var(--radius-md);
+                      border: 1px solid rgba(223, 177, 91, 0.25);
+                    "
+                  >
+                    <div>
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          color: #94a3b8;
+                          text-transform: uppercase;
+                        "
+                        >Judicial Forum</span
+                      >
+                      <strong
+                        style="
+                          display: block;
+                          font-size: 0.825rem;
+                          color: #dfb15b;
+                        "
+                        >High Court & Supreme Court</strong
+                      >
+                    </div>
+                    <div>
+                      <span
+                        style="
+                          font-size: 0.7rem;
+                          color: #94a3b8;
+                          text-transform: uppercase;
+                        "
+                        >Relief Status</span
+                      >
+                      <strong
+                        style="
+                          display: block;
+                          font-size: 0.825rem;
+                          color: #10b981;
+                        "
+                        >100% Preservation</strong
+                      >
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="cases.html#cases-grid"
+                  class="btn btn-secondary btn-sm"
+                  style="width: 100%; text-align: center; margin-top: 1rem"
+                  >View Full Case Precedent →</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: FEATURED PRECEDENT CARDS -->
+      <section
+        class="section-padding"
+        style="background: #ffffff"
+        aria-label="Case Docket"
+      >
+        <div class="container">
+          <div class="text-center" data-aos="fade-up">
+            <span class="section-tag">Case Docket</span>
+            <h2 class="section-title">Selected Commercial Case Outcomes</h2>
+            <p class="section-subtitle mx-auto">
+              Explore high-profile victories across antitrust tribunals,
+              commercial arbitrations, and regulatory inquiries.
+            </p>
+          </div>
+
+          <div class="card-grid-3">
+            <!-- Case 1 -->
+            <div class="service-card" data-aos="fade-up">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.75rem"
+                  >Antitrust & Competition</span
+                >
+                <h3 class="service-card-title">
+                  $480M Hostile Merger Monopoly Defense
+                </h3>
+                <p class="service-card-desc">
+                  Represented telecommunications infrastructure consortium
+                  facing predatory monopoly claims. Secured complete dismissal
+                  before the appellate competition authority without punitive
+                  remedies.
+                </p>
+              </div>
+              <a href="404.html" class="service-link"
+                >View Case Summary <span>→</span></a
+              >
+            </div>
+
+            <!-- Case 2 -->
+            <div class="service-card" data-aos="fade-up">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.75rem"
+                  >International Arbitration</span
+                >
+                <h3 class="service-card-title">
+                  SIAC Cross-Border Energy Concession Dispute
+                </h3>
+                <p class="service-card-desc">
+                  Defended renewable energy operator against sovereign
+                  counterparty breach of contract claims. Awarded $72M in
+                  counterclaims plus 100% legal costs recovery.
+                </p>
+              </div>
+              <a href="404.html" class="service-link"
+                >View Case Summary <span>→</span></a
+              >
+            </div>
+
+            <!-- Case 3 -->
+            <div class="service-card" data-aos="fade-up">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.75rem"
+                  >Intellectual Property</span
+                >
+                <h3 class="service-card-title">
+                  Proprietary AI Algorithm Trade Secret Trial
+                </h3>
+                <p class="service-card-desc">
+                  Obtained ex-parte nationwide emergency injunction restraining
+                  ex-executives from deploying stolen biometric software
+                  algorithms, followed by full patent restoration.
+                </p>
+              </div>
+              <a href="404.html" class="service-link"
+                >View Case Summary <span>→</span></a
+              >
+            </div>
+
+            <!-- Case 4 -->
+            <div class="service-card" data-aos="fade-up">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.75rem"
+                  >Securities & Board Governance</span
+                >
+                <h3 class="service-card-title">
+                  Shareholder Derivative Action Dismissal
+                </h3>
+                <p class="service-card-desc">
+                  Vindicated Fortune 500 board of directors in a complex
+                  derivative lawsuit alleging breach of duty of care during a
+                  pivotal $1.2B recapitalization event.
+                </p>
+              </div>
+              <a href="404.html" class="service-link"
+                >View Case Summary <span>→</span></a
+              >
+            </div>
+
+            <!-- Case 5 -->
+            <div class="service-card" data-aos="fade-up">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.75rem"
+                  >Tax & Transfer Pricing</span
+                >
+                <h3 class="service-card-title">
+                  Multinational Customs & Tariff Resolution
+                </h3>
+                <p class="service-card-desc">
+                  Successfully reversed an arbitrary $45M tax assessment on
+                  imported semiconductor components via writ petition before the
+                  High Court.
+                </p>
+              </div>
+              <a href="404.html" class="service-link"
+                >View Case Summary <span>→</span></a
+              >
+            </div>
+
+            <!-- Case 6 -->
+            <div class="service-card" data-aos="fade-up">
+              <div>
+                <span class="section-tag" style="margin-bottom: 0.75rem"
+                  >White-Collar Defense</span
+                >
+                <h3 class="service-card-title">
+                  Statutory Anti-Money Laundering Inquiry
+                </h3>
+                <p class="service-card-desc">
+                  Negotiated complete exoneration for financial brokerage firm
+                  undergoing multi-agency statutory audit, validating compliance
+                  architecture.
+                </p>
+              </div>
+              <a href="404.html" class="service-link"
+                >View Case Summary <span>→</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: IN-DEPTH CASE BREAKDOWN -->
+      <section
+        class="section-padding"
+        style="background: var(--bg-alt)"
+        aria-label="Deep Dive Case Study"
+      >
+        <div class="container">
+          <div
+            class="hero-home-grid"
+            style="grid-template-columns: 1.1fr 0.9fr; align-items: center"
+          >
+            <div data-aos="fade-right">
+              <span class="section-tag">Landmark Case Study</span>
+              <h2 class="section-title">
+                The Apex Cross-Border Trade Sanctions Triumph
+              </h2>
+              <p style="margin-bottom: 1.25rem">
+                When our client, a leading global freight aggregator, was
+                inadvertently flagged under newly enacted cross-border export
+                regulations, three container vessels were seized at
+                international ports.
+              </p>
+              <p style="margin-bottom: 1.5rem">
+                Stackly mobilized an emergency dual-bench litigation squad
+                within 4 hours. By liaising simultaneously with maritime
+                tribunals, trade ministries, and port authorities, we
+                demonstrated statutory exemption under humanitarian
+                transshipment clauses.
+              </p>
+              <div
+                style="
+                  background: #ffffff;
+                  padding: 1.5rem;
+                  border-radius: var(--radius-md);
+                  border-left: 4px solid var(--accent-gold);
+                  margin-bottom: 2rem;
+                "
+              >
+                <strong>Outcome:</strong> Complete vessel release within 36
+                hours with zero statutory fines and unblemished customs
+                classification.
+              </div>
+              <a href="404.html" class="btn btn-navy"
+                >Schedule Case Consultation</a
+              >
+            </div>
+
+            <div data-aos="fade-left">
+              <img
+                src="images/corporate_boardroom.webp"
+                alt="Stackly Case Strategy Session"
+                style="
+                  border-radius: var(--radius-lg);
+                  box-shadow: var(--shadow-xl);
+                  width: 100%;
+                  max-height: 400px;
+                  object-fit: cover;
+                  object-position: center;
+                "
+                width="500"
+                height="400"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: CLIENT VERIFICATION STATEMENT (Face Positioning) -->
+      <section
+        class="section-padding"
+        style="background: #ffffff"
+        aria-label="Verified Case Testimonials"
+      >
+        <div class="container">
+          <div class="text-center" data-aos="fade-up">
+            <span class="section-tag">Client Testimonial</span>
+            <h2 class="section-title">
+              Corporate Leaders on Our Courtroom Impact
+            </h2>
+            <p class="section-subtitle mx-auto">
+              First-hand accounts from chief executives who placed their
+              enterprise in our hands.
+            </p>
+          </div>
+
+          <div class="card-grid-2">
+            <div class="testimonial-card" data-aos="fade-up">
+              <div class="stars-rating">★★★★★</div>
+              <blockquote class="testimonial-quote">
+                "When our shareholders faced an aggressive squeeze-out motion by
+                minority dissidents, Alexander Wright's forensic mastery of
+                statutory procedure turned the entire proceeding around in one
+                hearing."
+              </blockquote>
+              <div class="testimonial-client">
+                <img
+                  src="images/client_testimonial_2.webp"
+                  alt="Elena Rostova, Managing Director"
+                  class="client-avatar"
+                  width="52"
+                  height="52"
+                />
+                <div>
+                  <div class="client-name">Elena Rostova</div>
+                  <div class="client-corp">
+                    Managing Director, Horizon Ventures
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="fade-up">
+              <div class="stars-rating">★★★★★</div>
+              <blockquote class="testimonial-quote">
+                "Stackly's trial brief was described by the presiding bench as a
+                model of procedural precision. They do not merely litigate; they
+                dismantle the opposition's claims piece by piece."
+              </blockquote>
+              <div class="testimonial-client">
+                <img
+                  src="images/client_testimonial_3.webp"
+                  alt="Vikramaditya Sengupta, Group Legal Director"
+                  class="client-avatar"
+                  width="52"
+                  height="52"
+                />
+                <div>
+                  <div class="client-name">Vikramaditya Sengupta</div>
+                  <div class="client-corp">
+                    Group Legal Director, Bharat Infrastructure
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: LITIGATION PROTOCOL FAQ -->
+      <section
+        class="section-padding"
+        style="background: var(--bg-main)"
+        aria-label="Litigation Protocols"
+      >
+        <div class="container">
+          <div class="text-center" data-aos="fade-up">
+            <span class="section-tag">Procedural Clarity</span>
+            <h2 class="section-title">Litigation Engagement Protocols</h2>
+            <p class="section-subtitle mx-auto">
+              Understanding how we assess case viability, jurisdiction strategy,
+              and trial budget forecasts.
+            </p>
+          </div>
+
+          <div class="accordion" data-aos="fade-up">
+            <div class="accordion-item active">
+              <button class="accordion-header" aria-expanded="true">
+                <span
+                  >Do you perform preliminary merits reviews before accepting
+                  litigation briefs?</span
+                >
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-content" style="max-height: 200px">
+                <p>
+                  Yes. Every incoming dispute undergoes an internal partner
+                  merit review to deliver a blunt assessment of legal strengths,
+                  weaknesses, and expected probability of recovery.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-header" aria-expanded="false">
+                <span
+                  >What is your policy regarding out-of-court commercial
+                  settlements?</span
+                >
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>
+                  While prepared for aggressive courtroom trial, we actively
+                  explore structured mediation or commercial settlements when it
+                  preserves client capital and reputation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: HIGH-STAKES RETAINER CTA -->
+      <section
+        class="section-padding"
+        style="
+          background: linear-gradient(
+            135deg,
+            #103654 0%,
+            #16466c 50%,
+            #0d2538 100%
+          );
+          color: #ffffff;
+        "
+        aria-label="Cases CTA"
+      >
+        <div class="container text-center" data-aos="fade-up">
+          <span class="section-tag light">Trial Division</span>
+          <h2 style="color: #ffffff; margin-bottom: 1.25rem">
+            Facing Impending Litigation or Commercial Dispute?
+          </h2>
+          <p
+            style="
+              color: #cbd5e1;
+              max-width: 600px;
+              margin: 0 auto 2.5rem;
+              font-size: 1.15rem;
+            "
+          >
+            Mobilize Stackly's experienced advocates today to safeguard your
+            board and corporate interests.
+          </p>
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 1.25rem;
+              flex-wrap: wrap;
+            "
+          >
+            <a href="404.html" class="btn btn-primary btn-lg"
+              >Engage Trial Advocates</a
+            >
+            <a href="404.html" class="btn btn-ghost btn-lg"
+              >Request Case Briefing Dossier</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- CONSISTENT SITE FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Col 1: Brand Info -->
+          <div>
+            <a href="index.html" aria-label="Stackly Home">
+              <img
+                src="images/logoStackly.webp"
+                alt="Stackly Legal Consulting Logo"
+                class="footer-logo-img"
+                width="160"
+                height="44"
+              />
+            </a>
+            <p class="footer-bio">
+              Stackly Legal Consulting provides elite corporate governance,
+              cross-border M&A advisory, and resolute commercial trial
+              representation for visionary businesses worldwide.
+            </p>
+            <div class="social-links-row">
+              <a href="404.html" class="social-btn" aria-label="LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#0A66C2">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  />
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="404.html" class="social-btn" aria-label="Twitter">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+                <span>Twitter / 𝕏</span>
+              </a>
+              <a href="404.html" class="social-btn" aria-label="YouTube">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                  />
+                </svg>
+                <span>YouTube</span>
+              </a>
+              <a href="404.html" class="social-btn" aria-label="Facebook">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877F2">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+                <span>Facebook</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Quick Links (Direct) -->
+          <div>
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links-list">
+              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="about.html" class="footer-link">About Us</a></li>
+              <li>
+                <a href="services.html" class="footer-link">Practice Areas</a>
+              </li>
+              <li>
+                <a href="cases.html" class="footer-link">Landmark Cases</a>
+              </li>
+              <li>
+                <a href="pricing.html" class="footer-link">Fee Structure</a>
+              </li>
+              <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Practice Areas (Redirect 404) -->
+          <div>
+            <h4 class="footer-heading">Practice Areas</h4>
+            <ul class="footer-links-list">
+              <li>
+                <a href="404.html" class="footer-link">Corporate Governance</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">Commercial Litigation</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">M&A Deal Advisory</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">Intellectual Property</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">Labour & Employment</a>
+              </li>
+              <li>
+                <a href="404.html" class="footer-link">International Trade</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Official Contact -->
+          <div>
+            <h4 class="footer-heading">Chambers Address</h4>
+            <div class="footer-contact-info">
+              <div class="contact-info-item">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span
+                  >MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu
+                  636008</span
+                >
+              </div>
+              <div class="contact-info-item">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+                <a href="404.html" class="footer-link">+91 9876543210</a>
+              </div>
+              <div class="contact-info-item">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <a href="404.html" class="footer-link">hello@thestackly.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div>© 2026 Stackly Legal Consulting. All rights reserved.</div>
+          <div style="display: flex; gap: 1.5rem">
+            <a href="404.html" class="footer-link">Privacy Policy</a>
+            <a href="404.html" class="footer-link">Terms of Service</a>
+            <a href="404.html" class="footer-link">Statutory Disclaimers</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTopBtn"
+      class="back-to-top-btn"
+      aria-label="Back to top"
+      title="Back to top"
+    >
+      ↑
+    </button>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>

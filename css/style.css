@@ -31,7 +31,12 @@
   --accent-gold: #c59b27;
   --accent-gold-hover: #b0891f;
   --accent-gold-light: #f4ebd0;
-  --accent-gold-gradient: linear-gradient(135deg, #dfb15b 0%, #c59b27 50%, #997316 100%);
+  --accent-gold-gradient: linear-gradient(
+    135deg,
+    #dfb15b 0%,
+    #c59b27 50%,
+    #997316 100%
+  );
 
   /* Neutrals & Surfaces */
   --bg-main: #f8fafc;
@@ -40,7 +45,7 @@
   --surface-card-hover: #fcfdfd;
   --surface-dark: #103654;
   --surface-dark-card: #184266;
-  
+
   /* Text Colors */
   --text-main: #0f172a;
   --text-muted: #475569;
@@ -51,15 +56,20 @@
   /* Borders & Shadows */
   --border-light: #e2e8f0;
   --border-dark: rgba(255, 255, 255, 0.12);
-  --shadow-sm: 0 1px 3px rgba(16, 54, 84, 0.06), 0 1px 2px rgba(16, 54, 84, 0.04);
-  --shadow-md: 0 4px 14px rgba(16, 54, 84, 0.08), 0 2px 6px rgba(16, 54, 84, 0.04);
-  --shadow-lg: 0 12px 28px rgba(16, 54, 84, 0.12), 0 4px 10px rgba(16, 54, 84, 0.06);
+  --shadow-sm:
+    0 1px 3px rgba(16, 54, 84, 0.06), 0 1px 2px rgba(16, 54, 84, 0.04);
+  --shadow-md:
+    0 4px 14px rgba(16, 54, 84, 0.08), 0 2px 6px rgba(16, 54, 84, 0.04);
+  --shadow-lg:
+    0 12px 28px rgba(16, 54, 84, 0.12), 0 4px 10px rgba(16, 54, 84, 0.06);
   --shadow-xl: 0 20px 40px rgba(16, 54, 84, 0.16);
   --shadow-gold: 0 8px 24px rgba(197, 155, 39, 0.25);
 
   /* Typography */
-  --font-heading: 'Cinzel', 'Playfair Display', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: "Cinzel", "Playfair Display", Georgia, serif;
+  --font-body:
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
 
   /* Layout & Transitions */
   --radius-sm: 6px;
@@ -72,7 +82,9 @@
 }
 
 /* Base Reset & Box Sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -100,7 +112,12 @@ body.no-scroll {
 }
 
 /* Typography Hierarchy */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--primary-navy);
   line-height: 1.25;
@@ -108,12 +125,24 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2.2rem, 5vw, 3.75rem); }
-h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); }
-h3 { font-size: clamp(1.35rem, 2.5vw, 1.85rem); }
-h4 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
-h5 { font-size: 1.15rem; }
-h6 { font-size: 1rem; }
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.75rem);
+}
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+}
+h3 {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+}
+h4 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+h5 {
+  font-size: 1.15rem;
+}
+h6 {
+  font-size: 1rem;
+}
 
 p {
   color: var(--text-muted);
@@ -133,11 +162,15 @@ img {
   display: block;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   font-size: 1rem;
 }
@@ -244,11 +277,14 @@ button, input, select, textarea {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
 }
 
 .btn-primary::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -60%;
@@ -355,7 +391,9 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
 }
 
 #loader-wrapper.loader-hidden {
@@ -397,12 +435,21 @@ button, input, select, textarea {
 }
 
 @keyframes loaderSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes loaderPulse {
-  0%, 100% { opacity: 0.85; transform: scale(0.98); }
-  50% { opacity: 1; transform: scale(1.02); }
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
 }
 
 /* ==========================================================================
@@ -418,7 +465,9 @@ button, input, select, textarea {
   background: rgba(16, 54, 84, 0.96);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: background var(--transition-normal), box-shadow var(--transition-normal);
+  transition:
+    background var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 .site-header.scrolled,
@@ -463,7 +512,7 @@ button, input, select, textarea {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -708,14 +757,27 @@ button, input, select, textarea {
    ANIMATED HERO SECTIONS (Across Website)
    ========================================================================== */
 @keyframes heroKenBurns {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.08) translate(-1%, -1%); }
-  100% { transform: scale(1) translate(0, 0); }
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
 }
 
 @keyframes heroGlowShift {
-  0%, 100% { opacity: 0.3; transform: scale(0.95); }
-  50% { opacity: 0.55; transform: scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.1);
+  }
 }
 
 /* 1. Homepage Hero (Animated Background + Image Overlay) */
@@ -730,8 +792,14 @@ button, input, select, textarea {
 .hero-home-bg-anim {
   position: absolute;
   inset: -15px;
-  background-image: linear-gradient(135deg, rgba(16, 54, 84, 0.92) 0%, rgba(22, 70, 108, 0.88) 50%, rgba(10, 34, 53, 0.95) 100%),
-                    url('../images/legal_hero_bg.webp');
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(16, 54, 84, 0.92) 0%,
+      rgba(22, 70, 108, 0.88) 50%,
+      rgba(10, 34, 53, 0.95) 100%
+    ),
+    url("../images/legal_hero_bg.webp");
   background-size: cover;
   background-position: center;
   animation: heroKenBurns 28s infinite alternate ease-in-out;
@@ -739,20 +807,24 @@ button, input, select, textarea {
 }
 
 .hero-home::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20%;
   right: -10%;
   width: 650px;
   height: 650px;
-  background: radial-gradient(circle, rgba(197, 155, 39, 0.22) 0%, rgba(16, 54, 84, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 155, 39, 0.22) 0%,
+    rgba(16, 54, 84, 0) 70%
+  );
   animation: heroGlowShift 8s infinite alternate ease-in-out;
   pointer-events: none;
   z-index: 1;
 }
 
 .hero-home::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -908,6 +980,9 @@ button, input, select, textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
+  perspective: 1200px;
+  align-self: flex-start; /* Aligns with top of hero content to eliminate large top gap on wide screens */
+  margin-top: 0.5rem;
 }
 
 .hero-diagonal-shape {
@@ -916,7 +991,11 @@ button, input, select, textarea {
   height: 100%;
   max-width: 440px;
   max-height: 440px;
-  background: linear-gradient(135deg, rgba(197, 155, 39, 0.3) 0%, rgba(16, 54, 84, 0.5) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(197, 155, 39, 0.3) 0%,
+    rgba(16, 54, 84, 0.5) 100%
+  );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   filter: blur(40px);
   z-index: 1;
@@ -927,20 +1006,30 @@ button, input, select, textarea {
   z-index: 2;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(223, 177, 91, 0.35);
-  max-width: 480px;
+  box-shadow:
+    0 35px 70px -15px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(223, 177, 91, 0.45);
+  max-width: 440px;
   width: 100%;
-  background: var(--primary-navy-dark);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 54, 84, 0.75) 0%,
+    rgba(10, 34, 53, 0.98) 100%
+  );
   display: block;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
 }
 
 .hero-main-img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 800 / 533;
+  height: 480px;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   display: block;
   transition: transform 0.8s ease;
 }
@@ -952,8 +1041,8 @@ button, input, select, textarea {
 .hero-floating-quote {
   animation: heroCardFloat 5s ease-in-out infinite alternate;
   position: absolute;
-  bottom: -20px;
-  left: -20px;
+  bottom: 110px; /* Elevated above interactive pedestal mode buttons & status banner */
+  left: -32px;
   z-index: 3;
   background: rgba(16, 54, 84, 0.95);
   backdrop-filter: blur(12px);
@@ -983,8 +1072,6 @@ button, input, select, textarea {
   line-height: 1.4;
 }
 
-
-
 /* Ambient Sculpture Halo & Glow */
 .hero-ambient-glow {
   position: absolute;
@@ -992,7 +1079,11 @@ button, input, select, textarea {
   left: 5%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(16, 54, 84, 0.6) 0%, rgba(10, 34, 53, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(16, 54, 84, 0.6) 0%,
+    rgba(10, 34, 53, 0) 70%
+  );
   filter: blur(60px);
   pointer-events: none;
   z-index: 1;
@@ -1005,7 +1096,12 @@ button, input, select, textarea {
   width: 520px;
   height: 520px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(197, 155, 39, 0.28) 0%, rgba(16, 54, 84, 0.15) 50%, rgba(10, 34, 53, 0) 75%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 155, 39, 0.28) 0%,
+    rgba(16, 54, 84, 0.15) 50%,
+    rgba(10, 34, 53, 0) 75%
+  );
   border-radius: 50%;
   filter: blur(28px);
   pointer-events: none;
@@ -1035,17 +1131,23 @@ button, input, select, textarea {
   border: 1px solid rgba(223, 177, 91, 0.45);
   border-radius: var(--radius-md);
   padding: 0.85rem 1.25rem;
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(223, 177, 91, 0.2);
+  box-shadow:
+    0 20px 35px -10px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(223, 177, 91, 0.2);
   display: flex;
   align-items: center;
   gap: 0.85rem;
   animation: heroCardFloatReverse 5.5s ease-in-out infinite alternate;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .hero-floating-stat:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(223, 177, 91, 0.35);
+  box-shadow:
+    0 25px 40px -10px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(223, 177, 91, 0.35);
 }
 
 .beacon-dot {
@@ -1164,18 +1266,27 @@ button, input, select, textarea {
   z-index: 2;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(223, 177, 91, 0.35);
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(223, 177, 91, 0.35);
   background: var(--primary-navy-dark);
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease;
 }
 
 .hero-main-img-card::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 60%
+  );
   transform: translateX(-100%);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
@@ -1205,7 +1316,7 @@ button, input, select, textarea {
 }
 
 .hero-carousel-slider::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1223,7 +1334,9 @@ button, input, select, textarea {
   display: none;
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
 }
 
 .hero-carousel-slide.active {
@@ -1349,31 +1462,43 @@ button, input, select, textarea {
 .subpage-hero-bg-anim {
   position: absolute;
   inset: -20px;
-  background-image: 
+  background-image:
     radial-gradient(rgba(197, 155, 39, 0.14) 1.5px, transparent 1.5px),
-    linear-gradient(135deg, rgba(16, 54, 84, 0.94) 0%, rgba(22, 58, 88, 0.91) 50%, rgba(10, 34, 53, 0.98) 100%),
-    url('../images/legal_hero_bg.webp');
-  background-size: 32px 32px, cover, cover;
+    linear-gradient(
+      135deg,
+      rgba(16, 54, 84, 0.94) 0%,
+      rgba(22, 58, 88, 0.91) 50%,
+      rgba(10, 34, 53, 0.98) 100%
+    ),
+    url("../images/legal_hero_bg.webp");
+  background-size:
+    32px 32px,
+    cover,
+    cover;
   background-position: center;
   animation: heroKenBurns 32s infinite alternate ease-in-out;
   z-index: 0;
 }
 
 .subpage-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -25%;
   right: -10%;
   width: 580px;
   height: 580px;
-  background: radial-gradient(circle, rgba(197, 155, 39, 0.22) 0%, rgba(16, 54, 84, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 155, 39, 0.22) 0%,
+    rgba(16, 54, 84, 0) 70%
+  );
   animation: heroGlowShift 9s infinite alternate ease-in-out;
   pointer-events: none;
   z-index: 1;
 }
 
 .subpage-hero::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1410,7 +1535,12 @@ button, input, select, textarea {
   width: 460px;
   height: 460px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(197, 155, 39, 0.25) 0%, rgba(16, 54, 84, 0.15) 50%, rgba(10, 34, 53, 0) 75%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 155, 39, 0.25) 0%,
+    rgba(16, 54, 84, 0.15) 50%,
+    rgba(10, 34, 53, 0) 75%
+  );
   border-radius: 50%;
   filter: blur(30px);
   pointer-events: none;
@@ -1423,16 +1553,22 @@ button, input, select, textarea {
   z-index: 2;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(223, 177, 91, 0.35);
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(223, 177, 91, 0.35);
   background: var(--primary-navy-dark);
   width: 100%;
   max-width: 460px;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease;
 }
 
 .subpage-visual-card:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(223, 177, 91, 0.55);
+  box-shadow:
+    0 35px 70px -15px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(223, 177, 91, 0.55);
 }
 
 .subpage-visual-img {
@@ -1458,7 +1594,9 @@ button, input, select, textarea {
   border: 1px solid rgba(223, 177, 91, 0.45);
   border-radius: var(--radius-md);
   padding: 0.85rem 1.25rem;
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.65), 0 0 15px rgba(223, 177, 91, 0.2);
+  box-shadow:
+    0 20px 35px -10px rgba(0, 0, 0, 0.65),
+    0 0 15px rgba(223, 177, 91, 0.2);
   display: flex;
   align-items: center;
   gap: 0.85rem;
@@ -1490,16 +1628,22 @@ button, input, select, textarea {
   border: 1px solid rgba(223, 177, 91, 0.45);
   border-radius: var(--radius-lg);
   padding: 2.25rem;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(223, 177, 91, 0.25);
+  box-shadow:
+    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(223, 177, 91, 0.25);
   width: 100%;
   max-width: 480px;
-  transition: transform 0.4s ease, border-color 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .precedent-spotlight-card:hover {
   transform: translateY(-6px);
   border-color: rgba(223, 177, 91, 0.7);
-  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 177, 91, 0.3);
+  box-shadow:
+    0 30px 70px -15px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(223, 177, 91, 0.3);
 }
 
 /* Unique Retainer Calculator Showcase Card (Pricing Hero) */
@@ -1656,14 +1800,19 @@ button, input, select, textarea {
   border-radius: var(--radius-lg);
   padding: 2.25rem;
   backdrop-filter: blur(16px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(223, 177, 91, 0.2);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(223, 177, 91, 0.2);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
   position: relative;
   overflow: hidden;
 }
 
 .subpage-hero-badge-box::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1675,7 +1824,9 @@ button, input, select, textarea {
 .subpage-hero-badge-box:hover {
   transform: translateY(-5px);
   border-color: rgba(223, 177, 91, 0.7);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.75), 0 0 20px rgba(223, 177, 91, 0.3);
+  box-shadow:
+    0 30px 60px -12px rgba(0, 0, 0, 0.75),
+    0 0 20px rgba(223, 177, 91, 0.3);
 }
 
 /* ==========================================================================
@@ -1714,7 +1865,7 @@ button, input, select, textarea {
 }
 
 .service-card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1774,7 +1925,9 @@ button, input, select, textarea {
   color: var(--primary-navy);
   font-weight: 700;
   font-size: 0.9rem;
-  transition: gap var(--transition-fast), color var(--transition-fast);
+  transition:
+    gap var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .service-link:hover {
@@ -1990,7 +2143,7 @@ button, input, select, textarea {
 }
 
 .timeline-wrap::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -2130,7 +2283,9 @@ button, input, select, textarea {
   background: #ffffff;
   border: 1.5px solid var(--border-light);
   border-radius: var(--radius-md);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .form-control:focus {
@@ -2207,7 +2362,9 @@ button, input, select, textarea {
 .strength-meter-fill {
   height: 100%;
   width: 0%;
-  transition: width 0.3s ease, background 0.3s ease;
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
 }
 
 .strength-text {
@@ -2325,8 +2482,14 @@ button, input, select, textarea {
 }
 
 .auth-banner-side {
-  background: linear-gradient(135deg, rgba(16, 54, 84, 0.96) 0%, rgba(22, 70, 108, 0.92) 50%, rgba(10, 34, 53, 0.98) 100%),
-              url('../images/legal_hero_bg.webp');
+  background:
+    linear-gradient(
+      135deg,
+      rgba(16, 54, 84, 0.96) 0%,
+      rgba(22, 70, 108, 0.92) 50%,
+      rgba(10, 34, 53, 0.98) 100%
+    ),
+    url("../images/legal_hero_bg.webp");
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -2373,13 +2536,17 @@ button, input, select, textarea {
 }
 
 .auth-banner-side::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   width: 320px;
   height: 320px;
-  background: radial-gradient(circle, rgba(197, 155, 39, 0.22) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 155, 39, 0.22) 0%,
+    transparent 70%
+  );
 }
 
 .auth-banner-title {
@@ -2462,7 +2629,7 @@ button, input, select, textarea {
 
 .auth-divider::before,
 .auth-divider::after {
-  content: '';
+  content: "";
   flex: 1;
   border-bottom: 1px solid var(--border-light);
 }
@@ -2494,7 +2661,9 @@ button, input, select, textarea {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  transition: width var(--transition-normal), transform var(--transition-normal);
+  transition:
+    width var(--transition-normal),
+    transform var(--transition-normal);
   z-index: 1020;
   overflow-y: auto;
   overflow-x: hidden;
@@ -2660,7 +2829,7 @@ button, input, select, textarea {
 }
 
 .dash-nav-item.active::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 15%;
@@ -2810,10 +2979,22 @@ button, input, select, textarea {
   text-transform: uppercase;
 }
 
-.badge-active { background: #dcfce7; color: #15803d; }
-.badge-pending { background: #fef3c7; color: #b45309; }
-.badge-review { background: #e0e7ff; color: #4338ca; }
-.badge-resolved { background: #f1f5f9; color: #475569; }
+.badge-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+.badge-pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+.badge-review {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+.badge-resolved {
+  background: #f1f5f9;
+  color: #475569;
+}
 
 /* ==========================================================================
    404 ERROR PAGE (Standalone Fixed Card + Animated Background)
@@ -2833,8 +3014,13 @@ button, input, select, textarea {
 .error-bg-anim {
   position: absolute;
   inset: -20px;
-  background-image: radial-gradient(circle at 50% 50%, rgba(16, 54, 84, 0.88) 0%, rgba(10, 34, 53, 0.98) 100%),
-                    url('../images/legal_hero_bg.webp');
+  background-image:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(16, 54, 84, 0.88) 0%,
+      rgba(10, 34, 53, 0.98) 100%
+    ),
+    url("../images/legal_hero_bg.webp");
   background-size: cover;
   background-position: center;
   animation: heroKenBurns 25s infinite alternate ease-in-out;
@@ -2846,7 +3032,11 @@ button, input, select, textarea {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(197, 155, 39, 0.18) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(197, 155, 39, 0.18) 0%,
+    transparent 70%
+  );
   animation: heroGlowShift 7s infinite alternate ease-in-out;
   pointer-events: none;
   z-index: 1;
@@ -3026,7 +3216,7 @@ button, input, select, textarea {
 }
 
 .footer-heading::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -3090,7 +3280,9 @@ button, input, select, textarea {
 [data-aos] {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-aos].aos-animate {
@@ -3110,7 +3302,9 @@ button, input, select, textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -3130,6 +3324,9 @@ button, input, select, textarea {
 @media (min-width: 1440px) {
   .container {
     max-width: 1360px;
+  }
+  .hero-visual-wrap {
+    margin-top: 0;
   }
 }
 
@@ -3202,15 +3399,17 @@ button, input, select, textarea {
   .hero-visual-wrap {
     margin-top: 1rem;
     width: 100%;
+    align-self: center;
   }
   .hero-main-img-card {
     max-width: 440px;
     margin: 0 auto;
   }
   .hero-main-img {
-    height: auto;
-    aspect-ratio: 800 / 533;
+    height: 420px;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
+    object-position: center top;
   }
   .hero-floating-stat {
     position: relative;
@@ -3221,7 +3420,7 @@ button, input, select, textarea {
     width: 100%;
   }
   .hero-floating-quote {
-  animation: heroCardFloat 5s ease-in-out infinite alternate;
+    animation: heroCardFloat 5s ease-in-out infinite alternate;
     position: relative;
     bottom: auto;
     left: auto;
@@ -3254,7 +3453,7 @@ button, input, select, textarea {
   .sidebar-close-btn {
     display: inline-flex !important;
   }
-  
+
   .card-grid-3 {
     grid-template-columns: 1fr;
   }
@@ -3281,7 +3480,7 @@ button, input, select, textarea {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
-  
+
   /* Hero section on small screens - Responsive Proportional Non-Cutting Visual */
   .hero-home {
     padding: 2.5rem 0 3.5rem;
@@ -3295,9 +3494,10 @@ button, input, select, textarea {
     border-radius: var(--radius-md);
   }
   .hero-main-img {
-    height: auto;
-    aspect-ratio: 800 / 533;
+    height: 360px;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
+    object-position: center top;
   }
   .hero-floating-stat {
     position: relative;
@@ -3313,7 +3513,7 @@ button, input, select, textarea {
     padding: 0.75rem 1rem;
   }
   .hero-floating-quote {
-  animation: heroCardFloat 5s ease-in-out infinite alternate;
+    animation: heroCardFloat 5s ease-in-out infinite alternate;
     max-width: 100%;
     margin-top: 1rem;
     padding: 1rem;
@@ -3402,4 +3602,243 @@ button, input, select, textarea {
   .social-login-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* ==========================================================================
+   EXCLUSIVE & UNIQUE HERO ANIMATIONS & INTERACTIVE HUD WIDGETS
+   ========================================================================== */
+.hero-home,
+.subpage-hero {
+  position: relative;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+.hero-interactive-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.hero-interactive-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(223, 177, 91, 0.13),
+    rgba(16, 54, 84, 0.06) 45%,
+    transparent 72%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* Dynamic Phrase Text Morph */
+.dynamic-phrase {
+  display: inline-block;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.dynamic-phrase.phrase-fade-out {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.dynamic-phrase.phrase-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Concentric Orbital Rings (Homepage Sculpture HUD) */
+.hero-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 560px;
+  height: 560px;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(223, 177, 91, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: orbitRotate 24s linear infinite;
+}
+
+.hero-orbit-node {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 14px var(--accent-gold);
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Live Telemetric Strip inside statue card */
+.hero-stat-telemetry {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.55rem 0.85rem;
+  background: rgba(10, 34, 53, 0.95);
+  border-top: 1px solid rgba(223, 177, 91, 0.3);
+  font-size: 0.725rem;
+  color: #f6e0a4;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+/* Interactive Tabs & Selectors in Hero Cards */
+.hero-hud-tabs {
+  display: flex;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-hud-tab-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.775rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.hero-hud-tab-btn:hover,
+.hero-hud-tab-btn.active {
+  background: var(--accent-gold);
+  color: #0b1a27;
+  border-color: var(--accent-gold);
+}
+
+.hero-hud-content {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.hero-hud-content.fade-out {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Digital Chambers Clock */
+.chambers-clock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "SF Mono", Consolas, Monaco, monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #dfb15b;
+  background: rgba(16, 54, 84, 0.75);
+  border: 1px solid rgba(223, 177, 91, 0.35);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+/* Timeline Milestone Pills */
+.timeline-pill-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.timeline-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  background: rgba(16, 54, 84, 0.7);
+  border: 1px solid rgba(223, 177, 91, 0.25);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.timeline-pill:hover,
+.timeline-pill.active {
+  background: var(--accent-gold);
+  color: #0b1a27;
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   INTERACTIVE HERO PEDESTAL MODES & 3D SHOWCASE (INDEX HERO)
+   ========================================================================== */
+.hero-pedestal-modes {
+  display: flex;
+  background: rgba(10, 34, 53, 0.95);
+  border-top: 1px solid rgba(223, 177, 91, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pedestal-mode-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #cbd5e1;
+  padding: 0.6rem 0.4rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pedestal-mode-btn:last-child {
+  border-right: none;
+}
+
+.pedestal-mode-btn:hover,
+.pedestal-mode-btn.active {
+  background: rgba(223, 177, 91, 0.18);
+  color: #dfb15b;
+}
+
+.hero-pedestal-status-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: rgba(7, 24, 38, 0.98);
+  font-size: 0.75rem;
+  color: #f1f5f9;
+  line-height: 1.45;
+  min-height: 48px;
+  transition: opacity 0.25s ease;
+}
+
+.hero-pedestal-status-banner.fade-out {
+  opacity: 0;
 }
