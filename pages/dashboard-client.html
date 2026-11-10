@@ -10,6 +10,9 @@
 </head>
 <body class="dashboard-body">
 
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div id="dashSidebarOverlay" class="dash-sidebar-overlay" aria-hidden="true"></div>
+
   <div class="dashboard-layout">
     <!-- Redesigned Sleek Sidebar -->
     <aside class="dash-sidebar" id="dashSidebar" aria-label="Client Portal Navigation">
@@ -29,7 +32,7 @@
         </div>
       </div>
 
-      <nav class="dash-nav" aria-label="Client Workspace Tabs">
+      <nav class="dash-nav dash-sidebar-menu" aria-label="Client Workspace Tabs">
         <div class="dash-nav-section-title">PORTAL NAVIGATION</div>
         <button class="dash-nav-item active" data-tab="overview">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -77,21 +80,45 @@
 
     <!-- Main Content Area -->
     <div class="dash-main-area">
+      <!-- Topbar Header -->
       <header class="dash-topbar">
-        <button type="button" class="dash-menu-toggle" id="sidebarOpenBtn" aria-label="Open Sidebar Menu">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-        <div class="dash-topbar-title">
-          <h1 style="font-size: 1.2rem; margin: 0; font-family: var(--font-heading); color: var(--primary-navy);">Client Legal Shield Portal</h1>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">Privileged Attorney-Client Work Product &bull; Protected under Indian Evidence Act Sec 126</span>
-        </div>
-        <div class="dash-topbar-actions" style="display: flex; gap: 0.75rem; align-items: center;">
-          <div class="role-status-badge" style="background: rgba(16, 185, 129, 0.12); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(16, 185, 129, 0.35);">
-            <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 8px #10b981;"></span>
-            <span style="font-weight: 700; color: var(--primary-navy); letter-spacing: 0.02em;">Associate Client Workspace</span>
+        <!-- Left Section: Menu Toggle, Title & Role Badge -->
+        <div class="dash-topbar-left">
+          <button type="button" class="dash-mobile-toggle-btn" id="sidebarOpenBtn" aria-label="Toggle Dashboard Menu">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <span class="toggle-text">Menu</span>
+          </button>
+          
+          <div class="dash-topbar-title-wrap">
+            <h1 class="dash-topbar-title">Client Legal Shield Portal</h1>
+            <span class="dash-topbar-subtitle">Privileged Attorney-Client Work Product &bull; Protected under Indian Evidence Act</span>
           </div>
-          <a href="404.html" class="btn btn-secondary btn-sm" style="font-size: 0.78rem; padding: 0.4rem 0.85rem; border-color: var(--border-light); color: var(--primary-navy);">
-            Priority Support
+
+          <span class="dash-topbar-role-badge role-badge-client">Associate Client</span>
+        </div>
+
+        <!-- Right Section: Notification Alerts, Profile & Sign Out -->
+        <div class="dash-topbar-right">
+          <a href="404.html" class="dash-topbar-icon-btn" title="Privileged Retainer Notices" aria-label="3 active retainer alerts">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            <span class="dash-notif-count">3</span>
+          </a>
+
+          <!-- Profile Badge -->
+          <div class="dash-user-profile-badge">
+            <div class="dash-user-avatar" title="Client Profile" style="background: linear-gradient(135deg, #103654, #d4af37);">
+              VS
+            </div>
+            <div class="dash-user-details">
+              <span class="dash-user-name">Vikramaditya S.</span>
+              <span class="dash-user-subtext">● Apex Technologies Ltd.</span>
+            </div>
+          </div>
+
+          <!-- Sign Out CTA -->
+          <a href="sign-in.html" id="dashSignOutBtn" class="btn btn-secondary btn-sm dash-topbar-signout-btn" title="Sign Out of Portal">
+            <svg class="signout-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            <span class="signout-text">Sign Out</span>
           </a>
         </div>
       </header>
